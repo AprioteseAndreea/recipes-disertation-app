@@ -1,0 +1,56 @@
+<div class="main-container">
+    <div class="top-container">
+      <img src="../../../assets/images/login.jpg" />
+    </div>
+  
+    <form [formGroup]="form" (ngSubmit)="onSubmit()">
+      <div class="bottom-container">
+        <div>
+          <p class="fs-1">Login</p>
+          <div class="mb-3">
+            <label for="emailInput" class="form-label fs-6">Email address</label>
+            <input
+              type="email"
+              class="form-control"
+              id="emailInput"
+              formControlName="username"
+              placeholder="name@example.com"
+              [ngClass]="{ 'is-invalid': submitted && f['username'].errors }"
+            />
+            <div *ngIf="submitted && f['username'].errors" class="invalid-feedback">
+              <div *ngIf="f['username'].errors['required']">Username is required</div>
+            </div>
+          </div>
+          <div class="mb-3">
+            <div class="row justify-content-between">
+              <label for="passwordInput" class="form-label fs-6">Password</label>
+              <button type="button" class="btn btn-link">Forgot password?</button>
+            </div>
+  
+            <input
+              class="form-control"
+              id="passwordInput"
+              type="password"
+              formControlName="password"
+              [ngClass]="{ 'is-invalid': submitted && f['password'].errors }"
+            />
+            <div *ngIf="submitted && f['password'].errors" class="invalid-feedback">
+              <div *ngIf="f['password'].errors['required']">Password is required</div>
+            </div>
+          </div>
+          <div class="row justify-content-center">
+            <button type="submit" class="btn btn-warning login-btn">Login</button>
+          </div>
+        </div>
+        <div class="bottom-div">
+          <div class="row justify-content-center">
+            <p>Don't have an account?</p>
+            <button type="button" class="btn btn-link">
+              Create new account!
+            </button>
+          </div>
+        </div>
+      </div>
+    </form>
+  </div>
+  

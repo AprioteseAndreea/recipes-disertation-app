@@ -1,0 +1,23 @@
+/* Apply styles to the root element */
+@import "../node_modules/bootstrap/dist/css/bootstrap.css";
+
+@import url("https://fonts.googleapis.com/css2?family=DM+Sans:opsz@9..40&display=swap");
+* {
+  font-family: "DM Sans", sans-serif;
+}
+
+html,
+body {
+  height: 100vh;
+  margin: auto;
+  max-width: 600px;
+  overflow: hidden;
+  position: relative;
+  background-color: white;
+}
+
+/* Set a maximum width for the app */
+body {
+  overflow-y: hidden;
+  background-color: beige;
+}

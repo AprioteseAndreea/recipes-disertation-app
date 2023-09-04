@@ -1,0 +1,109 @@
+<label [for]="id" class="form-label"
+  >{{ label }} <span *ngIf="required" class="text-danger">*</span></label
+>
+<div
+  class="month-datepicker"
+  ngbDropdown
+  #monthDatepicker="ngbDropdown"
+  (openChange)="onDropdownToggle($event)"
+>
+  <div class="input-group" ngbDropdownAnchor>
+    <input
+      type="text"
+      class="form-control"
+      readonly="readonly"
+      [(ngModel)]="value"
+      [placeholder]="placeholder"
+      [attr.aria-describedby]="id"
+      [ngClass]="{
+        'is-invalid': submitted && ngControl?.errors
+      }"
+    />
+    <button
+      class="btn btn-secondary p-0 px-3 no-caret"
+      type="button"
+      [id]="id"
+      ngbDropdownToggle
+    >
+      <i class="fs-4 bi bi-calendar3"></i>
+    </button>
+  </div>
+  <ng-content></ng-content>
+
+  <div
+    ngbDropdownMenu
+    [attr.aria-labelledby]="id"
+    class="dropdown-menu datepicker py-0 overflow-hidden"
+  >
+    <!-- year navigation -->
+    <div
+      class="d-flex align-items-center justify-content-between bg-light py-2 border-bottom"
+    >
+      <button
+        type="button"
+        app-button
+        link
+        class="mx-2 py-1"
+        (click)="addYear($event, -1)"
+      >
+        <span class="arrow"></span>
+      </button>
+      <ng-container *ngIf="isYearRange; else showYear">
+        <button
+          type="button"
+          app-button
+          link
+          class="text-underline"
+          (click)="toggleYearView($event, true)"
+        >
+          {{ pickerData.increment + 1 }} - {{ pickerData.increment + 10 }}
+        </button>
+      </ng-container>
+      <ng-template #showYear>
+        <button
+          type="button"
+          app-button
+          link
+          class="text-underline"
+          (click)="toggleYearView($event, false)"
+        >
+          {{ pickerData.year }}
+        </button>
+      </ng-template>
+      <button
+        type="button"
+        app-button
+        link
+        class="mx-2 py-1"
+        (click)="addYear($event, +1)"
+      >
+        <span class="arrow right"></span>
+      </button>
+    </div>
+    <div class="row row-cols-3 g-1 m-1">
+      <ng-container
+        *ngFor="
+          let month of months;
+          let i = index;
+          let first = first;
+          let last = last
+        "
+      >
+        <button
+          type="button"
+          class="btn btn-selection d-flex align-items-center justify-content-center p-0"
+          [ngClass]="{
+            'not-in-range': isYearRange && (first || last),
+            active: isYearRange
+              ? pickerData.year === pickerData.increment + i
+              : pickerData.month === i
+          }"
+          (click)="select($event, i, monthDatepicker)"
+        >
+          <span *ngIf="isYearRange">{{ pickerData.increment + i }}</span>
+          <span *ngIf="!isYearRange">{{ month }}</span>
+        </button>
+      </ng-container>
+    </div>
+  </div>
+</div>

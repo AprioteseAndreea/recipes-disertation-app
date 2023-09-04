@@ -1,0 +1,68 @@
+<label [for]="id" class="form-label"
+  >{{ label }} <span *ngIf="required" class="text-danger">*</span></label
+>
+<!-- INPUT FIELD -->
+<ng-container *ngIf="fieldType === 'INPUT'">
+  <input
+    type="text"
+    class="form-control"
+    [(ngModel)]="value"
+    [id]="id"
+    [placeholder]="placeholder"
+    [disabled]="disabled"
+    [ngClass]="{
+      'is-invalid': submitted && ngControl?.errors
+    }"
+  />
+</ng-container>
+<!-- TEXTAREA -->
+<ng-container *ngIf="fieldType === 'TEXTAREA'">
+  <textarea
+    class="form-control"
+    [(ngModel)]="value"
+    [id]="id"
+    [placeholder]="placeholder"
+    [rows]="rows"
+    [disabled]="disabled"
+    [ngClass]="{
+      'is-invalid': submitted && ngControl?.errors
+    }"
+  ></textarea>
+</ng-container>
+<!-- SELECT -->
+<ng-container *ngIf="fieldType === 'SELECT'">
+  <ng-select
+    [items]="items"
+    [placeholder]="placeholder"
+    [id]="id"
+    [(ngModel)]="value"
+    [disabled]="disabled"
+    [bindLabel]="bindLabel"
+    [bindValue]="bindValue"
+    [compareWith]="compareFn"
+    [ngClass]="{
+      'is-invalid': submitted && ngControl?.errors
+    }"
+  >
+  </ng-select>
+</ng-container>
+<!-- MULTI SELECT -->
+<ng-container *ngIf="fieldType === 'MULTISELECT'">
+  <ng-select
+    [items]="items"
+    [hideSelected]="true"
+    [multiple]="true"
+    [placeholder]="placeholder"
+    [bindLabel]="bindLabel"
+    [bindValue]="bindValue"
+    [id]="id"
+    [compareWith]="compareFn"
+    [(ngModel)]="value"
+    [disabled]="disabled"
+    [ngClass]="{
+      'is-invalid': submitted && ngControl?.errors
+    }"
+  >
+  </ng-select>
+</ng-container>
+<ng-content></ng-content>

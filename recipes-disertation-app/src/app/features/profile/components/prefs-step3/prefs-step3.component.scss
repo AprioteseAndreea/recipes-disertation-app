@@ -1,0 +1,39 @@
+.card-content-custom{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+label.radio-card .card-content-wrapper{
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+    
+}
+
+label.radio-card{
+    height: 100% !important;
+    padding-bottom: 25px !important;
+}
+.check-container{
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+}
+
+.card-content-wrapper{
+    height: inherit !important;
+}
+
+.row{
+    gap: 20px;
+}
+.icon{
+    font-size: 22px;
+}
+h5{
+    text-align: center !important;
+}
+.container{
+    padding-bottom: 10px !important;
+}

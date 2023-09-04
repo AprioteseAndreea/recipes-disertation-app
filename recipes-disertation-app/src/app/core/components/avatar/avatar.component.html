@@ -1,0 +1,37 @@
+<div
+  class="d-flex align-items-center"
+  [ngClass]="ltr ? 'flex-row' : 'flex-row-reverse'"
+>
+  <div class="flex-shrink-0">
+    <ng-container *ngIf="image; else showInitials">
+      <img
+        class="img-fluid rounded-circle"
+        [ngClass]="large ? 'img-large' : 'img-small'"
+        [src]="image"
+        [alt]="name"
+      />
+    </ng-container>
+    <ng-template #showInitials>
+      <div
+        class="bg-primary text-white rounded-circle d-flex align-items-center justify-content-center fw-bold"
+        [ngClass]="large ? 'img-large fs-2' : 'img-small fs-5'"
+      >
+        {{ name | initials }}
+      </div>
+    </ng-template>
+  </div>
+  <div
+    class="flex-grow-1 lh-sm"
+    [ngClass]="ltr ? 'text-start ms-3' : 'text-end me-3'"
+  >
+    <p class="fw-bold mb-0" [ngClass]="{ 'text-uppercase fs-3': large }">
+      {{ name }}
+    </p>
+    <p
+      class="text-muted mb-0"
+      [ngClass]="large ? 'text-uppercase fw-bold' : 'fs-sm'"
+    >
+      {{ title }}
+    </p>
+  </div>
+</div>
