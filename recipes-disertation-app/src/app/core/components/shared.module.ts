@@ -12,6 +12,8 @@ import { SortModule } from './sort/sort.module';
 import { SpinnerModule } from './spinner/spinner.module';
 import { PipesModule } from '../pipes/pipes.module';
 import { AlertModule } from './alert/alert.module';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { NavBarModule } from './navbar/navbar.module';
 
 @NgModule({
   declarations: [DownloadButtonsComponent],
@@ -29,6 +31,8 @@ import { AlertModule } from './alert/alert.module';
     DatepickerModule,
     MonthDatepickerModule,
     FieldModule,
+    FontAwesomeModule,
+    NavBarModule
   ],
 })
 export class SharedModule {}

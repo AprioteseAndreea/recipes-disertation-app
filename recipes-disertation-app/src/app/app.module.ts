@@ -6,8 +6,8 @@ import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { HeaderComponent } from './core/components/header/header.component';
 import { LayoutComponent } from './core/components/layout/layout.component';
 import { PageNotFoundComponent } from './core/components/page-not-found/page-not-found.component';
-import { NavbarComponent } from './core/components/navbar/navbar.component';
 import { HttpClientModule } from '@angular/common/http';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
 @NgModule({
   declarations: [
@@ -15,13 +15,13 @@ import { HttpClientModule } from '@angular/common/http';
     HeaderComponent,
     LayoutComponent,
     PageNotFoundComponent,
-    NavbarComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     MatProgressSpinnerModule,
     HttpClientModule,
+    FontAwesomeModule
   ],
   providers: [],
   bootstrap: [AppComponent],

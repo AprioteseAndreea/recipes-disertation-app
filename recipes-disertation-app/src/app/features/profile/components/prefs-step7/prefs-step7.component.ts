@@ -13,9 +13,9 @@ import { Router } from '@angular/router';
 export class PrefsStep7Component {
   constructor(private router: Router) {}
   saveData() {
-    this.router.navigate(['/']);
+    this.router.navigate(['/home']);
   }
   goBack() {
-    this.router.navigate(['/preferences-step-6']);
+    this.router.navigate(['/profile/preferences-step-6']);
   }
 }

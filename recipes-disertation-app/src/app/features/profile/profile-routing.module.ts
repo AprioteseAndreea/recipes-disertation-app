@@ -7,8 +7,14 @@ import { PrefsStep4Component } from './components/prefs-step4/prefs-step4.compon
 import { PrefsStep5Component } from './components/prefs-step5/prefs-step5.component';
 import { PrefsStep6Component } from './components/prefs-step6/prefs-step6.component';
 import { PrefsStep7Component } from './components/prefs-step7/prefs-step7.component';
+import { ProfileComponent } from './components/profile/profile.component';
 
 const routes: Routes = [
+  {
+    path: '',
+    pathMatch: 'full',
+    component: ProfileComponent,
+  },
   {
     path: 'preferences-step-1',
     pathMatch: 'full',

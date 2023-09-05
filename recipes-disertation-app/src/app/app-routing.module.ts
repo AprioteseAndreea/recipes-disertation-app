@@ -7,43 +7,67 @@ import { LoginComponent } from './features/auth/components/login/login.component
 const routes: Routes = [
   {
     path: '',
-    loadChildren: () =>
-      import('../app/features/auth/auth.module').then((m) => m.AuthModule),
-    // canActivate: [AuthGuard, RoleGuard],
-    // data: { feature: Features.Dashboard },
+    component: LayoutComponent,
+    children: [
+      {
+        path: 'login',
+        pathMatch: 'full',
+        component: LoginComponent,
+      },
+      {
+        path: 'auth',
+        loadChildren: () =>
+          import('../app/features/auth/auth.module').then(
+            (m) => m.AuthModule
+          ),
+        // canActivate: [AuthGuard, RoleGuard],
+        // data: { feature: Features.Dashboard },
+      },
+      {
+        path: 'fridge',
+        loadChildren: () =>
+          import('../app/features/fridge/fridge.module').then(
+            (m) => m.FridgeModule
+          ),
+        // canActivate: [AuthGuard, RoleGuard],
+        // data: { feature: Features.Employees },
+      },
+      {
+        path: 'profile',
+        loadChildren: () =>
+          import('../app/features/profile/profile.module').then(
+            (m) => m.ProfileModule
+          ),
+        // canActivate: [AuthGuard, RoleGuard],
+        // data: { feature: Features.Employees },
+      },
+      {
+        path: 'home',
+        loadChildren: () =>
+          import('../app/features/home/home.module').then(
+            (m) => m.HomeModule
+          ),
+        // canActivate: [AuthGuard, RoleGuard],
+        // data: { feature: Features.Employees },
+      },
+      {
+        path: 'cart',
+        loadChildren: () =>
+          import('../app/features/cart/cart.module').then(
+            (m) => m.CartModule
+          ),
+        // canActivate: [AuthGuard, RoleGuard],
+        // data: { feature: Features.Employees },
+      },
+      // {
+      //   path: 'profile',
+      //   loadChildren: () =>
+      //     import('./views/profile/profile.module').then((m) => m.ProfileModule),
+      //   // canActivate: [AuthGuard, RoleGuard],
+      //   // data: { feature: Features.Profile },
+      // },
+    ],
   },
-  {
-    path: 'fridge',
-    loadChildren: () =>
-      import('../app/features/fridge/fridge.module').then(
-        (m) => m.FridgeModule
-      ),
-    // canActivate: [AuthGuard, RoleGuard],
-    // data: { feature: Features.Employees },
-  },
-  {
-    path: 'profile',
-    loadChildren: () =>
-      import('../app/features/profile/profile.module').then(
-        (m) => m.ProfileModule
-      ),
-    // canActivate: [AuthGuard, RoleGuard],
-    // data: { feature: Features.Employees },
-  },
-  {
-    path: 'home',
-    loadChildren: () =>
-      import('../app/features/home/home.module').then((m) => m.HomeModule),
-    // canActivate: [AuthGuard, RoleGuard],
-    // data: { feature: Features.Employees },
-  },
-  // {
-  //   path: 'profile',
-  //   loadChildren: () =>
-  //     import('./views/profile/profile.module').then((m) => m.ProfileModule),
-  //   // canActivate: [AuthGuard, RoleGuard],
-  //   // data: { feature: Features.Profile },
-  // },
 ];
 
 const routes_dev: Routes = [
@@ -58,8 +82,9 @@ if (!environment.production) {
   routes.push(...routes_dev);
 }
 
+
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
-  exports: [RouterModule],
+  exports: [RouterModule]
 })
-export class AppRoutingModule {}
+export class AppRoutingModule { }

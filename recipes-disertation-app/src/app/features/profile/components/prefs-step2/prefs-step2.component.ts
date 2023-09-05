@@ -9,9 +9,9 @@ import { Router } from '@angular/router';
 export class PrefsStep2Component {
   constructor(private router: Router) {}
   goNext() {
-    this.router.navigate(['/preferences-step-3']);
+    this.router.navigate(['/profile/preferences-step-3']);
   }
   goBack() {
-    this.router.navigate(['/preferences-step-1']);
+    this.router.navigate(['/profile/preferences-step-1']);
   }
 }

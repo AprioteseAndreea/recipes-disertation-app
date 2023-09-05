@@ -4,17 +4,17 @@ import { NgSelectModule } from '@ng-select/ng-select';
 import { NgbPaginationModule } from '@ng-bootstrap/ng-bootstrap';
 import { ReactiveFormsModule } from '@angular/forms';
 import { SharedModule } from 'src/app/core/components/shared.module';
-import { HomeComponent } from './components/home/home.component';
-import { HomeRoutingModule } from './home-routing.module';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { CartRoutingModule } from './cart-routing.module';
+import { CartComponent } from './components/cart/cart.component';
 
 @NgModule({
   declarations: [
-  HomeComponent
+  CartComponent
   ],
   imports: [
     CommonModule,
-    HomeRoutingModule,
+    CartRoutingModule,
     SharedModule,
     NgSelectModule,
     NgbPaginationModule,
@@ -22,4 +22,4 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
     FontAwesomeModule
   ],
 })
-export class HomeModule {}
+export class CartModule {}
