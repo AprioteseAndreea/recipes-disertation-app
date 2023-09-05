@@ -1,38 +1,149 @@
 <div class="main-container">
-    <div class="container column pt-4 top-card">
-      <div class="heading">
-        <div class="d-flex justify-content-between">
-          <p class="fs-4"><b>Welcome Andreea! 👋</b></p>
-          
-          <button class="Btn">
-      
-            <div class="sign"><svg viewBox="0 0 512 512"><path d="M377.9 105.9L500.7 228.7c7.2 7.2 11.3 17.1 11.3 27.3s-4.1 20.1-11.3 27.3L377.9 406.1c-6.4 6.4-15 9.9-24 9.9c-18.7 0-33.9-15.2-33.9-33.9l0-62.1-128 0c-17.7 0-32-14.3-32-32l0-64c0-17.7 14.3-32 32-32l128 0 0-62.1c0-18.7 15.2-33.9 33.9-33.9c9 0 17.6 3.6 24 9.9zM160 96L96 96c-17.7 0-32 14.3-32 32l0 256c0 17.7 14.3 32 32 32l64 0c17.7 0 32 14.3 32 32s-14.3 32-32 32l-64 0c-53 0-96-43-96-96L0 128C0 75 43 32 96 32l64 0c17.7 0 32 14.3 32 32s-14.3 32-32 32z"></path></svg></div>
-            
-            <div class="text">Logout</div>
-          </button>
+  <div class="mx-4 column pt-4">
+    <div class="heading">
+      <div class="d-flex justify-content-between mb-4">
+        <div>
+          <p class="fs-3 fw-bold">Hi, Andreea! 👋</p>
+          <p class="fw-light">Let's see what I've got for you today!</p>
         </div>
-        
-        <p class="fs-5">Discover what we have prepared for you this week!</p>
+
+        <button class="Btn">
+          <div class="sign">
+            <svg viewBox="0 0 512 512">
+              <path
+              d="M377.9 105.9L500.7 228.7c7.2 7.2 11.3 17.1 11.3 27.3s-4.1 20.1-11.3 27.3L377.9 406.1c-6.4 6.4-15 9.9-24 9.9c-18.7 0-33.9-15.2-33.9-33.9l0-62.1-128 0c-17.7 0-32-14.3-32-32l0-64c0-17.7 14.3-32 32-32l128 0 0-62.1c0-18.7 15.2-33.9 33.9-33.9c9 0 17.6 3.6 24 9.9zM160 96L96 96c-17.7 0-32 14.3-32 32l0 256c0 17.7 14.3 32 32 32l64 0c17.7 0 32 14.3 32 32s-14.3 32-32 32l-64 0c-53 0-96-43-96-96L0 128C0 75 43 32 96 32l64 0c17.7 0 32 14.3 32 32s-14.3 32-32 32z"
+              ></path>
+            </svg>
+          </div>
+          <div class="text">Logout</div>
+        </button>
+      </div>
+      <div class="cart-card row mb-2">
+        <div class="col-3">
+          <img src="../../../assets/icons/icons8-grocery-100.png" />
+        </div>
+        <div class="col-9 my-auto">
+          <div>
+            <p class="fw-normal text-start">
+              Check your shopping cart to see what you need for this week.
+            </p>
+            <div class="text-start">
+              <a class="fw-bold cart-link" routerLink="/cart" >See cart</a>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
-   <app-navbar></app-navbar>
+    <div
+      class="container d-flex justify-content-between recipes-container mb-3"
+    >
+      <div *ngFor="let date of weekDays" [appTodayHighlight]="date">
+        <p class="fs-6 justify-content-center d-flex">
+          {{ date | date : "EEE" }}
+        </p>
+        <div class="card py-2 px-3" >
+          <p class="justify-content-center d-flex fw-bold fs-5">
+            {{ date | date : "d" }}
+          </p>
+          <p class="justify-content-center d-flex">{{ date | date : "MMM" }}</p>
+        </div>
+      </div>
+    </div>
+    <div><p class="fs-5 fw-bold mb-3">Today meels</p></div>
+    <div class="recipes-container scrolling-wrapper">
+      <div class="recipe-item">
+        <div class="card recipe-card">
+          <div class="image-container">
+            <span class="badge bg-warning text-dark mx-1 my-1">Breakfast</span>
+            <img src="../../../assets/images/smoothie-bowl.jpg" />
+          </div>
+          <div class="title-container">
+            <p class="px-1 pt-2 fw-bold">Granola & Fruits bowl</p>
+          </div>
+          <div class="detail-container row">
+            <div class="col">
+              <div class="row d-flex justify-content-center">🔥</div>
+              <div
+                class="row d-flex justify-content-center recipe-details-text"
+              >
+                346 kcals
+              </div>
+            </div>
+            <div class="col">
+              <div class="row d-flex justify-content-center">⌚</div>
+              <div
+                class="row d-flex justify-content-center recipe-details-text"
+              >
+                10 min
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="recipe-item">
+        <div class="card recipe-card">
+          <div class="image-container">
+            <span class="badge bg-warning text-dark mx-1  my-1">Lunch</span>
+            <img src="../../../assets/images/recipes-1.jpg" />
+          </div>
+          <div class="title-container">
+            <p class="px-1 pt-2 fw-bold">
+              PoSkillet Polenta in Creamy Tomato Saucetato
+            </p>
+          </div>
+          <div class="detail-container row">
+            <div class="col">
+              <div class="row d-flex justify-content-center">🔥</div>
+              <div
+                class="row d-flex justify-content-center recipe-details-text"
+              >
+                380 kcals
+              </div>
+            </div>
+            <div class="col">
+              <div class="row d-flex justify-content-center">⌚</div>
+              <div
+                class="row d-flex justify-content-center recipe-details-text"
+              >
+                40 min
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="recipe-item">
+        <div class="card recipe-card">
+          <div class="image-container">
+            <span class="badge bg-warning text-dark mx-1  my-1">Dinner</span>
+            <img src="../../../assets/images/lunch.jpg" />
+          </div>
+          <div class="title-container">
+            <p class="px-1 pt-2 fw-bold">
+              PoSkillet Polenta in Creamy Tomato Saucetato
+            </p>
+          </div>
+          <div class="detail-container row">
+            <div class="col">
+              <div class="row d-flex justify-content-center">🔥</div>
+              <div
+                class="row d-flex justify-content-center recipe-details-text"
+              >
+                240 kcals
+              </div>
+            </div>
+            <div class="col">
+              <div class="row d-flex justify-content-center">⌚</div>
+              <div
+                class="row d-flex justify-content-center recipe-details-text"
+              >
+                20 min
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    
   </div>
-  
-  <!--IN PROGRESS-->
-  <!-- dribbble -->
-  <!-- <div class="main-container">
-    <div class="row justify-content-center">
-      <div class="col-lg-4 col-md-6 col-sm-8 col-12">
-        <div class="module my-5">
-          <div class="notify">
-            <img src="https://lh3.googleusercontent.com/wj0UmT0er4pBCR5wZPm5R8KDbt_3IKwasUnrx7baja-Fjj7tac2OEKDdtXAumQwlxI2souiZPQBCkA0raqUUaIU8tx_83EBsW5ODx17m3mfjEsS7Jv7h3fcAkHuyQbO-8HzmkJKDdruOmrseZvqZHV20DLmeocjRxxOjxIuMFuFM95R-XIXaKS1ojNy8B3gLKOzl06Cr6lDg3osz90zeeXpEeQtu0iiba3a1XKO2zh1lplMDxU_UChKRyzgHeaMdgQ5OoH9Snfp9otHoFhm1TjnHc28qsXPsw3gu6wUPecADXYC3cRJby9OB4xqH6uk4TeLQBz5p6wWqN52gAFb6eZLp-EPJqywQwGBO27SRqgdFqev4yw1nGrU7of8ew3LKlp94yJ2ZVzcdNPxEkOjC3TF7W256nX0BGkpnvTkg3TgCeoAodP0V8jO7V_HYwR4tpJEut3rTTprq1Qy9V1ZHfvBFULt2Hpi5ZseM_SJvNOITDb5I2C3QSIn7GKdU8dZqS7Ympt95Zoy3K5R-9fFuqkTW96_X1NCRHl00wQNY-d_PBxGHiwTZUwMlnIRduAIAnDrdi1VP01k74-bOfqieL4Rn2NSKM9yo5OfLAswvlPpZuqKdOBcGWLp6dNLdUAE0Y_uBXNBZNmYr-aCZAOYI9I_KBQmDfT0yV_qPoAPnm4w0yUe-ZBZReiOK9v5fZgC5LDLA=w1366-h625-ft" alt="">
-          </div>
-          <div class="heading">
-              <p class="fs-4"> <b>Welcome Andreea! 👋</b></p>
-              <p class="fs-4">Discover what we have prepared for you this week!</p>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div> -->
-  
+  <app-navbar></app-navbar>
+</div>

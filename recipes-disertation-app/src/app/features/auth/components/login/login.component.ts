@@ -39,13 +39,13 @@ export class LoginComponent implements OnInit {
     // }
     // this.router.navigateByUrl("dashboard");
 
-    this.auth.login(val.username, val.password).subscribe({
-      next: () => {
+    // this.auth.login(val.username, val.password).subscribe({
+    //   next: () => {
         this.router.navigateByUrl('/home');
-      },
-      error: () => {
-        alert('Login failed!');
-      },
-    });
+    //   },
+    //   error: () => {
+    //     alert('Login failed!');
+    //   },
+    // });
   }
 }
