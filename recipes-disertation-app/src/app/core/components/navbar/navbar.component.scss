@@ -1,33 +1,8 @@
-.main-container {
-    height: 100vh;
-    background-color: #f3f3f3;
-    display: flex;
-    justify-content: space-between;
-    flex-direction: column;
-  }
-  .top-card {
-    /* From https://css.glass */
-    background: rgba(255, 255, 255, 0.67);
-    border-radius: 16px;
-    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
-    backdrop-filter: blur(6.9px);
-    -webkit-backdrop-filter: blur(6.9px);
-    border: 1px solid rgba(255, 255, 255, 0.22);
-  }
+
   * {
     margin: 0px;
   }
-  body {
-    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
-      Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue", Helvetica, Arial,
-      sans-serif;
-  }
-  
-  .content {
-    position: absolute;
-    width: 100%;
-    top: 50%;
-  }
+
   .Tabbar {
     width: 750px;
     height: 98px;
@@ -117,8 +92,11 @@
   }
   footer{
     background-color: white;
+    position: relative;
   }
-  
+  p{
+    font-size: 0.90rem !important;
+  }
   .active {
     color: orange;
     i{

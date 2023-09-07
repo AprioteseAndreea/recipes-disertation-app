@@ -13,7 +13,7 @@ export class TodayHighlightDirective implements OnInit {
       let div = this.el.nativeElement.querySelector('div');
       let par = this.el.nativeElement.querySelector('p');
 
-      this.renderer.setStyle(div, 'background-color', '#ffcc00'); // Change this color to your desired color
+      this.renderer.setStyle(div, 'background-color', 'var(--bs-yellow'); // Change this color to your desired color
       this.renderer.setStyle(this.el.nativeElement, 'font-weight', '600'); // Change this color to your desired color
 
       this.renderer.addClass(par, "fw-bold")

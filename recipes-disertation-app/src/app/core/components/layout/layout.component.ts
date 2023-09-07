@@ -8,6 +8,6 @@ import { Router } from '@angular/router';
 })
 export class LayoutComponent {
   constructor(private router: Router) {
-    this.router.navigateByUrl('/home');
+    this.router.navigateByUrl('/cart');
   }
 }
