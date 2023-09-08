@@ -6,10 +6,12 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { FridgeRoutingModule } from './fridge-routing.module';
 import { FridgeComponent } from './components/fridge/fridge.component';
 import { SharedModule } from 'src/app/core/components/shared.module';
+import { ChunkPipe } from './pipes/chunk.pipe';
 
 @NgModule({
   declarations: [
-   FridgeComponent
+   FridgeComponent,
+   ChunkPipe
   ],
   imports: [
     CommonModule,

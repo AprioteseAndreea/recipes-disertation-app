@@ -8,6 +8,7 @@ import { LayoutComponent } from './core/components/layout/layout.component';
 import { PageNotFoundComponent } from './core/components/page-not-found/page-not-found.component';
 import { HttpClientModule } from '@angular/common/http';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { LoadingService } from './core/components/loading/loading.service';
 
 @NgModule({
   declarations: [
@@ -23,7 +24,7 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
     HttpClientModule,
     FontAwesomeModule
   ],
-  providers: [],
+  providers: [LoadingService],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

@@ -21,5 +21,6 @@ import { CartComponent } from './components/cart/cart.component';
     ReactiveFormsModule,
     FontAwesomeModule
   ],
+  
 })
 export class CartModule {}

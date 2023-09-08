@@ -34,5 +34,6 @@ import { NavBarModule } from './navbar/navbar.module';
     FontAwesomeModule,
     NavBarModule
   ],
+  
 })
 export class SharedModule {}
