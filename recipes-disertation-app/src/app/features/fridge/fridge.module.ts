@@ -7,11 +7,17 @@ import { FridgeRoutingModule } from './fridge-routing.module';
 import { FridgeComponent } from './components/fridge/fridge.component';
 import { SharedModule } from 'src/app/core/components/shared.module';
 import { ChunkPipe } from './pipes/chunk.pipe';
+import { AddItemComponentComponent } from './modals/add-item-component/add-item-component.component';
+import { MdbModalService } from 'mdb-angular-ui-kit/modal';
+import { MdbFormsModule } from 'mdb-angular-ui-kit/forms';
+import { MdbDropdownModule } from 'mdb-angular-ui-kit/dropdown';
+import { MdbRippleModule } from 'mdb-angular-ui-kit/ripple';
 
 @NgModule({
   declarations: [
    FridgeComponent,
-   ChunkPipe
+   ChunkPipe,
+   AddItemComponentComponent
   ],
   imports: [
     CommonModule,
@@ -20,6 +26,12 @@ import { ChunkPipe } from './pipes/chunk.pipe';
     NgSelectModule,
     NgbPaginationModule,
     ReactiveFormsModule,
+    MdbFormsModule,
+    MdbDropdownModule,
+    MdbRippleModule,
   ],
+  providers:[
+    MdbModalService
+  ]
 })
 export class FridgeModule {}
