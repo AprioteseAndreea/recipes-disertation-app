@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { AlertService } from 'src/app/core/components/alert/alert.service';
+import { NotificationService } from 'src/app/core/services/notification.service';
 import { AuthStore } from 'src/app/core/store/auth.store';
 
 @Component({
@@ -18,7 +18,7 @@ export class LoginComponent implements OnInit {
     private fb: FormBuilder,
     private router: Router,
     private auth: AuthStore,
-    private alertService: AlertService
+    private alertService: NotificationService
   ) {
     this.form = this.fb.group({
       username: ['test@angular-university.io', [Validators.required]],

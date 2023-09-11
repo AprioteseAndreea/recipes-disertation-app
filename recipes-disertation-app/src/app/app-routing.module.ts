@@ -59,6 +59,15 @@ const routes: Routes = [
         // canActivate: [AuthGuard, RoleGuard],
         // data: { feature: Features.Employees },
       },
+      {
+        path: 'recipe',
+        loadChildren: () =>
+          import('../app/features/about-product/about-product.module').then(
+            (m) => m.ProductModule
+          ),
+        // canActivate: [AuthGuard, RoleGuard],
+        // data: { feature: Features.Employees },
+      },
       // {
       //   path: 'profile',
       //   loadChildren: () =>

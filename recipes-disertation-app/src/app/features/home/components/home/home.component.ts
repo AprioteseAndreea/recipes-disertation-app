@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import constants from 'src/app/core/constants/constants';
 import { User } from 'src/app/core/models/user.model';
 import { AccountService } from 'src/app/features/auth/services/account.service';
 
@@ -13,6 +14,8 @@ export class HomeComponent {
   user: User | null;
   weekDays: Date[];
 
+  recipes = constants.Recipes;
+  
   constructor(private accountService: AccountService) {
     this.user = this.accountService.userValue;
     this.weekDays = this.getNext7Days();

@@ -1,0 +1,30 @@
+<div class="main-container">
+  <div class="d-flex flex-column">
+    <div class="image-container d-flex justify-content-between">
+      <button class="btn rounded-circle position-relative my-3">
+        <i class="fa-solid fa-arrow-left"></i>
+      </button>
+      
+      <span class="badge bg-light text-dark mx-1 my-3 fs-6">Italian food</span>
+
+     
+      <img src="{{ recipe.PhotoURL }}" class="mx-auto d-block" />
+    </div>
+     <button
+        type="button"
+        class="favorite-button fav-button text-end me-5"
+        (click)="favoriteAnimation($event)"
+      >
+        <i class="fas fa-heart favorite__icon favorite--enable rounded-btn"></i>
+        <i
+          class="far fa-heart favorite__icon favorite--not rounded-btn"
+        ></i></button
+      >
+    <p class="text-center fw-bold my-3 fs-5 pt-3">{{ recipe.Name }}</p>
+    <div class="row d-flex justify-content-between gap-4 mx-4">
+      <div class="card col text-center">🔥 {{ recipe.Kcals }} kcals</div>
+      <div class="card col text-center">⌚ {{ recipe.PrepTime }} min</div>
+    </div>
+  </div>
+  <app-navbar></app-navbar>
+</div>

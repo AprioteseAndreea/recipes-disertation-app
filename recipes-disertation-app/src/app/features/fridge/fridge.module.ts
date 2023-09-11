@@ -12,6 +12,8 @@ import { MdbModalService } from 'mdb-angular-ui-kit/modal';
 import { MdbFormsModule } from 'mdb-angular-ui-kit/forms';
 import { MdbDropdownModule } from 'mdb-angular-ui-kit/dropdown';
 import { MdbRippleModule } from 'mdb-angular-ui-kit/ripple';
+import { NotificationService } from 'src/app/core/services/notification.service';
+import { ToastrService } from 'ngx-toastr';
 
 @NgModule({
   declarations: [
@@ -31,7 +33,9 @@ import { MdbRippleModule } from 'mdb-angular-ui-kit/ripple';
     MdbRippleModule,
   ],
   providers:[
-    MdbModalService
+    MdbModalService,
+    NotificationService,
+    ToastrService
   ]
 })
 export class FridgeModule {}

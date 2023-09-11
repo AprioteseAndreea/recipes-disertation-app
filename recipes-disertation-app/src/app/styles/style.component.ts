@@ -1,8 +1,8 @@
 
 import { Component, OnInit, QueryList, ViewChildren } from '@angular/core';
 import { SortEvent } from '../core/components/sort';
-import { AlertService } from '../core/components/alert/alert.service';
-import { AlertType } from '../core/components/alert/alert.config';
+import { NotificationService } from '../core/services/notification.service';
+
 
 @Component({
   selector: 'app-style',
@@ -34,9 +34,9 @@ export class StyleComponent implements OnInit {
   pageSize: number = 5;
   totalRecords: number = 15;
 
-  alertType: typeof AlertType = AlertType;
+  //alertType: typeof AlertType = AlertType;
 
-  constructor(private alertService: AlertService) {}
+  constructor(private alertService: NotificationService) {}
 
   ngOnInit(): void {}
 
@@ -44,18 +44,18 @@ export class StyleComponent implements OnInit {
     this.sortEvent = sortEvent;
   }
 
-  showAlert(alertType: AlertType) {
-    // preferaby, use verbose methods like
+  // showAlert(alertType: AlertType) {
+  //   // preferaby, use verbose methods like
 
-    // this.alertService.error(message);
-    // this.alertService.info(message);
-    // this.alertService.success(message);
-    // this.alertService.warning(message);
+  //   // this.alertService.error(message);
+  //   // this.alertService.info(message);
+  //   // this.alertService.success(message);
+  //   // this.alertService.warning(message);
 
-    // sample for guidelines
-    this.alertService.show(
-      alertType,
-      'This is just a sample text. Are you still reading?'
-    );
-  }
+  //   // sample for guidelines
+  //   this.alertService.show(
+  //     alertType,
+  //     'This is just a sample text. Are you still reading?'
+  //   );
+  // }
 }

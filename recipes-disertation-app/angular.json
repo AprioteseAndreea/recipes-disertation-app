@@ -35,7 +35,8 @@
               "node_modules/bootstrap-icons/font/bootstrap-icons.css",
               "src/styles.scss",
               "src/app/styles/variables.scss",
-              "node_modules/@fortawesome/fontawesome-free/css/all.min.css" 
+              "node_modules/@fortawesome/fontawesome-free/css/all.min.css",
+              "node_modules/ngx-toastr/toastr.css"
             ],
             "scripts": [
               "node_modules/@fortawesome/fontawesome-free/js/all.min.js", 

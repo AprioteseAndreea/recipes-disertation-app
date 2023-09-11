@@ -7,8 +7,7 @@ import {
 } from '@angular/forms';
 import { MdbDropdownDirective } from 'mdb-angular-ui-kit/dropdown';
 import { MdbModalRef } from 'mdb-angular-ui-kit/modal';
-import { AlertService } from 'src/app/core/components/alert/alert.service';
-import { ToastService } from 'src/app/core/components/alert/toast.service';
+import { NotificationService } from 'src/app/core/services/notification.service';
 
 @Component({
   selector: 'app-add-item-component',
@@ -27,7 +26,7 @@ export class AddItemComponentComponent implements OnInit {
   constructor(
     public modalRef: MdbModalRef<AddItemComponentComponent>,
     private fb: FormBuilder,
-    private toastService: ToastService
+    private notificationService: NotificationService
   ) {}
 
   ngOnInit(): void {}
@@ -36,7 +35,7 @@ export class AddItemComponentComponent implements OnInit {
     console.log('on dropdown show: ', event);
   }
   onSubmit(){
-    console.log("In onSumbit")
-    this.toastService.showSuccessToast('Success toast title', 'This is a success toast message.');
+    this.notificationService.showSuccess('Success!', 'A new item was added in your fridge.');
+    this.modalRef.close()
   }
 }

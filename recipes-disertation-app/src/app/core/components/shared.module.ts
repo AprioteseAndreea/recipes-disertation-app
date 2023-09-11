@@ -11,7 +11,6 @@ import { MonthDatepickerModule } from './month-datepicker/month-datepicker.modul
 import { SortModule } from './sort/sort.module';
 import { SpinnerModule } from './spinner/spinner.module';
 import { PipesModule } from '../pipes/pipes.module';
-import { AlertModule } from './alert/alert.module';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { NavBarModule } from './navbar/navbar.module';
 
@@ -19,7 +18,6 @@ import { NavBarModule } from './navbar/navbar.module';
   declarations: [DownloadButtonsComponent],
   imports: [CommonModule, ReactiveFormsModule],
   exports: [
-    AlertModule,
     FormsModule,
     SortModule,
     CardModule,
