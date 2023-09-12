@@ -1,32 +1,151 @@
-<div class="main-container">
-  <div class="d-flex flex-column">
-    <div class="image-container d-flex justify-content-between">
-      <button class="btn rounded-circle position-relative my-3" (click)="goBack()">
-        <i class="fa-solid fa-arrow-left"></i>
-      </button>
-      <div class="d-flex flex-column justify-content-start">
-        <span class="badge bg-light text-dark mx-1 my-3 fs-6">Italian food</span>
-
-
+<div class="main-container h-100 d-flex justify-content-between flex-column">
+  <div class="d-flex flex-column overflow-auto">
+    <div>
+      <div class="image-container d-flex justify-content-between">
+        <button
+          class="btn position-relative rounded-circle position-relative my-3"
+          (click)="goBack()"
+        >
+          <i class="fa-solid fa-arrow-left" style="color: white"></i>
+        </button>
+        <div class="d-flex flex-column justify-content-start">
+          <span
+            class="position-relative badge bg-light mx-1 my-3 fs-6"
+            >Italian food</span
+          >
+          <span
+            type="button"
+            class="favorite-button fav-button text-end me-5"
+            (click)="favoriteAnimation($event)"
+          >
+            <i
+              class="fas fa-heart favorite__icon favorite--enable rounded-btn"
+            ></i>
+            <i
+              class="far fa-heart favorite__icon favorite--not rounded-btn"
+            ></i>
+          </span>
+        </div>
+        <img
+          src="{{ recipe.PhotoURL }}"
+          class="w-100 mx-auto d-block recipe-img"
+        />
       </div>
-     
-      <img src="{{ recipe.PhotoURL }}" class="mx-auto d-block" />
+
+      <div class="d-flex justify-content-center flex-row">
+        <p
+          class="card shadow text-center fw-bold px-5 py-2 negative-margin-top mx-4"
+          style="max-width: max-content"
+        >
+          {{ recipe.Name }}
+        </p>
+      </div>
+      <div class="container">
+        <div
+          class="d-flex flex-row shadow card text-center h-100 align-items-center py-2"
+        >
+          <div class="col">
+            <div>🔥</div>
+            <div class="custom-font">
+              <b>{{ recipe.Kcals }}</b> kcals
+            </div>
+          </div>
+          <div class="col">
+            <div>⌚</div>
+            <div class="custom-font">
+              <b>{{ recipe.PrepTime }}</b> min
+            </div>
+          </div>
+          <div class="col">
+            <div>🍳</div>
+            <div class="fw-bold custom-font">
+              {{ recipe.CookingLevel | cookingLevel }}
+            </div>
+          </div>
+          <div class="col">
+            <div>⭐</div>
+            <div class="fw-bold custom-font">54 stars</div>
+          </div>
+        </div>
+      </div>
     </div>
-    
-     <button
-        type="button"
-        class="favorite-button fav-button text-end me-5"
-        (click)="favoriteAnimation($event)"
-      >
-        <i class="fas fa-heart favorite__icon favorite--enable rounded-btn"></i>
-        <i
-          class="far fa-heart favorite__icon favorite--not rounded-btn"
-        ></i></button
-      >
-    <p class="text-center fw-bold my-3 fs-5 pt-3">{{ recipe.Name }}</p>
-    <div class="row d-flex justify-content-between gap-4 mx-4">
-      <div class="card col text-center">🔥 {{ recipe.Kcals }} kcals</div>
-      <div class="card col text-center">⌚ {{ recipe.PrepTime }} min</div>
+
+    <div class="container my-2 overflow-auto">
+      <div class="d-flex flex-column shadow card py-2 px-2">
+        <p class="fw-bold">Description</p>
+        <p class="custom-font">
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus
+          quis semper urna. Nulla consequat nunc nibh, non blandit lorem
+          interdum sit amet. Vestibulum consequat sem tincidunt est rhoncus, nec
+          luctus tellus bibendum. Sed in arcu interdum, suscipit tellus vel,
+          dapibus nisi. Etiam fringilla tempus odio.
+        </p>
+        <p class="fw-bold">Ingredients</p>
+        <div class="d-flex flex-row ingr-item align-items-center mb-1">
+          <img
+            src="../../../../../assets/fridge-icons/icons8-cheese-64.png"
+            class="card shadow px-1 py-1"
+          />
+          <div
+            class="d-flex flex-row justify-content-between align-items-center px-2"
+            style="width: -webkit-fill-available"
+          >
+            <p class="small mb-0 fw-bold">Cheese</p>
+            <p class="small mb-0">200 g</p>
+            <div class="d-flex align-items-center fridge-check">
+              <i class="fa-regular fa-circle-check px-1 green-icon"></i>
+              <p class="small mb-0 green-icon">In your fridge</p>
+            </div>
+          </div>
+        </div>
+        <div class="d-flex flex-row ingr-item align-items-center mb-1">
+          <img
+            src="../../../../../assets/fridge-icons/icons8-cabbage-64.png"
+            class="card shadow px-1 py-1"
+          />
+          <div
+            class="d-flex flex-row justify-content-between align-items-center px-2"
+            style="width: -webkit-fill-available"
+          >
+            <p class="small mb-0 fw-bold">Cabagge</p>
+            <p class="small mb-0">100 g</p>
+            <div class="d-flex align-items-center fridge-check">
+              <i class="fa-regular fa-circle-check px-1 red-icon"></i>
+              <p class="small mb-0 green-icon red-icon">Not in your fridge</p>
+            </div>
+          </div>
+        </div>
+        <div class="d-flex flex-row ingr-item align-items-center mb-1">
+          <img
+            src="../../../../../assets/fridge-icons/icons8-grapes-64.png"
+            class="card shadow px-1 py-1"
+          />
+          <div
+            class="d-flex flex-row justify-content-between align-items-center px-2"
+            style="width: -webkit-fill-available"
+          >
+            <p class="small mb-0 fw-bold">Grapes</p>
+            <p class="small mb-0">100 g</p>
+            <div class="d-flex align-items-center fridge-check">
+              <i class="fa-regular fa-circle-check px-1 green-icon"></i>
+              <p class="small mb-0 green-icon green-icon">In your fridge</p>
+            </div>
+          </div>
+        </div>
+       
+        <p class="fw-bold mt-1">Instructions</p>
+        <section class="small">
+          1. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus
+          quis semper urna. Nulla consequat nunc nibh, non blandit lorem
+          interdum sit amet. <br />
+          2. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus
+          quis semper urna. Nulla consequat nunc nibh, non blandit lorem
+          interdum sit amet. <br />
+          3. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus
+          quis semper urna. Nulla consequat nunc nibh, non blandit lorem
+          interdum sit amet.
+        </section>
+      </div>
     </div>
   </div>
   <app-navbar></app-navbar>

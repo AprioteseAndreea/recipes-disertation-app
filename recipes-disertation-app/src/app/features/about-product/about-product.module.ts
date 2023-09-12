@@ -7,10 +7,12 @@ import { SharedModule } from 'src/app/core/components/shared.module';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { AboutProductComponent } from './components/about-product/about-product.component';
 import { AboutRecipeRoutingModule } from './about-product-routing.module';
+import { CookingLevelPipe } from './pipes/cooking-level.pipe';
 
 @NgModule({
   declarations: [
   AboutProductComponent,
+  CookingLevelPipe,
   ],
   imports: [
     CommonModule,
