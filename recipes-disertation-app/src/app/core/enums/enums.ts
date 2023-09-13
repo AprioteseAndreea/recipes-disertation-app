@@ -1,5 +1,13 @@
 export enum CookingLevel{
-    'BEGINNER',
-    'INTERMEDIATE',
-    'ADVANCED'
+    'Beginner',
+    'Intermediate',
+    'Advanced'
+}
+
+export enum PhysicalEffort{
+    'Sedentary',
+    'Slightly active',
+    'Moderately active',
+    'Very active',
+    'Super active'
 }

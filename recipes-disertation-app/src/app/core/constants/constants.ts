@@ -1,5 +1,6 @@
 import { Recipe } from 'src/app/features/about-product/models/recipe.model';
-import { CookingLevel } from '../enums/enums';
+import { CookingLevel, PhysicalEffort } from '../enums/enums';
+import { User } from 'src/app/features/profile/models/user.model';
 
 export type FieldType = 'INPUT' | 'TEXTAREA' | 'SELECT' | 'MULTISELECT';
 export default {
@@ -124,7 +125,7 @@ export default {
       RecipeID: 1,
       Name: 'Granola & Fruits bowl',
       PrepTime: 40,
-      CookingLevel: CookingLevel.BEGINNER,
+      CookingLevel: CookingLevel.Beginner,
       Intructions: 'Lorem ipsum',
       CuisineID: 2,
       CuisineName: 'Italian',
@@ -136,7 +137,7 @@ export default {
       RecipeID: 2,
       Name: 'PoSkillet Polenta in Creamy Tomato Saucetato',
       PrepTime: 40,
-      CookingLevel: CookingLevel.INTERMEDIATE,
+      CookingLevel: CookingLevel.Intermediate,
       Intructions: 'Lorem ipsum',
       CuisineID: 2,
       CuisineName: 'Italian',
@@ -148,7 +149,7 @@ export default {
       RecipeID: 3,
       Name: 'PoSkillet Polenta in Creamy Tomato Saucetato',
       PrepTime: 40,
-      CookingLevel: CookingLevel.INTERMEDIATE,
+      CookingLevel: CookingLevel.Intermediate,
       Intructions: 'Lorem ipsum',
       CuisineID: 2,
       CuisineName: 'Italian',
@@ -157,4 +158,22 @@ export default {
       Favourites: 40,
     } as Recipe,
   ],
+
+  User: {
+    Id: 1,
+    FirstName: 'Andreea',
+    LastName: 'Apriotese',
+    Email: 'andreea.apriotese11@gmail.com',
+    Age: 22,
+    Gender: 'F',
+    Height: 162,
+    Weight: 57,
+    BMR: 2087,
+    PhysicalEffort: PhysicalEffort.Sedentary,
+    CookingLevel: CookingLevel.Intermediate,
+    WantTryNewCuisines: true,
+    WantLearnNewCuisines: true,
+    WantToSaveMoney: true,
+    WantToSaveTime: true,
+  } as User,
 };

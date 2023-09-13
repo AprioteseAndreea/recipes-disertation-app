@@ -1,5 +1,47 @@
-
 <div class="main-container">
-    <p>profile works!</p>
-    <app-navbar></app-navbar>
+  <div class="mx-4 column pt-4" style="overflow-y: auto">
+    <div class="heading">
+      <div class="profile-card row mb-2">
+        <div class="col-3">
+          <img src="../../../assets/icons/female-icon.png" />
+        </div>
+        <div class="col-9 my-auto">
+          <div>
+            <p class="fw-bold text-start fs-6">
+              {{ user.FirstName }} {{ user.LastName }}
+            </p>
+            <div class="text-start">
+              <p class="small text-muted">{{user.Email}}</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div><p class="medium fw-bold mb-2">Personal informations</p></div>
+    <div class="card">
+        <div class="row align-items-start">
+            <div class="col text-center">
+              <p class="small text-muted">Age</p>
+              <p class="small fw-bold">{{user.Age}}</p>
+            </div>
+            <div class="col text-center">
+                <p class="small text-muted">Height</p>
+                <p class="small fw-bold">{{user.Height}}</p>
+
+            </div>
+            <div class="col text-center">
+                <p class="small text-muted">Weight</p>
+                <p class="small fw-bold">{{user.Weight}}</p>
+
+            </div>
+            <div class="col text-center">
+                <p class="small text-muted">BMR</p>
+                <p class="small fw-bold">{{user.BMR}}</p>
+
+              </div>
+          </div>
+    </div>
+  </div>
+  <app-navbar></app-navbar>
 </div>
