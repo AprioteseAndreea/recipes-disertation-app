@@ -22,7 +22,7 @@ export class LoginComponent implements OnInit {
   ) {
     this.form = this.fb.group({
       username: ['test@angular-university.io', [Validators.required]],
-      password: ['test', [Validators.required]],
+      password: ['testceva123', [Validators.required]],
     });
   }
 
@@ -34,14 +34,16 @@ export class LoginComponent implements OnInit {
     this.submitted = true;
     //this.alertService.clear();
     const val = this.form.value;
-    // if (this.form.invalid) {
-    //   return;
-    // }
-    // this.router.navigateByUrl("dashboard");
+    if (this.form.invalid) {
+      return;
+    }else{
+      this.router.navigateByUrl('/home');
+
+    }
+    //this.router.navigateByUrl("dashboard");
 
     // this.auth.login(val.username, val.password).subscribe({
     //   next: () => {
-        this.router.navigateByUrl('/home');
     //   },
     //   error: () => {
     //     alert('Login failed!');

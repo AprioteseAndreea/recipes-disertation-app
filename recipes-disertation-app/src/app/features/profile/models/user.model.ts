@@ -16,4 +16,5 @@ export interface User {
     WantLearnNewCuisines?: boolean;
     WantToSaveMoney?: boolean;
     WantToSaveTime?: boolean;
+    FavouriteCuisines? : string[]
   }

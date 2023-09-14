@@ -175,5 +175,28 @@ export default {
     WantLearnNewCuisines: true,
     WantToSaveMoney: true,
     WantToSaveTime: true,
+    FavouriteCuisines: [
+      '🍕Italian',
+      '🍛Marocan',
+      '🍔American',
+      '🥓Barbecue',
+      '🥕Kid-friendly',
+      '🥐French',
+      '🥗Greek',
+      
+    ],
   } as User,
+  Colors: [
+    'zinc',
+    'red',
+    'orange',
+    'yellow',
+    'lime',
+    'green',
+    'teal',
+    'blue',
+    'purple',
+    'pink',
+    'fuchsia',
+  ],
 };

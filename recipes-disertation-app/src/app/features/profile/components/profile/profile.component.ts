@@ -8,4 +8,5 @@ import constants from 'src/app/core/constants/constants';
 })
 export class ProfileComponent {
   user = constants.User;
+  colors = constants.Colors;
 }

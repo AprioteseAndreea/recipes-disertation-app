@@ -13,9 +13,10 @@ import { SpinnerModule } from './spinner/spinner.module';
 import { PipesModule } from '../pipes/pipes.module';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { NavBarModule } from './navbar/navbar.module';
+import { BadgeComponent } from './badge/badge.component';
 
 @NgModule({
-  declarations: [DownloadButtonsComponent],
+  declarations: [DownloadButtonsComponent, BadgeComponent],
   imports: [CommonModule, ReactiveFormsModule],
   exports: [
     FormsModule,
@@ -30,7 +31,8 @@ import { NavBarModule } from './navbar/navbar.module';
     MonthDatepickerModule,
     FieldModule,
     FontAwesomeModule,
-    NavBarModule
+    NavBarModule,
+    BadgeComponent
   ],
   
 })
