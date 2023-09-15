@@ -12,6 +12,7 @@ import { LoadingService } from './core/components/loading/loading.service';
 import { NotificationService } from './core/services/notification.service';
 import { ToastrModule, ToastrService } from 'ngx-toastr';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { MatIconModule } from '@angular/material/icon';
 
 @NgModule({
   declarations: [
@@ -27,6 +28,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     MatProgressSpinnerModule,
     HttpClientModule,
     FontAwesomeModule,
+    MatIconModule,
     ToastrModule.forRoot({
       timeOut: 10000,
       positionClass: 'toast-top-center',

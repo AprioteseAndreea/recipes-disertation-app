@@ -30,14 +30,14 @@
               id="email"
               class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5"
               placeholder="name@company.com"
-              formControlName="username"
+              formControlName="email"
               required=""
-              [ngClass]="{ 'is-invalid': submitted && f['username'].errors }"
+              [ngClass]="{ 'is-invalid': form.controls.email.errors }"
             />
             <span
               *ngIf="
-                f['username'].invalid &&
-                (f['username'].touched || f['username'].dirty)
+                form.controls.email.invalid &&
+                (form.controls.email.touched || form.controls.email.dirty)
               "
               class="text-danger"
             >
@@ -50,23 +50,124 @@
               class="block mb-2 text-sm font-medium text-gray-900"
               >Password</label
             >
+            <div class="input-group">
             <input
               type="password"
               name="password"
               id="password"
               formControlName="password"
               placeholder="••••••••"
+              #password
               class="mb-3 bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5"
               required=""
-              [ngClass]="{ 'is-invalid': submitted && f['password'].errors }"
+              [ngClass]="{ 'is-invalid': form.controls.password.errors }"
             />
-            <div
-              *ngIf="submitted && f['password'].errors"
-              class="invalid-feedback"
+            <button
+              title="Arata parola"
+              class="fa show-password"
+              [ngClass]="{
+                'fa-eye': password.type == 'password',
+                'fa-eye-slash': password.type == 'text'
+              }"
+              (click)="togglePasswordVisibility($event)"
+            ></button>
+            </div>
+            <span
+              *ngIf="
+                form.controls.password.hasError('hasEmptySpaces') &&
+                (form.controls.password.touched || form.controls.password.dirty)
+              "
+              class="text-danger"
             >
-              <div *ngIf="f['password'].errors['required']">
-                Password is required
-              </div>
+              Parola nu trebuie să conțină spații libere <br />
+            </span>
+            <span class="col text-muted">The password must contains: </span>
+            <div class="d-flex flex-column">
+              <label
+                class="col"
+                [ngClass]="
+                  form.controls['password'].hasError('required') ||
+                  form.controls['password'].hasError('minlength')
+                    ? 'text-danger'
+                    : 'text-success'
+                "
+              >
+                <i class="material-icons">{{
+                  form.controls["password"].hasError("required") ||
+                  form.controls["password"].hasError("minlength")
+                    ? "cancel"
+                    : "check_circle"
+                }}</i>
+                minim 8 caractere
+              </label>
+              <label
+                class="col"
+                [ngClass]="
+                  form.controls['password'].hasError('required') ||
+                  form.controls['password'].hasError('hasNumber')
+                    ? 'text-danger'
+                    : 'text-success'
+                "
+              >
+                <i class="material-icons">{{
+                  form.controls["password"].hasError("required") ||
+                  form.controls["password"].hasError("hasNumber")
+                    ? "cancel"
+                    : "check_circle"
+                }}</i>
+                cel puțin o cifră
+              </label>
+              <label
+                class="col"
+                [ngClass]="
+                  form.controls['password'].hasError('required') ||
+                  form.controls['password'].hasError('hasCapitalCase')
+                    ? 'text-danger'
+                    : 'text-success'
+                "
+              >
+                <i class="material-icons">{{
+                  form.controls["password"].hasError("required") ||
+                  form.controls["password"].hasError("hasCapitalCase")
+                    ? "cancel"
+                    : "check_circle"
+                }}</i>
+                cel puțin o literă mare
+              </label>
+              <label
+                class="col"
+                [ngClass]="
+                  form.controls['password'].hasError('required') ||
+                  form.controls['password'].hasError('hasSmallCase')
+                    ? 'text-danger'
+                    : 'text-success'
+                "
+              >
+                <i class="material-icons">{{
+                  form.controls["password"].hasError("required") ||
+                  form.controls["password"].hasError("hasSmallCase")
+                    ? "cancel"
+                    : "check_circle"
+                }}</i>
+                cel puțin o literă mică
+              </label>
+              <label
+                class="col"
+                [ngClass]="
+                  form.controls['password'].hasError('required') ||
+                  form.controls['password'].hasError('hasSpecialCharacters')
+                    ? 'text-danger'
+                    : 'text-success'
+                "
+              >
+                <i class="material-icons">{{
+                  form.controls["password"].hasError("required") ||
+                  form.controls["password"].hasError("hasSpecialCharacters")
+                    ? "cancel"
+                    : "check_circle"
+                }}</i>
+                cel puțin un caracter special (!, @, $, #, etc.)
+              </label>
             </div>
           </div>
           <div>
@@ -80,21 +181,34 @@
               name="confirm-password"
               id="confirm-password"
               placeholder="••••••••"
-              formControlName="confirmPassword"
+              formControlName="repeteadPassword"
               class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5"
               required=""
               [ngClass]="{
-                'is-invalid': submitted && f['confirmPassword'].errors
+                'is-invalid': form.controls.repeteadPassword.errors
               }"
             />
             <div
-              *ngIf="submitted && f['confirmPassword'].errors"
+              *ngIf="form.controls.repeteadPassword.errors"
               class="invalid-feedback"
             >
-              <div *ngIf="f['confirmPassword'].errors['confirmPassword']">
+              <div
+                *ngIf="form.controls.repeteadPassword.errors['confirmPassword']"
+              >
                 Password is required
               </div>
             </div>
+            <span
+              *ngIf="
+                (form.controls.repeteadPassword.touched ||
+                  form.controls.repeteadPassword.dirty) &&
+                form.controls.password.value !==
+                  form.controls.repeteadPassword.value
+              "
+              class="text-danger"
+            >
+              Parola de confirmare nu corespunde cu parola adăugată
+            </span>
           </div>
           <div class="flex items-start">
             <div class="flex items-center h-5">
@@ -104,6 +218,7 @@
                 type="checkbox"
                 class="w-4 h-4 border border-gray-300 rounded bg-gray-50 focus:ring-3 focus:ring-primary-300"
                 required=""
+                formControlName="acceptedTerms"
               />
             </div>
             <div class="ml-3 text-sm">
@@ -117,6 +232,7 @@
           </div>
           <button
             type="submit"
+            [disabled]="isNotValid()"
             class="my-4 w-full text-white bg-amber-500 text-gray-500 hover:bg-primary-700 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center"
           >
             Create an account

@@ -7,6 +7,7 @@ import { SharedModule } from 'src/app/core/components/shared.module';
 import { AuthRoutingModule } from './auth-routing.module';
 import { ReactiveFormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
+import {MatIconModule} from '@angular/material/icon'
 
 @NgModule({
   declarations: [ForgotPasswordComponent, LoginComponent, RegisterComponent],
@@ -15,6 +16,7 @@ import { BrowserModule } from '@angular/platform-browser';
     SharedModule,
     AuthRoutingModule,
     ReactiveFormsModule,
+    MatIconModule
   ],
   providers: [],
 })

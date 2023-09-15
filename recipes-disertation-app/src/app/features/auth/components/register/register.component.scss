@@ -19,5 +19,34 @@
       display: flex;
     }
   }
-
+  .text-danger{
+    margin-top: 0.25rem;
+      font-size: 80%;
+      color: #f86c6b;
+  }
+  .is-invalid {
+    border-left: solid 6px red;
+  }
+  
+  .material-icons {
+    display: inline-flex;
+    vertical-align: middle;
+  }
+  .text-danger, .text-success{
+    font-size: small;
+  }
+  button:disabled{
+    background-color: gray
+  }
+  .show-password {
+    border: none;
+    outline: none;
+    background: transparent;
+    position: absolute;
+    right: 10px;
+    top: 15px;
+    z-index: 10;
+    cursor: pointer;
+    
+  }
   

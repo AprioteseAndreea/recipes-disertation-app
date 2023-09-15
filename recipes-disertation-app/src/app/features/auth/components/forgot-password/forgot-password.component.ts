@@ -7,7 +7,7 @@ import { AuthStore } from 'src/app/core/store/auth.store';
 @Component({
   selector: 'app-forgot-password',
   templateUrl: './forgot-password.component.html',
-  styleUrls: ['./forgot-password.component.scss']
+  styleUrls: ['./forgot-password.component.scss'],
 })
 export class ForgotPasswordComponent {
   form!: FormGroup;
@@ -22,23 +22,25 @@ export class ForgotPasswordComponent {
   ) {
     this.form = this.fb.group({
       username: ['test@angular-university.io', [Validators.required]],
-
     });
   }
 
+  isNotValid(): boolean {
+    return !this.form.controls['username'].valid;
+  }
+
   ngOnInit() {}
+
   get f() {
     return this.form.controls;
   }
+
   onSubmit() {
     this.submitted = true;
-    //this.alertService.clear();
-    const val = this.form.value;
     if (this.form.invalid) {
       return;
-    }else{
+    } else {
       this.router.navigateByUrl('login');
-
     }
     //this.router.navigateByUrl("dashboard");
 
