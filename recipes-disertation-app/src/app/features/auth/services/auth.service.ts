@@ -90,19 +90,24 @@ export class AuthService {
   }
   // Sign in with Google
   GoogleAuth() {
-    return this.AuthLogin(new auth.GoogleAuthProvider()).then((res: any) => {
-      this.router.navigate(['dashboard']);
-    });
+    return this.AuthLogin(new auth.GoogleAuthProvider());
   }
+
+  // Sign in with Facebook
+  FacebookAuth() {
+    return this.AuthLogin(new auth.FacebookAuthProvider());
+  }
+
   // Auth logic to run auth providers
   AuthLogin(provider: any) {
     return this.afAuth
       .signInWithPopup(provider)
       .then((result) => {
-        this.router.navigate(['dashboard']);
+        this.router.navigate(['/home']);
         this.SetUserData(result.user);
       })
       .catch((error) => {
+        console.log(error);
         this.notificationAlert.showError(error.message);
       });
   }
