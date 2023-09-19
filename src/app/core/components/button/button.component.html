@@ -1,0 +1,7 @@
+<ng-container *ngIf="!loading; else showLoading">
+  <ng-content></ng-content>
+</ng-container>
+
+<ng-template #showLoading>
+  <app-spinner [loading]="loading"></app-spinner>
+</ng-template>

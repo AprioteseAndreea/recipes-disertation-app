@@ -1,0 +1,68 @@
+
+<div class="modal-header">
+    <h5 class="modal-title" id="exampleModalLabel">
+      🥑 Add a new item in your fridge
+    </h5>
+    <button
+      type="button"
+      class="btn-close"
+      aria-label="Close"
+      (click)="modalRef.close()"
+    ></button>
+  </div>
+  <div class="modal-body">
+    <form [formGroup]="newFridgeItemForm">
+      <div class="form-floating mb-3">
+        <select
+          class="form-select"
+          id="ingredient-select"
+          aria-label="Floating label select example"
+          formControlName="ingredient"
+        >
+          <option value="" selected>Select an ingredient</option>
+          <ng-container *ngFor="let ingr of ingredients">
+            <option value="{{ ingr }}">{{ ingr }}</option>
+          </ng-container>
+        </select>
+        <label for="ingredient-select">Ingredient</label>
+      </div>
+      <div class="form-floating mb-3">
+        <select
+          class="form-select"
+          id="unit-select"
+          aria-label="Floating label select example"
+          formControlName="unit"
+        >
+          <option value="" selected>Select the measure unit</option>
+          <ng-container *ngFor="let unit of units">
+            <option value="{{ unit }}">{{ unit }}</option>
+          </ng-container>
+        </select>
+        <label for="unit-select">Unit</label>
+      </div>
+      <div class="form-floating mb-3">
+        <input
+          type="number"
+          class="form-control"
+          id="quantity-select"
+          placeholder="name@example.com"
+          formControlName="quantity"
+        />
+        <label for="quantity-select">Quantity</label>
+      </div>
+    </form>
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-secondary" (click)="modalRef.close()">
+      Close
+    </button>
+    <button
+      type="submit"
+      class="btn btn-warning"
+      [disabled]="!newFridgeItemForm.valid"
+      (click)="onSubmit()"
+    >
+      Save changes
+    </button>
+  </div>
+  

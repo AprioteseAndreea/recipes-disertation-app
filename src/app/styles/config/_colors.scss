@@ -1,0 +1,47 @@
+//app primary and background colors
+$white: #fff;
+$black: #000;
+
+$app-bg-color: #f6f8f8;
+$app-primary-main: #de411b;
+$app-primary-darker: #cb3f1e;
+$app-primary-lighter: #fdf5f3;
+$app-bg-shadow: #ccc;
+$app-border-color: #cecece;
+
+//app secondary
+$app-secondary-main: #285078;
+$app-secondary-darker: #264664;
+
+//app tertiary
+$app-tertiary-main: #9bb4be;
+$app-tertiary-darker: #8fa6b0;
+
+//app text
+$app-text-gray1: #48545b;
+$app-text-gray2: #4a4a4a;
+$app-text-gray3: #222;
+
+//app alerts
+$app-alert-text-danger: #d72d2f;
+$app-alert-bg-danger: #eda6a6;
+$app-alert-border-danger: #d72d2f;
+
+$app-alert-text-info: #2952cc;
+$app-alert-bg-info: #adc2ff;
+$app-alert-border-info: #2952cc;
+
+$app-alert-text-success: #317159;
+$app-alert-bg-success: #a3dcc6;
+$app-alert-border-success: #317159;
+
+$app-alert-text-warning: #996a13;
+$app-alert-bg-warning: #fddf87;
+$app-alert-border-warning: #996a13;
+
+//app forms
+$app-forms-background: #f0f3f3;
+$app-forms-check-color: #d2dde2;
+
+$app-sortable-inactive-color: #b6d3e0;
+$app-sortable-active-color: $app-text-gray3;

@@ -1,0 +1,17 @@
+<span
+  class="inline-flex items-center m-1 px-2 py-1 bg-{{ color }}-200 hover:bg-{{
+    color
+  }}-300 rounded-full text-sm font-semibold text-{{ color }}-600"
+  id="badge-dismiss-default" 
+>
+
+  <span class="ml-1"> {{ text }} </span>
+  <button *ngIf="showXButton" type="button" class="inline-flex items-center p-1 ml-2 text-sm text-{{ color }}-400 bg-transparent rounded-sm hover:bg-{{ color }}-200 hover:text-{{ color }}-900 dark:hover:bg-{{ color }}-800 dark:hover:text-{{ color }}-300" data-dismiss-target="#badge-dismiss-default" aria-label="Remove" (click)="deleteBadge()">
+    <svg class="w-2 h-2" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 14">
+      <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6"/>
+    </svg>
+    <span class="sr-only">Remove badge</span>
+  </button>
+</span>
+
+
