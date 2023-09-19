@@ -1,6 +1,6 @@
 {
   "hosting": {
-    "public": "src",
+    "public": "dist/recipes-disertation-app",
     "ignore": [
       "firebase.json",
       "**/.*",
