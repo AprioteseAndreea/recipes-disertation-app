@@ -11,7 +11,7 @@
               {{ user.FirstName }} {{ user.LastName }}
             </p>
             <div class="text-start">
-              <p class="small text-muted">{{ user.Email }}</p>
+              <p class="small text-muted">{{ loggedUser.email }}</p>
             </div>
           </div>
         </div>
@@ -45,9 +45,10 @@
       *ngFor="let cuisine of user.FavouriteCuisines; let i = index"
       class="mb-2"
     >
-      <app-badge [color]="colors[i]" [text]="cuisine"></app-badge>
+      <app-badge [color]="colors[i]" [text]="cuisine" [showXButton]="true"></app-badge>
     </ng-container>
     <div><p class="medium fw-bold mb-2">Followed diets</p></div>
+
   </div>
   <app-navbar></app-navbar>
 </div>

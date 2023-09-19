@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import constants from 'src/app/core/constants/constants';
 import { User } from 'src/app/core/models/user.model';
 import { AccountService } from 'src/app/features/auth/services/account.service';
+import { AuthService } from 'src/app/features/auth/services/auth.service';
 
 declare function favoriteAnimation($event: any): void;
 
@@ -16,7 +17,7 @@ export class HomeComponent {
 
   recipes = constants.Recipes;
   
-  constructor(private accountService: AccountService) {
+  constructor(private accountService: AccountService,   public authService: AuthService) {
     this.user = this.accountService.userValue;
     this.weekDays = this.getNext7Days();
   }
@@ -40,4 +41,9 @@ export class HomeComponent {
   favoriteAnimation($event: any) {
     favoriteAnimation($event);
   }
+
+  logOut(){
+    this.authService.SignOut();
+  }
+
 }

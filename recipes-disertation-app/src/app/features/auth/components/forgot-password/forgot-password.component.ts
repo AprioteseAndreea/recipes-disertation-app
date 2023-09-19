@@ -1,8 +1,11 @@
-import { Component } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Component, Input } from '@angular/core';
+import {
+  FormControl,
+  FormGroup,
+  Validators,
+} from '@angular/forms';
 import { Router } from '@angular/router';
-import { NotificationService } from 'src/app/core/services/notification.service';
-import { AuthStore } from 'src/app/core/store/auth.store';
+import { AuthService } from '../../services/auth.service';
 
 @Component({
   selector: 'app-forgot-password',
@@ -10,46 +13,28 @@ import { AuthStore } from 'src/app/core/store/auth.store';
   styleUrls: ['./forgot-password.component.scss'],
 })
 export class ForgotPasswordComponent {
-  form!: FormGroup;
+  
+  public form = new FormGroup({
+    username: new FormControl('', [
+      Validators.required,
+    ]),
+  });
   loading = false;
-  submitted = false;
 
-  constructor(
-    private fb: FormBuilder,
-    private router: Router,
-    private auth: AuthStore,
-    private alertService: NotificationService
-  ) {
-    this.form = this.fb.group({
-      username: ['test@angular-university.io', [Validators.required]],
-    });
-  }
+  constructor(private router: Router, public authService: AuthService) {}
 
   isNotValid(): boolean {
-    return !this.form.controls['username'].valid;
+    return !this.form.controls.username.valid;
   }
 
   ngOnInit() {}
 
-  get f() {
-    return this.form.controls;
-  }
-
   onSubmit() {
-    this.submitted = true;
     if (this.form.invalid) {
       return;
     } else {
+      this.authService.ForgotPassword(this.form.controls.username.value);
       this.router.navigateByUrl('login');
     }
-    //this.router.navigateByUrl("dashboard");
-
-    // this.auth.login(val.username, val.password).subscribe({
-    //   next: () => {
-    //   },
-    //   error: () => {
-    //     alert('Login failed!');
-    //   },
-    // });
   }
 }

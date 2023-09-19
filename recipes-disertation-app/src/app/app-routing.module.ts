@@ -3,6 +3,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { environment } from './core/environments/environment';
 import { LayoutComponent } from './core/components/layout/layout.component';
 import { LoginComponent } from './features/auth/components/login/login.component';
+import { AuthGuard } from './core/guards/auth.guard';
 
 const routes: Routes = [
   {
@@ -48,6 +49,7 @@ const routes: Routes = [
           import('../app/features/home/home.module').then(
             (m) => m.HomeModule
           ),
+          canActivate: [AuthGuard]
         // canActivate: [AuthGuard, RoleGuard],
         // data: { feature: Features.Employees },
       },

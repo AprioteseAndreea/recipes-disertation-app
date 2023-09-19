@@ -1,13 +1,19 @@
 <div class="main-container">
   <div class="mx-4 column pt-4" style="overflow-y: auto">
     <div class="heading">
-      <div class="d-flex justify-content-between mb-4 mx-2">
+      <div class="d-flex justify-content-between mx-2">
         <div>
           <p class="fs-4 fw-bold mb-0">Hi, Andreea! 👋</p>
           <p class="fs-6 fw-light">Let's see what I've got for you today!</p>
         </div>
-
-        <button class="sign-out-btn">
+        <button
+        (click)="logOut()"
+        class="btn position-relative rounded-circle position-relative my-3"
+     
+      >
+        <i class="fas fa-sign-out" style="color: white"></i>
+      </button>
+        <!-- <button class="sign-out-btn">
           <div class="sign">
             <svg viewBox="0 0 512 512">
               <path
@@ -16,10 +22,10 @@
             </svg>
           </div>
           <div class="text">Logout</div>
-        </button>
+        </button> -->
       </div>
       <div class="cart-card row mb-2">
-        <div class="col-3">
+        <div class="col-3 d-flex flex-column justify-content-center">
           <img src="../../../assets/icons/icons8-grocery-100.png" />
         </div>
         <div class="col-9 my-auto">
@@ -55,9 +61,10 @@
         <a class="recipe-item" routerLink="/recipe/{{recipe.RecipeID}}">
           <div class="card recipe-card">
             <div class="image-container">
-              <span class="badge bg-warning text-dark mx-1 my-1"
+              <app-badge [color]="'yellow'" [text]="'Breakfast'" [showXButton]="false" class="mx-1 my-1 position-absolute" style="z-index: 1000;"></app-badge>
+              <!-- <span class="badge bg-warning text-dark mx-1 my-1"
                 >Breakfast</span
-              >
+              > -->
               <img src="{{recipe.PhotoURL}}" />
               <button
                 type="button"

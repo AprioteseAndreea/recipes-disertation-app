@@ -9,6 +9,14 @@ export const environment = {
     enableConsoleLogging: true,
     clientId: '766c0b48-502e-4056-bb6f-0109c4777000',
     apiScopeUrl: 'api://784c2f8e-6ec3-4371-8ad2-5079c043d224/api.scope',
+    firebaseConfig: {
+      apiKey: "AIzaSyC88F5b2MuA0T3-Z118s-vGK3MTjdc70D8",
+      authDomain: "disertation-recipes-app.firebaseapp.com",
+      projectId: "disertation-recipes-app",
+      storageBucket: "disertation-recipes-app.appspot.com",
+      messagingSenderId: "767009823356",
+      appId: "1:767009823356:web:efc82aeada7a4c3fe007f9"
+    }
   };
   
   /*

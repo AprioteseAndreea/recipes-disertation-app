@@ -8,6 +8,7 @@ import { Component, Input } from '@angular/core';
 export class BadgeComponent {
   @Input() color: string;
   @Input() text: string;
+  @Input() showXButton: boolean;
 
   constructor(){
 

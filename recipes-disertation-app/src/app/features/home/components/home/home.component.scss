@@ -46,6 +46,12 @@
 .box:nth-child(n + 2) {
   margin-left: 94px;
 }
+.btn {
+  z-index: 1000;
+  height: fit-content;
+  margin-left: 10px;
+  background-color: var(--bs-yellow);
+}
 
 .icon {
   width: 64px;
@@ -126,7 +132,7 @@ footer {
 }
 .fav-button{
   top: 0;
-  right: 30px;
+  right: 40px;
   position: absolute; 
 }
 .recipes-container {
