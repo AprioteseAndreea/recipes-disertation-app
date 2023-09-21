@@ -1,3 +1,12 @@
+.main-container {
+    height: 100vh;
+    background-color: #f3f3f3;
+    display: flex;
+    justify-content: space-between;
+    flex-direction: column;
+   
+  }
+  
 .card-content-custom{
     display: flex;
     flex-direction: column;
@@ -16,7 +25,9 @@ label.radio-card{
     display: flex !important;
     justify-content: center !important;
 }
-
+footer{
+    position: relative;
+}
 .row{
     gap: 20px;
 }

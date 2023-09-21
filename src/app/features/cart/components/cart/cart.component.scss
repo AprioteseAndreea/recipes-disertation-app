@@ -8,7 +8,12 @@
   .shopping-cart{
     width: 100%;
   }
-
+  .logout-btn {
+    z-index: 1000;
+    height: fit-content;
+    margin-left: 10px;
+    background-color: var(--bs-yellow);
+  }
   .cart-item {
     display: grid;
     grid-template-columns: auto 1fr auto auto auto auto;
