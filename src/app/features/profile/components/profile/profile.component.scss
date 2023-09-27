@@ -1,15 +1,11 @@
 .main-container {
   height: 100vh;
-  background-color: #f3f3f3;
   display: flex;
   justify-content: space-between;
   flex-direction: column;
  
 }
-.profile-card {
-  background-color: rgb(201, 231, 201);
-  border-radius: 10px;
-}
+
 * {
   margin: 0px;
 }

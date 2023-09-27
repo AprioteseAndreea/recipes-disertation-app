@@ -185,6 +185,24 @@ export default {
       '🥗Greek',
       
     ],
+    FollowedDiets: [
+      '🥦Vegetarian',
+      '🍗Paleo',
+      "🐟Pescetarian"
+
+    ],
+    DislikedIngredients: [
+      'Eggs',
+      'Fish',
+      'Chilli paper',
+      'Mushrooms',
+      'Spinach',
+    ],
+    Goals: [
+      '⭐Try new cuisines',
+      '⭐Learn new cuisines',
+      '⭐Save money',
+    ]
   } as User,
   Colors: [
     'zinc',
@@ -192,11 +210,10 @@ export default {
     'orange',
     'yellow',
     'lime',
-    'green',
     'teal',
     'blue',
     'purple',
-    'pink',
+    'green',
     'fuchsia',
   ],
 };

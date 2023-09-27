@@ -1,7 +1,7 @@
-<div class="main-container">
+<div class="main-container bg-white">
   <div class="mx-2 column pt-2" style="overflow-y: auto">
     <div class="heading">
-      <div class="profile-card row mb-2">
+      <div class="bg-[#d1c4e9] mx-2 border border-gray-200 rounded-lg shadow row mb-2">
         <div class="col-3">
           <img src="../../../assets/icons/female-icon.png" />
         </div>
@@ -13,43 +13,156 @@
             <div class="text-start">
               <p class="small text-muted">{{ loggedUser.email }}</p>
             </div>
-            <a routerLink="preferences-step-1">Edit</a>
           </div>
         </div>
       </div>
     </div>
 
-    <div><p class="medium fw-bold mb-2">Personal informations</p></div>
-    <div class="mb-3 w-full p-2 bg-white border border-gray-200 rounded-lg shadow sm:p-6 dark:bg-gray-800 dark:border-gray-700">
+    <div
+      class="mx-2 mb-3 p-2 bg-white border border-gray-200 rounded-lg shadow sm:p-6 dark:bg-gray-800 dark:border-gray-700"
+    >
+      <div class="d-flex justify-content-between">
+        <p class="medium fw-bold mb-2 px-2 py-2">Personal informations</p>
+        <button
+          type="button"
+          class="text-amber-700 font-medium rounded-lg text-sm p-2 text-center inline-flex items-center mr-2 dark:border-amber-500 dark:text-amber-500 dark:hover:text-white dark:focus:ring-amber-800 dark:hover:bg-amber-500"
+        >
+          <i class="fas fa-edit w-5 h-5 text-[#d1c4e9]"></i>
+        </button>
+      </div>
 
       <div class="row align-items-start">
         <div class="col text-center">
-          <p class="text-muted">Age</p>
-          <p class="fw-bold">{{ user.Age }}</p>
+          <p class="text-muted small">Age</p>
+          <p class="fw-bold small">{{ user.Age }}</p>
         </div>
         <div class="col text-center">
-          <p class="text-muted">Height</p>
-          <p class="fw-bold">{{ user.Height }}</p>
+          <p class="text-muted small">Height</p>
+          <p class="fw-bold small">{{ user.Height }}</p>
         </div>
         <div class="col text-center">
-          <p class="text-muted">Weight</p>
-          <p class="fw-bold">{{ user.Weight }}</p>
+          <p class="text-muted small">Weight</p>
+          <p class="fw-bold small">{{ user.Weight }}</p>
         </div>
         <div class="col text-center">
-          <p class="text-muted">BMR</p>
-          <p class="fw-bold">{{ user.BMR }}</p>
+          <p class="text-muted small">BMR</p>
+          <p class="fw-bold small">{{ user.BMR }}</p>
         </div>
       </div>
     </div>
-    <div><p class="medium fw-bold mb-2">Favourite cuisines</p></div>
-    <ng-container
-      *ngFor="let cuisine of user.FavouriteCuisines; let i = index"
-      class="mb-2"
+    <div
+      class="mx-2 mb-3 p-2 bg-white border border-gray-200 rounded-lg shadow sm:p-6 dark:bg-gray-800 dark:border-gray-700"
     >
-      <app-badge [color]="colors[i]" [text]="cuisine" [showXButton]="true"></app-badge>
-    </ng-container>
-    <div><p class="medium fw-bold mb-2">Followed diets</p></div>
-
+      <div class="row align-items-start">
+        <div class="col text-center">
+          <p class="text-muted small">Cooking level</p>
+          <p class="fw-bold small">{{ user.CookingLevel | cookingLevel | titlecase }}</p>
+        </div>
+        <div class="col text-center">
+          <p class="text-muted small">Physical effort</p>
+          <p class="fw-bold small">
+            {{ user.PhysicalEffort | physicalEffort | titlecase }}
+          </p>
+        </div>
+      </div>
+    </div>
+    
+    <div
+      class=" mx-2 mb-3 p-2 bg-white border border-gray-200 rounded-lg shadow sm:p-6 dark:bg-gray-800 dark:border-gray-700"
+    >
+      <div class="d-flex justify-content-between">
+        <p class="medium fw-bold mb-2 px-2 py-2">Favourite cuisines</p>
+        <a
+          type="button"
+          routerLink="/profile/preferences-step-2"
+          class="text-amber-700 font-medium rounded-lg text-sm p-2 text-center inline-flex items-center mr-2 dark:border-amber-500 dark:text-amber-500 dark:hover:text-white dark:focus:ring-amber-800 dark:hover:bg-amber-500"
+        >
+          <i class="fas fa-edit w-5 h-5 text-[#d1c4e9]"></i>
+        </a>
+      </div>
+      <ng-container
+        *ngFor="let cuisine of user.FavouriteCuisines; let i = index"
+        class="mb-2"
+      >
+        <app-badge
+          [color]="colors[i]"
+          [text]="cuisine"
+          [showXButton]="true"
+        ></app-badge>
+      </ng-container>
+    </div>
+    <div
+      class=" mx-2 mb-3 p-2 bg-white border border-gray-200 rounded-lg shadow sm:p-6 dark:bg-gray-800 dark:border-gray-700"
+    >
+      <div class="d-flex justify-content-between">
+        <p class="medium fw-bold mb-2 px-2 py-2">Followed diets</p>
+        <button
+          type="button"
+          routerLink="/profile/preferences-step-3"
+          class="text-amber-700 font-medium rounded-lg text-sm p-2 text-center inline-flex items-center mr-2 dark:border-amber-500 dark:text-amber-500 dark:hover:text-white dark:focus:ring-amber-800 dark:hover:bg-amber-500"
+        >
+          <i class="fas fa-edit w-5 h-5 text-[#d1c4e9]"></i>
+        </button>
+      </div>
+      <ng-container
+        *ngFor="let cuisine of user.FollowedDiets; let i = index"
+        class="mb-2"
+      >
+        <app-badge
+          [color]="colors[colors.length - i - 2]"
+          [text]="cuisine"
+          [showXButton]="true"
+        ></app-badge>
+      </ng-container>
+    </div>
+    <div
+      class=" mx-2 mb-3 p-2 bg-white border border-gray-200 rounded-lg shadow sm:p-6 dark:bg-gray-800 dark:border-gray-700"
+    >
+      <div class="d-flex justify-content-between">
+        <p class="medium fw-bold mb-2 px-2 py-2">Refused ingredients</p>
+        <button
+          type="button"
+          routerLink="/profile/preferences-step-4"
+          class="text-amber-700 font-medium rounded-lg text-sm p-2 text-center inline-flex items-center mr-2 dark:border-amber-500 dark:text-amber-500 dark:hover:text-white dark:focus:ring-amber-800 dark:hover:bg-amber-500"
+        >
+          <i class="fas fa-edit w-5 h-5 text-[#d1c4e9]"></i>
+        </button>
+      </div>
+      <ng-container
+        *ngFor="let cuisine of user.DislikedIngredients; let i = index"
+        class="mb-2"
+      >
+        <app-badge
+          [color]="'zinc'"
+          [text]="cuisine"
+          [showXButton]="true"
+        ></app-badge>
+      </ng-container>
+    </div>
+    <div
+      class="mx-2 mb-3 p-2 bg-white border border-gray-200 rounded-lg shadow sm:p-6 dark:bg-gray-800 dark:border-gray-700"
+    >
+      <div class="d-flex justify-content-between">
+        <p class="medium fw-bold mb-2 px-2 py-2">Goals</p>
+        <button
+          type="button"
+          routerLink="/profile/preferences-step-6"
+          class="text-amber-700 font-medium rounded-lg text-sm p-2 text-center inline-flex items-center mr-2 dark:border-amber-500 dark:text-amber-500 dark:hover:text-white dark:focus:ring-amber-800 dark:hover:bg-amber-500"
+        >
+          <i class="fas fa-edit w-5 h-5 text-[#d1c4e9]"></i>
+        </button>
+      </div>
+      <ng-container
+        *ngFor="let cuisine of user.Goals; let i = index"
+        class="mb-2"
+      >
+        <app-badge
+          [color]="'lime'"
+          [text]="cuisine"
+          [showXButton]="true"
+        ></app-badge>
+      </ng-container>
+    </div>
   </div>
   <app-navbar></app-navbar>
 </div>

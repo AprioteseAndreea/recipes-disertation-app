@@ -14,9 +14,10 @@ import { PipesModule } from '../pipes/pipes.module';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { NavBarModule } from './navbar/navbar.module';
 import { BadgeComponent } from './badge/badge.component';
+import { CookingLevelPipe } from 'src/app/features/about-product/pipes/cooking-level.pipe';
 
 @NgModule({
-  declarations: [DownloadButtonsComponent, BadgeComponent],
+  declarations: [DownloadButtonsComponent, BadgeComponent, CookingLevelPipe],
   imports: [CommonModule, ReactiveFormsModule],
   exports: [
     FormsModule,
@@ -32,7 +33,8 @@ import { BadgeComponent } from './badge/badge.component';
     FieldModule,
     FontAwesomeModule,
     NavBarModule,
-    BadgeComponent
+    BadgeComponent,
+    CookingLevelPipe
   ],
   
 })

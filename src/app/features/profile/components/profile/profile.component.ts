@@ -16,4 +16,5 @@ export class ProfileComponent {
   constructor(public authService: AuthService){
     this.loggedUser = this.authService.userData;
   }
+  
 }

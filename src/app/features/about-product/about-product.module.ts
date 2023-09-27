@@ -12,7 +12,6 @@ import { CookingLevelPipe } from './pipes/cooking-level.pipe';
 @NgModule({
   declarations: [
   AboutProductComponent,
-  CookingLevelPipe,
   ],
   imports: [
     CommonModule,

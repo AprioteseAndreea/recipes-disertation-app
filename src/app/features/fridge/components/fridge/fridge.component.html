@@ -1,25 +1,38 @@
-<div class="main-container justify-content-between flex-column d-flex">
-  <div class="mx-2 column pt-2" style="overflow-y: auto">
-    <div class="heading">
+<div class="main-container justify-content-between flex-column d-flex bg-white">
+  <div class="mx-3 column pt-2" style="overflow-y: auto">
+    <div class="heading my-2">
       <div class="d-flex justify-content-between mx-2">
         <div>
-          <p class="fs-4 fw-bold mb-0">🧊 My fridge</p>
-          <p class="fs-6 fw-light">Get recipes based on these ingredients</p>
+          <p class="fs-4 font-semibold text-gray-900 mb-0 text-center">
+            🧊 My fridge
+          </p>
+          <p class="fs-6 font-normal text-gray-500 text-center">
+            To avoid throwing away food and save money, we'll recommend recipes
+            based on foods you already have in your fridge!
+          </p>
         </div>
-        <button class="btn rounded-circle" (click)="openDialog()">
-          <i class="fa-solid fa-plus"></i>
-        </button>
+        <!-- <button
+          (click)="logOut()"
+          class="btn logout-btn position-relative rounded-circle position-relative my-3"
+        >
+          <i class="fas fa-sign-out" style="color: white"></i>
+        </button> -->
       </div>
     </div>
     <div class="d-flex flex-row main-fridge-container rounded">
-      <div class="d-flex flex-row justify-content-evenly rounded second-fridge-container">
+      <div
+        class="d-flex flex-row justify-content-evenly rounded second-fridge-container"
+      >
         <ng-container *ngFor="let ingr of ingredients">
           <div class="position-relative">
             <span
               class="position-relative badge bg-info text-dark mx-1 my-1 position-absolute top-0 start-0"
               >{{ ingr.Quantity }} {{ ingr.Unit }}</span
             >
-            <img class="ingredient-container d-flex align-items-end" src="{{ ingr.PhotoURL }}" />
+            <img
+              class="ingredient-container d-flex align-items-end"
+              src="{{ ingr.PhotoURL }}"
+            />
             <span
               class="position-relative badge bg-light text-dark mx-1 my-1 position-absolute bottom-0 end-0"
               >{{ ingr.Name }}</span
@@ -31,4 +44,3 @@
   </div>
   <app-navbar></app-navbar>
 </div>
-

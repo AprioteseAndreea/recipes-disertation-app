@@ -13,6 +13,8 @@ import { PrefsStep5Component } from './components/prefs-step5/prefs-step5.compon
 import { PrefsStep6Component } from './components/prefs-step6/prefs-step6.component';
 import { PrefsStep7Component } from './components/prefs-step7/prefs-step7.component';
 import { ProfileComponent } from './components/profile/profile.component';
+import { PhysicalEffortPipe } from './pipes/physical-effort.pipe';
+import { CookingLevelPipe } from '../about-product/pipes/cooking-level.pipe';
 
 @NgModule({
   declarations: [
@@ -23,7 +25,8 @@ import { ProfileComponent } from './components/profile/profile.component';
    PrefsStep5Component,
    PrefsStep6Component,
    PrefsStep7Component,
-   ProfileComponent
+   ProfileComponent,
+   PhysicalEffortPipe,
   ],
   imports: [
     CommonModule,

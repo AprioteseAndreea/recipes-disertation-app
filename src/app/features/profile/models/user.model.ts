@@ -12,9 +12,8 @@ export interface User {
     BMR?:number;
     PhysicalEffort?: PhysicalEffort;
     CookingLevel?: CookingLevel;
-    WantTryNewCuisines?: boolean;
-    WantLearnNewCuisines?: boolean;
-    WantToSaveMoney?: boolean;
-    WantToSaveTime?: boolean;
+    Goals?:string[];
     FavouriteCuisines? : string[]
+    FollowedDiets? : string[];
+    DislikedIngredients? : string[];
   }
