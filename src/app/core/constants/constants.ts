@@ -1,5 +1,5 @@
 import { Recipe } from 'src/app/features/about-product/models/recipe.model';
-import { CookingLevel, PhysicalEffort } from '../enums/enums';
+import { CookingLevel, Gender, PhysicalEffort } from '../enums/enums';
 import { User } from 'src/app/features/profile/models/user.model';
 
 export type FieldType = 'INPUT' | 'TEXTAREA' | 'SELECT' | 'MULTISELECT';
@@ -165,16 +165,12 @@ export default {
     LastName: 'Apriotese',
     Email: 'andreea.apriotese11@gmail.com',
     Age: 22,
-    Gender: 'F',
+    Gender: Gender.F,
     Height: 162,
     Weight: 57,
     BMR: 2087,
     PhysicalEffort: PhysicalEffort.Sedentary,
     CookingLevel: CookingLevel.Intermediate,
-    WantTryNewCuisines: true,
-    WantLearnNewCuisines: true,
-    WantToSaveMoney: true,
-    WantToSaveTime: true,
     FavouriteCuisines: [
       '🍕Italian',
       '🍛Marocan',

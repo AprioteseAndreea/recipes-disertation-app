@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { Recipe } from '../../models/recipe.model';
-import constants from 'src/app/core/constants/constants';
-import { CookingLevel } from 'src/app/core/enums/enums';
+import { RecipeService } from '../../services/recipe.service';
+import { Recipe } from 'src/app/core/models/user.model';
+import { environment } from 'src/app/core/environments/environment';
 declare function favoriteAnimation($event: any): void;
 
 @Component({
@@ -14,7 +14,11 @@ export class AboutProductComponent implements OnInit {
   private recipeID: number;
   public recipe: Recipe;
 
-  constructor(private activatedRoute: ActivatedRoute, private router: Router) {}
+  constructor(
+    private activatedRoute: ActivatedRoute,
+    private router: Router,
+    private recipeService: RecipeService
+  ) {}
 
   ngOnInit(): void {
     this.activatedRoute.paramMap.subscribe((params) => {
@@ -24,14 +28,21 @@ export class AboutProductComponent implements OnInit {
   }
 
   getProduct() {
-    this.recipe = constants.Recipes.find(
-      (recipe) => recipe.RecipeID === this.recipeID
-    );
-    console.log(this.recipe);
+    this.recipeService.getRecipeById(this.recipeID).subscribe((recipe)=>{
+      this.recipe = recipe;
+    })
+    // this.recipe = constants.Recipes.find(
+    //   (recipe) => recipe.RecipeID === this.recipeID
+    // );
+    // console.log(this.recipe);
   }
 
   favoriteAnimation($event: any) {
     favoriteAnimation($event);
+  }
+
+  getImageUrl(id: string) {
+    return `${environment.apiUrl}/images/${id}`;
   }
 
   goBack() {

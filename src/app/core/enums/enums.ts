@@ -11,3 +11,8 @@ export enum PhysicalEffort{
     'Very active',
     'Super active'
 }
+
+export enum Gender{
+    'M',
+    'F'
+}

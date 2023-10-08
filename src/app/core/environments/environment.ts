@@ -4,7 +4,7 @@
 
 export const environment = {
     production: false,
-    apiUrl: 'https://localhost:7034',
+    apiUrl: 'http://localhost:8080',
     firebaseConfig: {
       apiKey: "AIzaSyC88F5b2MuA0T3-Z118s-vGK3MTjdc70D8",
       authDomain: "disertation-recipes-app.firebaseapp.com",

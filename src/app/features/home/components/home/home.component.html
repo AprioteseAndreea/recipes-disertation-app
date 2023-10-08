@@ -3,7 +3,7 @@
     <div class="heading">
       <div class="d-flex justify-content-between mx-2">
         <div>
-          <p class="fs-4 fw-bold mb-0">Hi, Andreea! 👋</p>
+          <p class="fs-4 fw-bold mb-0">Hi, {{user.firstName}} ! 👋</p>
           <p class="fs-6 fw-light">Let's see what I've got for you today!</p>
         </div>
         <button
@@ -37,7 +37,7 @@
         <p class="small justify-content-center d-flex">
           {{ date | date : "EEE" }}
         </p>
-        <div class="card py-2 px-2 shadow">
+        <div class="card py-2 px-2 shadow" (click)="getRecommendationByDay(date)">
           <p class="justify-content-center d-flex fw-bold small">
             {{ date | date : "d" }}
           </p>
@@ -47,31 +47,27 @@
     </div>
     <div><p class="fs-5 fw-bold mb-3">Today meels</p></div>
     <div class="recipes-container scrolling-wrapper">
-      <ng-container *ngFor="let recipe of recipes">
-        <a class="recipe-item" routerLink="/recipe/{{recipe.RecipeID}}">
+      <ng-container *ngFor="let recipe of user.userRecommendations">
+        <a class="recipe-item" routerLink="/recipe/{{recipe.breakfastRecipe.id}}">
           <div class="card recipe-card mb-3 w-full bg-white border border-gray-200 rounded-lg shadow sm:p-6 dark:bg-gray-800 dark:border-gray-700">
             <div class="image-container">
               <app-badge [color]="'lime'" [text]="'Breakfast'" [showXButton]="false" class="mx-1 my-1 position-absolute" style="z-index: 1000;"></app-badge>
               <!-- <span class="badge bg-warning text-dark mx-1 my-1"
                 >Breakfast</span
               > -->
-              <img src="{{recipe.PhotoURL}}" class="rounded-lg" />
+              <img [src]="getImageUrl(recipe.breakfastRecipe.pictureUrl)" onError="this.src='../../../assets/no-content/no-image.png'" class="rounded-lg" />
               <button
                 type="button"
-                class="favorite-button fav-button mt-1"
+                class="favorite-button fav-button"
                 (click)="favoriteAnimation($event)"
               >
-                <i
-                  class="fas fa-heart favorite__icon favorite--enable rounded-btn"
-                ></i>
-                <i
-                  class="far fa-heart favorite__icon favorite--not rounded-btn"
-                ></i>
+              <app-badge [color]="'red'" [text]="recipe.breakfastRecipe.favourites + ' ❤️'" [showXButton]="false" class="position-absolute" style="z-index: 1000;"></app-badge>
+
               </button>
             </div>
 
             <div class="title-container">
-              <p class="px-1 pt-2 fw-bold">{{ recipe.Name }}</p>
+              <p class="px-1 pt-2 fw-bold">{{ recipe.breakfastRecipe.name }}</p>
             </div>
             <div class="detail-container row">
               <div class="col">
@@ -79,7 +75,7 @@
                 <div
                   class="row d-flex justify-content-center recipe-details-text"
                 >
-                  {{ recipe.Kcals }} kcals
+                  {{ recipe.breakfastRecipe.kcals }} kcals
                 </div>
               </div>
               <div class="col">
@@ -87,7 +83,89 @@
                 <div
                   class="row d-flex justify-content-center recipe-details-text"
                 >
-                  {{ recipe.PrepTime }} min
+                  {{ recipe.breakfastRecipe.prepTime }} min
+                </div>
+              </div>
+            </div>
+          </div>
+        </a>
+        <a class="recipe-item" routerLink="/recipe/{{recipe.lunchRecipe.id}}">
+          <div class="card recipe-card mb-3 w-full bg-white border border-gray-200 rounded-lg shadow sm:p-6 dark:bg-gray-800 dark:border-gray-700">
+            <div class="image-container">
+              <app-badge [color]="'yellow'" [text]="'Lunch'" [showXButton]="false" class="position-absolute" style="z-index: 1000;"></app-badge>
+              <!-- <span class="badge bg-warning text-dark mx-1 my-1"
+                >Breakfast</span
+              > -->
+              <img [src]="getImageUrl(recipe.lunchRecipe.pictureUrl)" class="rounded-lg" onError="this.src='../../../assets/no-content/no-image.png'"/>
+              <button
+                type="button"
+                class="favorite-button fav-button"
+                (click)="favoriteAnimation($event)"
+              >
+              <app-badge [color]="'red'" [text]="recipe.lunchRecipe.favourites + ' ❤️'" [showXButton]="false" class="position-absolute" style="z-index: 1000;"></app-badge>
+
+              </button>
+            </div>
+
+            <div class="title-container">
+              <p class="px-1 pt-2 fw-bold">{{ recipe.lunchRecipe.name }}</p>
+            </div>
+            <div class="detail-container row">
+              <div class="col">
+                <div class="row d-flex justify-content-center">🔥</div>
+                <div
+                  class="row d-flex justify-content-center recipe-details-text"
+                >
+                  {{ recipe.lunchRecipe.kcals }} kcals
+                </div>
+              </div>
+              <div class="col">
+                <div class="row d-flex justify-content-center">⌚</div>
+                <div
+                  class="row d-flex justify-content-center recipe-details-text"
+                >
+                  {{ recipe.lunchRecipe.prepTime }} min
+                </div>
+              </div>
+            </div>
+          </div>
+        </a>
+        <a class="recipe-item" routerLink="/recipe/{{recipe.dinnerRecipe.id}}">
+          <div class="card recipe-card mb-3 w-full bg-white border border-gray-200 rounded-lg shadow sm:p-6 dark:bg-gray-800 dark:border-gray-700">
+            <div class="image-container">
+              <app-badge [color]="'orange'" [text]="'Dinner'" [showXButton]="false" class="position-absolute" style="z-index: 1000;"></app-badge>
+              <!-- <span class="badge bg-warning text-dark mx-1 my-1"
+                >Breakfast</span
+              > -->
+              <img [src]="getImageUrl(recipe.dinnerRecipe.pictureUrl)" onError="this.src='../../../assets/no-content/no-image.png'" class="rounded-lg" />
+              <button
+                type="button"
+                class="favorite-button fav-button"
+                (click)="favoriteAnimation($event)"
+              >
+              <app-badge [color]="'red'" [text]="recipe.dinnerRecipe.favourites + ' ❤️'" [showXButton]="false" class="position-absolute" style="z-index: 1000;"></app-badge>
+
+              </button>
+            </div>
+
+            <div class="title-container">
+              <p class="px-1 pt-2 fw-bold">{{ recipe.dinnerRecipe.name }}</p>
+            </div>
+            <div class="detail-container row">
+              <div class="col">
+                <div class="row d-flex justify-content-center">🔥</div>
+                <div
+                  class="row d-flex justify-content-center recipe-details-text"
+                >
+                  {{ recipe.dinnerRecipe.kcals }} kcals
+                </div>
+              </div>
+              <div class="col">
+                <div class="row d-flex justify-content-center">⌚</div>
+                <div
+                  class="row d-flex justify-content-center recipe-details-text"
+                >
+                  {{ recipe.dinnerRecipe.prepTime }} min
                 </div>
               </div>
             </div>

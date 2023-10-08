@@ -1,4 +1,4 @@
-import { CookingLevel, PhysicalEffort } from "src/app/core/enums/enums";
+import { CookingLevel, Gender, PhysicalEffort } from "src/app/core/enums/enums";
 
 export interface User {
     Id?: number;
@@ -6,7 +6,7 @@ export interface User {
     LastName: string;
     Email: string;
     Age?: number;
-    Gender?: string;
+    Gender?: Gender;
     Height?: number;
     Weight?:number;
     BMR?:number;
