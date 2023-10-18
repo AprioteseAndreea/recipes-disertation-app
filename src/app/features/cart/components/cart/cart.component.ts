@@ -4,6 +4,9 @@ import { ShoppingCart } from '../../models/cart.model';
 import { CartService } from '../../services/cart.service';
 import { LoadingService } from 'src/app/core/components/loading/loading.service';
 import { AuthService } from 'src/app/features/auth/services/auth.service';
+import { AccountService } from 'src/app/features/auth/services/account.service';
+import { UserIngredient } from 'src/app/core/models/user.model';
+import { environment } from 'src/app/core/environments/environment';
 
 @Component({
   selector: 'app-cart',
@@ -12,19 +15,19 @@ import { AuthService } from 'src/app/features/auth/services/auth.service';
   providers: [LoadingService],
 })
 export class CartComponent implements OnInit {
-  cartData$: Observable<ShoppingCart[]>;
+  cartData: UserIngredient[];
 
-  constructor(
-    private cartService: CartService,
-    public authService: AuthService
-  ) {}
+  constructor(public accountService: AccountService) {}
 
   ngOnInit(): void {
     const userId = 1;
-    this.cartData$ = this.cartService.getUserCart(userId);
+    this.cartData = this.accountService.loggedUserValue.userIngredients.filter(
+      (ingredient) => ingredient.isCartIngredient === true
+    );
   }
 
-  logOut() {
-    this.authService.SignOut();
+  getIngredientUrl(id: string) {
+    return `${environment.apiUrl}/images/${id}`;
   }
+ 
 }

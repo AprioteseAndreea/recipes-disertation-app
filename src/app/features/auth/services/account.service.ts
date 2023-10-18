@@ -3,16 +3,17 @@ import { Router } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
-import { User } from 'src/app/core/models/user.model';
+import { UserDto } from 'src/app/core/models/user.model';
 import { environment } from 'src/app/core/environments/environment';
+import { User } from '../models/user.model';
 
 @Injectable({ providedIn: 'root' })
 export class AccountService {
   private userSubject: BehaviorSubject<User | null>;
   public user: Observable<User | null>;
 
-  private loggedUser: BehaviorSubject<User | null>;
-  public loggedUser$: Observable<User | null>;
+  private loggedUser: BehaviorSubject<UserDto | null>;
+  public loggedUser$: Observable<UserDto | null>;
 
   constructor(private router: Router, private http: HttpClient) {
     this.userSubject = new BehaviorSubject(
@@ -104,7 +105,7 @@ export class AccountService {
     return this.http.delete(`${environment.apiUrl}/users/${id}`).pipe(
       map((x) => {
         // auto logout if the logged in user deleted their own record
-        if (id == this.userValue?.id) {
+        if (id == this.loggedUserValue?.id) {
           this.logout();
         }
         return x;

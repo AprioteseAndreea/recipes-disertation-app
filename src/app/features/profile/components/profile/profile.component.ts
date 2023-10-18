@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
 import constants from 'src/app/core/constants/constants';
+import { UserDto } from 'src/app/core/models/user.model';
 import { User } from 'src/app/features/auth/models/user.model';
+import { AccountService } from 'src/app/features/auth/services/account.service';
 import { AuthService } from 'src/app/features/auth/services/auth.service';
 
 @Component({
@@ -10,11 +12,11 @@ import { AuthService } from 'src/app/features/auth/services/auth.service';
 })
 export class ProfileComponent {
   user = constants.User;
-  loggedUser: User;
+  loggedUser: UserDto;
   colors = constants.Colors;
 
-  constructor(public authService: AuthService){
-    this.loggedUser = this.authService.userData;
+  constructor(public accountService: AccountService){
+    this.loggedUser = this.accountService.loggedUserValue;
   }
   
 }

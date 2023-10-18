@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import constants from 'src/app/core/constants/constants';
 import { environment } from 'src/app/core/environments/environment';
-import { User } from 'src/app/core/models/user.model';
+import { UserDto } from 'src/app/core/models/user.model';
 import { AccountService } from 'src/app/features/auth/services/account.service';
 import { AuthService } from 'src/app/features/auth/services/auth.service';
 import { UserService } from '../../services/user.service';
@@ -14,7 +14,7 @@ declare function favoriteAnimation($event: any): void;
   styleUrls: ['./home.component.scss'],
 })
 export class HomeComponent {
-  user: User | null;
+  user: UserDto | null;
   weekDays: Date[];
 
   recipes = constants.Recipes;

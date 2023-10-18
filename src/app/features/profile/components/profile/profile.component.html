@@ -1,14 +1,16 @@
-<div class="main-container bg-white">
+<div class="main-container bg-white" *ngIf="loggedUser">
   <div class="mx-2 column pt-2" style="overflow-y: auto">
     <div class="heading">
       <div class="bg-[#d1c4e9] mx-2 border border-gray-200 rounded-lg shadow row mb-2">
         <div class="col-3">
-          <img src="../../../assets/icons/female-icon.png" />
+          <img *ngIf="loggedUser.gender === 'M'" src="../../../assets/icons/male-icon.png" alt="Male Image">
+          <img *ngIf="loggedUser.gender === 'F'" src="../../../assets/icons/female-icon.png" alt="Female Image">
+          <img *ngIf="!loggedUser.gender || loggedUser.gender === 'null'" src="../../../assets/no-content/no-image.png" alt="Default Image">
         </div>
         <div class="col-9 my-auto">
           <div>
             <p class="fw-bold text-start fs-6">
-              {{ user.FirstName }} {{ user.LastName }}
+              {{ loggedUser.firstName }} {{ loggedUser.lastName }}
             </p>
             <div class="text-start">
               <p class="small text-muted">{{ loggedUser.email }}</p>
@@ -34,21 +36,25 @@
       <div class="row align-items-start">
         <div class="col text-center">
           <p class="text-muted small">Age</p>
-          <p class="fw-bold small">{{ user.Age }}</p>
+          <p class="fw-bold small" *ngIf="loggedUser.age else noData">{{ loggedUser.age }}</p>
         </div>
         <div class="col text-center">
           <p class="text-muted small">Height</p>
-          <p class="fw-bold small">{{ user.Height }}</p>
+          <p class="fw-bold small" *ngIf="loggedUser.height else noData">{{ loggedUser.height }}</p>
         </div>
         <div class="col text-center">
           <p class="text-muted small">Weight</p>
-          <p class="fw-bold small">{{ user.Weight }}</p>
+          <p class="fw-bold small" *ngIf="loggedUser.weight else noData">{{ loggedUser.weight }}</p>
         </div>
         <div class="col text-center">
           <p class="text-muted small">BMR</p>
-          <p class="fw-bold small">{{ user.BMR }}</p>
+          <p class="fw-bold small" *ngIf="loggedUser.bms else noData">{{ loggedUser.bms }}</p>
         </div>
       </div>
+      <ng-template #noData>
+        <p class="fw-bold small">-</p>
+
+      </ng-template>
     </div>
     <div
       class="mx-2 mb-3 p-2 bg-white border border-gray-200 rounded-lg shadow sm:p-6 dark:bg-gray-800 dark:border-gray-700"
@@ -56,12 +62,12 @@
       <div class="row align-items-start">
         <div class="col text-center">
           <p class="text-muted small">Cooking level</p>
-          <p class="fw-bold small">{{ user.CookingLevel | cookingLevel | titlecase }}</p>
+          <p class="fw-bold small" *ngIf="loggedUser.cookingLevel else noData">{{ loggedUser.cookingLevel | titlecase }}</p>
         </div>
         <div class="col text-center">
           <p class="text-muted small">Physical effort</p>
-          <p class="fw-bold small">
-            {{ user.PhysicalEffort | physicalEffort | titlecase }}
+          <p class="fw-bold small" *ngIf="loggedUser.physicalEffort else noData">
+            {{loggedUser.physicalEffort | physicalEffort | titlecase }}
           </p>
         </div>
       </div>
@@ -81,12 +87,12 @@
         </a>
       </div>
       <ng-container
-        *ngFor="let cuisine of user.FavouriteCuisines; let i = index"
+        *ngFor="let cuisine of loggedUser.userCuisines; let i = index"
         class="mb-2"
       >
         <app-badge
           [color]="colors[i]"
-          [text]="cuisine"
+          [text]="cuisine.name"
           [showXButton]="true"
         ></app-badge>
       </ng-container>
@@ -105,12 +111,12 @@
         </button>
       </div>
       <ng-container
-        *ngFor="let cuisine of user.FollowedDiets; let i = index"
+        *ngFor="let cuisine of loggedUser.userDiets; let i = index"
         class="mb-2"
       >
         <app-badge
           [color]="colors[colors.length - i - 2]"
-          [text]="cuisine"
+          [text]="cuisine.name"
           [showXButton]="true"
         ></app-badge>
       </ng-container>
@@ -119,7 +125,7 @@
       class=" mx-2 mb-3 p-2 bg-white border border-gray-200 rounded-lg shadow sm:p-6 dark:bg-gray-800 dark:border-gray-700"
     >
       <div class="d-flex justify-content-between">
-        <p class="medium fw-bold mb-2 px-2 py-2">Refused ingredients</p>
+        <p class="medium fw-bold mb-2 px-2 py-2">Avoided ingredients</p>
         <button
           type="button"
           routerLink="/profile/preferences-step-4"
@@ -129,12 +135,12 @@
         </button>
       </div>
       <ng-container
-        *ngFor="let cuisine of user.DislikedIngredients; let i = index"
+        *ngFor="let cuisine of loggedUser.userDislikedIngredients; let i = index"
         class="mb-2"
       >
         <app-badge
           [color]="'zinc'"
-          [text]="cuisine"
+          [text]="cuisine.name"
           [showXButton]="true"
         ></app-badge>
       </ng-container>
@@ -152,7 +158,27 @@
           <i class="fas fa-edit w-5 h-5 text-[#d1c4e9]"></i>
         </button>
       </div>
-      <ng-container
+      <ng-container *ngIf="loggedUser.wantToLearnNewSkills"> <app-badge
+        [color]="'lime'"
+        [text]="'⭐Learn new skills'"
+        [showXButton]="true"
+      ></app-badge></ng-container>
+      <ng-container *ngIf="loggedUser.wantToTryNewCuisines"> <app-badge
+        [color]="'lime'"
+        [text]="'⭐Try new cuisines'"
+        [showXButton]="true"
+      ></app-badge></ng-container>
+      <ng-container *ngIf="loggedUser.wantToSaveMoney"> <app-badge
+        [color]="'lime'"
+        [text]="'⭐Save money'"
+        [showXButton]="true"
+      ></app-badge></ng-container>
+      <ng-container *ngIf="loggedUser.wantToSaveTime"> <app-badge
+        [color]="'lime'"
+        [text]="'⭐Save time'"
+        [showXButton]="true"
+      ></app-badge></ng-container>
+      <!-- <ng-container
         *ngFor="let cuisine of user.Goals; let i = index"
         class="mb-2"
       >
@@ -161,7 +187,7 @@
           [text]="cuisine"
           [showXButton]="true"
         ></app-badge>
-      </ng-container>
+      </ng-container> -->
     </div>
   </div>
   <app-navbar></app-navbar>

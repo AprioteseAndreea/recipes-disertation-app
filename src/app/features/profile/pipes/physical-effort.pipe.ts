@@ -6,8 +6,8 @@ import { PhysicalEffort } from 'src/app/core/enums/enums';
 })
 export class PhysicalEffortPipe implements PipeTransform {
 
-  transform(value: number): string {
-    return PhysicalEffort[value].toLowerCase();
+  transform(value: string): string {
+    return value.replace(/_/g, ' ');
   }
 
 }

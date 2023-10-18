@@ -1,52 +1,48 @@
-import {Inject, Injectable} from '@angular/core';
-import {BehaviorSubject, Observable} from 'rxjs';
-import {map, shareReplay, tap} from 'rxjs/operators';
-import {HttpClient} from '@angular/common/http';
-import { User } from '../models/user.model';
+import { Injectable } from '@angular/core';
+import { BehaviorSubject, Observable } from 'rxjs';
+import { map, shareReplay, tap } from 'rxjs/operators';
+import { HttpClient } from '@angular/common/http';
+import { User } from 'src/app/features/auth/models/user.model';
 
-const AUTH_DATA = "auth_data";
+const AUTH_DATA = 'auth_data';
 
 @Injectable({
-    providedIn: 'root'
+  providedIn: 'root',
 })
 export class AuthStore {
+  private subject = new BehaviorSubject<User | null>(null);
 
-    private subject = new BehaviorSubject<User | null>(null);
+  user$: Observable<User | null> = this.subject.asObservable();
 
-    user$ : Observable<User | null> = this.subject.asObservable();
+  isLoggedIn$: Observable<boolean>;
+  isLoggedOut$: Observable<boolean>;
 
-    isLoggedIn$ : Observable<boolean>;
-    isLoggedOut$ : Observable<boolean>;
+  constructor(private http: HttpClient) {
+    this.isLoggedIn$ = this.user$.pipe(map((user) => !!user));
 
-    constructor(private http: HttpClient) {
+    this.isLoggedOut$ = this.isLoggedIn$.pipe(map((loggedIn) => !loggedIn));
 
-        this.isLoggedIn$ = this.user$.pipe(map(user => !!user));
+    const user = localStorage.getItem(AUTH_DATA);
 
-        this.isLoggedOut$ = this.isLoggedIn$.pipe(map(loggedIn => !loggedIn));
-
-        const user = localStorage.getItem(AUTH_DATA);
-
-        if (user) {
-            this.subject.next(JSON.parse(user));
-        }
-
+    if (user) {
+      this.subject.next(JSON.parse(user));
     }
+  }
 
-    login(email:string, password:string): Observable<User> {
-        return this.http.post<User>("http://localhost:9000/api/login", {email, password})
-            .pipe(
-                tap(user => {
-                    this.subject.next(user);
-                    localStorage.setItem(AUTH_DATA, JSON.stringify(user));
-                }),
-                shareReplay()
-            );
-    }
+  login(email: string, password: string): Observable<User> {
+    return this.http
+      .post<User>('http://localhost:9000/api/login', { email, password })
+      .pipe(
+        tap((user) => {
+          this.subject.next(user);
+          localStorage.setItem(AUTH_DATA, JSON.stringify(user));
+        }),
+        shareReplay()
+      );
+  }
 
-    logout() {
-        this.subject.next(null);
-        localStorage.removeItem(AUTH_DATA);
-    }
-
-
+  logout() {
+    this.subject.next(null);
+    localStorage.removeItem(AUTH_DATA);
+  }
 }

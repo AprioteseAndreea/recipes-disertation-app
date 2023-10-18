@@ -1,7 +1,7 @@
 import { CookingLevel, Gender, PhysicalEffort } from "../enums/enums";
 
 // Interface for the User object
-export interface User {
+export interface UserDto {
   id?: number;
   firstName?: string;
   lastName?: string;
@@ -10,9 +10,9 @@ export interface User {
   height?: number;
   weight?: number;
   bms?: number;
-  gender?: Gender;
-  cookingLevel?: CookingLevel;
-  physicalEffort?: PhysicalEffort;
+  gender?: string;
+  cookingLevel?: string;
+  physicalEffort?: string;
   wantToLearnNewSkills?: boolean;
   wantToTryNewCuisines?: boolean;
   wantToSaveMoney?: boolean;

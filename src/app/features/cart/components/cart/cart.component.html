@@ -1,4 +1,4 @@
-<div class="main-container bg-white">
+<div class="main-container bg-white" *ngIf="cartData">
   <div class="mx-3 column pt-2 overflow-auto">
     <div class="heading my-2">
       <div class="d-flex justify-content-between mx-2">
@@ -13,7 +13,10 @@
         </div>
       </div>
     </div>
-    <div class="d-flex flex-column">
+    <div
+      class="d-flex flex-column"
+      *ngFor="let ingredient of cartData; let i = index"
+    >
       <ul class="mt-2 space-y-3">
         <li>
           <div
@@ -22,7 +25,9 @@
             <div class="d-flex flex-row align-items-center w-2/4">
               <div>
                 <img
-                  src="../../../../../assets/fridge-icons/icons8-cheese-64.png"
+                  [src]="getIngredientUrl(ingredient.ingredient.pictureUrl)"
+                  onError="this.src='../../../assets/no-content/no-image.png'"
+                  class="rounded-lg"
                   class="img-fluid rounded-3"
                   alt="Shopping item"
                   style="width: 45px"
@@ -30,13 +35,12 @@
               </div>
               <div class="ms-3">
                 <p class="font-semibold text-gray-900 mb-0 text-break">
-                  Cheese
+                  {{ingredient.ingredient.name}}
                 </p>
-                <p class="small mb-0 text-gray-500 font-normal">G</p>
+                <p class="small mb-0 text-gray-500 font-normal">{{ingredient.unitOfMeasure | titlecase}}</p>
               </div>
             </div>
             <div class="d-flex flex-row align-items-center w-1/4">
-              
               <button
                 class="btn btn-link px-2"
                 onclick="this.parentNode.querySelector('input[type=number]').stepDown()"
@@ -48,9 +52,9 @@
                 id="form1"
                 min="0"
                 name="quantity"
-                value="2"
+                value="{{ingredient.quantity}}"
                 type="number"
-                style="width: 40px"
+                style="width: 60px"
                 class="form-control form-control-sm bg-[#9575cd] text-white"
               />
 
@@ -58,121 +62,15 @@
                 class="btn btn-link px-2"
                 onclick="this.parentNode.querySelector('input[type=number]').stepUp()"
               >
-              <i class="fa-solid fa-plus text-[#9575cd]"></i>
+                <i class="fa-solid fa-plus text-[#9575cd]"></i>
               </button>
             </div>
             <div
               class="d-flex column align-items-center w-1/4 justify-content-end"
             >
-              <a class="trash-icon"><i class="fas fa-trash-alt text-red-400"></i></a>
-            </div>
-          </div>
-        </li>
-      </ul>
-      <ul class="mt-2 space-y-3">
-        <li>
-          <div
-            class="px-3 py-2 d-flex border border-gray-200 rounded-lg text-base font-bold text-gray-900 rounded-lg bg-gray-50 hover:bg-gray-100 group hover:shadow"
-          >
-            <div class="d-flex flex-row align-items-center w-2/4">
-              <div>
-                <img
-                  src="../../../../../assets/fridge-icons/icons8-kiwi-64.png"
-                  class="img-fluid rounded-3"
-                  alt="Shopping item"
-                  style="width: 45px"
-                />
-              </div>
-              <div class="ms-3">
-                <p class="font-semibold text-gray-900 mb-0 text-break">
-                  Kiwi
-                </p>
-                <p class="small mb-0 text-gray-500 font-normal">piece</p>
-              </div>
-            </div>
-            <div class="d-flex flex-row align-items-center w-1/4">
-              <button
-                class="btn btn-link px-2"
-                onclick="this.parentNode.querySelector('input[type=number]').stepDown()"
-              >
-              <i class="fa-solid fa-minus text-[#9575cd]"></i>
-              </button>
-
-              <input
-                id="form1"
-                min="0"
-                name="quantity"
-                value="2"
-                type="number"
-                style="width: 40px"
-                class="form-control form-control-sm bg-[#9575cd] text-white"
-              />
-
-              <button
-                class="btn btn-link px-2"
-                onclick="this.parentNode.querySelector('input[type=number]').stepUp()"
-              >
-              <i class="fa-solid fa-plus text-[#9575cd]"></i>
-              </button>
-            </div>
-            <div
-              class="d-flex column align-items-center w-1/4 justify-content-end"
-            >
-              <a class="trash-icon"><i class="fas fa-trash-alt"></i></a>
-            </div>
-          </div>
-        </li>
-      </ul>
-      <ul class="mt-2 space-y-3">
-        <li>
-          <div
-            class="px-3 py-2 d-flex border border-gray-200 rounded-lg text-base font-bold text-gray-900 rounded-lg bg-gray-50 hover:bg-gray-100 group hover:shadow"
-          >
-            <div class="d-flex flex-row align-items-center w-2/4">
-              <div>
-                <img
-                  src="../../../../../assets/fridge-icons/icons8-eggs-64.png"
-                  class="img-fluid rounded-3"
-                  alt="Shopping item"
-                  style="width: 45px"
-                />
-              </div>
-              <div class="ms-3">
-                <p class="font-semibold text-gray-900 mb-0 text-break">
-                  Eggs
-                </p>
-                <p class="small mb-0 text-gray-500 font-normal">piece</p>
-              </div>
-            </div>
-            <div class="d-flex flex-row align-items-center w-1/4">
-              <button
-                class="btn btn-link px-2"
-                onclick="this.parentNode.querySelector('input[type=number]').stepDown()"
-              >
-              <i class="fa-solid fa-minus text-[#9575cd]"></i>
-              </button>
-
-              <input
-                id="form1"
-                min="0"
-                name="quantity"
-                value="2"
-                type="number"
-                style="width: 40px"
-                class="form-control form-control-sm bg-[#9575cd] text-white"
-              />
-
-              <button
-                class="btn btn-link px-2"
-                onclick="this.parentNode.querySelector('input[type=number]').stepUp()"
-              >
-              <i class="fa-solid fa-plus text-[#9575cd]"></i>
-              </button>
-            </div>
-            <div
-              class="d-flex column align-items-center w-1/4 justify-content-end"
-            >
-              <a class="trash-icon"><i class="fas fa-trash-alt text-red-400"></i></a>
+              <a class="trash-icon"
+                ><i class="fas fa-trash-alt text-red-400"></i
+              ></a>
             </div>
           </div>
         </li>
