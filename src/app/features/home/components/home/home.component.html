@@ -37,7 +37,7 @@
         <p class="small justify-content-center d-flex">
           {{ date | date : "EEE" }}
         </p>
-        <div class="card py-2 px-2 shadow" (click)="getRecommendationByDay(date)">
+        <div class="card py-2 px-2 shadow" (click)="getRecommendationByDay(date)" [class.selected-day]="selectedDay === date">
           <p class="justify-content-center d-flex fw-bold small">
             {{ date | date : "d" }}
           </p>
@@ -45,9 +45,9 @@
         </div>
       </div>
     </div>
-    <div><p class="fs-5 fw-bold mb-3">Today meels</p></div>
+    <div><p class="fs-5 fw-bold mb-3">{{ recipesLabel }}</p></div>
     <div class="recipes-container scrolling-wrapper">
-      <ng-container *ngFor="let recipe of user.userRecommendations">
+      <ng-container *ngFor="let recipe of recommendedRecipes">
         <a class="recipe-item" routerLink="/recipe/{{recipe.breakfastRecipe.id}}">
           <div class="card recipe-card mb-3 w-full bg-white border border-gray-200 rounded-lg shadow sm:p-6 dark:bg-gray-800 dark:border-gray-700">
             <div class="image-container">

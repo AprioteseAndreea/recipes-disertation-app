@@ -1,7 +1,7 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import constants from 'src/app/core/constants/constants';
 import { environment } from 'src/app/core/environments/environment';
-import { UserDto } from 'src/app/core/models/user.model';
+import { UserDto, UserRecommendation } from 'src/app/core/models/user.model';
 import { AccountService } from 'src/app/features/auth/services/account.service';
 import { AuthService } from 'src/app/features/auth/services/auth.service';
 import { UserService } from '../../services/user.service';
@@ -16,6 +16,10 @@ declare function favoriteAnimation($event: any): void;
 export class HomeComponent {
   user: UserDto | null;
   weekDays: Date[];
+  selectedDay: Date;
+
+  recipesLabel: string;
+  recommendedRecipes: UserRecommendation[];
 
   recipes = constants.Recipes;
 
@@ -25,8 +29,16 @@ export class HomeComponent {
     public userService: UserService
   ) {
     this.user = this.accountService.loggedUserValue;
-    console.log(this.accountService.loggedUserValue);
     this.weekDays = this.getNext7Days();
+
+    const today = new Date();
+
+    this.recipesLabel = 'Today meels';
+    this.recommendedRecipes = this.user.userRecommendations.filter(
+      (rec) =>
+        new Date(rec.dateTime).toLocaleDateString('en-GB') ===
+        today.toLocaleDateString('en-GB')
+    );
   }
 
   getNext7Days(): Date[] {
@@ -53,10 +65,27 @@ export class HomeComponent {
     return `${environment.apiUrl}/images/${id}`;
   }
 
-  // TO DO - Se vor afisa pe UI doar retetele din ziua pe care s-a dat click
-  // Daca nu s-a dat click pe nicio zi, se vor afisa by default recomandarile din ziua curenta
   getRecommendationByDay(date: Date) {
-    console.log(date);
+    this.selectedDay = date;
+
+    const currentDate: Date = new Date();
+    const anotherDate: Date = new Date(date);
+
+    if (currentDate.getDate() !== anotherDate.getDate()) {
+      this.recipesLabel = anotherDate.toLocaleDateString('en-GB', {
+        weekday: 'long',
+        day: 'numeric'
+      });
+    } else {
+      this.recipesLabel = 'Today meels';
+    }
+
+    this.recommendedRecipes = this.user.userRecommendations.filter(
+      (rec) =>
+        new Date(rec.dateTime).toLocaleDateString('en-GB') ===
+        date.toLocaleDateString('en-GB')
+    );
+
   }
 
   logOut() {

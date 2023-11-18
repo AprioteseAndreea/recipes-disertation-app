@@ -20,6 +20,7 @@ export class TodayHighlightDirective implements OnInit {
     }
   }
 
+  
   private isToday(date: Date): boolean {
     const today = new Date();
     return (
