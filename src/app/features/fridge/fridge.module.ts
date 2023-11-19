@@ -14,6 +14,7 @@ import { MdbDropdownModule } from 'mdb-angular-ui-kit/dropdown';
 import { MdbRippleModule } from 'mdb-angular-ui-kit/ripple';
 import { NotificationService } from 'src/app/core/services/notification.service';
 import { ToastrService } from 'ngx-toastr';
+import {MatSelectModule} from '@angular/material/select';
 
 @NgModule({
   declarations: [
@@ -31,7 +32,8 @@ import { ToastrService } from 'ngx-toastr';
     MdbFormsModule,
     MdbDropdownModule,
     MdbRippleModule,
-  ],
+    MatSelectModule
+    ],
   providers:[
     MdbModalService,
     NotificationService,

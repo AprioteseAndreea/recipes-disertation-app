@@ -27,7 +27,7 @@ export class FridgeComponent implements OnInit{
   ) {}
   ngOnInit(): void {
     this.fridgeData = this.accountService.loggedUserValue.userIngredients.filter(
-      (ingredient) => ingredient.isCartIngredient === false
+      (ingredient) => !ingredient.isCartIngredient
     );
   }
 

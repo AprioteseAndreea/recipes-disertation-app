@@ -3,6 +3,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { RecipeService } from '../../services/recipe.service';
 import { Recipe } from 'src/app/core/models/user.model';
 import { environment } from 'src/app/core/environments/environment';
+import { AccountService } from 'src/app/features/auth/services/account.service';
 declare function favoriteAnimation($event: any): void;
 
 @Component({
@@ -17,7 +18,8 @@ export class AboutProductComponent implements OnInit {
   constructor(
     private activatedRoute: ActivatedRoute,
     private router: Router,
-    private recipeService: RecipeService
+    private recipeService: RecipeService,
+    private accountService: AccountService
   ) {}
 
   ngOnInit(): void {
@@ -28,9 +30,9 @@ export class AboutProductComponent implements OnInit {
   }
 
   getProduct() {
-    this.recipeService.getRecipeById(this.recipeID).subscribe((recipe)=>{
+    this.recipeService.getRecipeById(this.recipeID).subscribe((recipe) => {
       this.recipe = recipe;
-    })
+    });
     // this.recipe = constants.Recipes.find(
     //   (recipe) => recipe.RecipeID === this.recipeID
     // );
@@ -47,5 +49,11 @@ export class AboutProductComponent implements OnInit {
 
   goBack() {
     window.history.back();
+  }
+
+  checkIngredientIfIsInTheFridge(ingrId: number) {
+    return this.accountService.loggedUserValue.userIngredients.find(
+      (ingre) => !ingre.isCartIngredient && ingre.ingredient.id == ingrId
+    );
   }
 }

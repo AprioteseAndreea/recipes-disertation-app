@@ -11,11 +11,20 @@
         >
           <i class="fa-solid fa-arrow-left" style="color: white"></i>
         </button>
-        <div class="d-flex flex-column justify-content-start">
-          <span class="position-relative badge bg-light mx-1 my-3 fs-6"
+        <span class="d-flex justify-content-end">
+          <app-badge
+            [color]="'yellow'"
+            [text]="recipe.cuisineName"
+            [showXButton]="false"
+            class="position-absolute"
+            style="z-index: 1000"
+          ></app-badge>
+        </span>
+
+        <!-- <span class="position-relative badge bg-light mx-1 my-3 fs-6"
             >{{ recipe.cuisineName }} food</span
-          >
-          <span
+          > -->
+        <!-- <span
             type="button"
             class="favorite-button fav-button text-end me-5"
             (click)="favoriteAnimation($event)"
@@ -26,8 +35,8 @@
             <i
               class="far fa-heart favorite__icon favorite--not rounded-btn"
             ></i>
-          </span>
-        </div>
+          </span> -->
+
         <img
           [src]="getImageUrl(recipe.pictureUrl)"
           class="w-100 mx-auto d-block recipe-img"
@@ -64,10 +73,6 @@
               {{ recipe.cookingLevel | titlecase }}
             </div>
           </div>
-          <div class="col">
-            <div>❤️</div>
-            <div class="fw-bold custom-font">54 hearts</div>
-          </div>
         </div>
       </div>
     </div>
@@ -78,7 +83,7 @@
         <p class="custom-font">
           {{ recipe.description }}
         </p>
-        <p class="fw-bold">Ingredients</p>
+        <p class="fw-bold my-2">Ingredients</p>
         <div
           class="d-flex flex-row ingr-item align-items-center mb-1"
           *ngFor="let rec of recipe.ingredientDtoList"
@@ -95,15 +100,22 @@
             <p class="small mb-0">
               {{ rec.quantity }} {{ rec.unitOfMeasure | lowercase }}
             </p>
-            <div class="d-flex align-items-center fridge-check">
+            <div
+              class="d-flex align-items-center fridge-check"
+              *ngIf="
+                checkIngredientIfIsInTheFridge(rec.ingredient.id);
+                else noInFridge
+              "
+            >
               <i class="fa-regular fa-circle-check px-1 green-icon"></i>
               <p class="small mb-0 green-icon">In your fridge</p>
             </div>
-
-            <!-- <div class="d-flex align-items-center fridge-check">
-              <i class="fa-regular fa-circle-check px-1 red-icon"></i>
-              <p class="small mb-0 green-icon red-icon">Not in your fridge</p>
-            </div> -->
+            <ng-template #noInFridge>
+              <div class="d-flex align-items-center fridge-check">
+                <i class="fa-regular fa-circle-xmark px-1 red-icon"></i>
+                <p class="small mb-0 green-icon red-icon">Not in your fridge</p>
+              </div>
+            </ng-template>
           </div>
         </div>
 

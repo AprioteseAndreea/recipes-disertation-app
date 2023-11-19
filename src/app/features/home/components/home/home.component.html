@@ -49,21 +49,21 @@
     <div class="recipes-container scrolling-wrapper">
       <ng-container *ngFor="let recipe of recommendedRecipes">
         <a class="recipe-item" routerLink="/recipe/{{recipe.breakfastRecipe.id}}">
-          <div class="card recipe-card mb-3 w-full bg-white border border-gray-200 rounded-lg shadow sm:p-6 dark:bg-gray-800 dark:border-gray-700">
+          <div class="card recipe-card mb-3 w-full bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
             <div class="image-container">
               <app-badge [color]="'lime'" [text]="'Breakfast'" [showXButton]="false" class="mx-1 my-1 position-absolute" style="z-index: 1000;"></app-badge>
               <!-- <span class="badge bg-warning text-dark mx-1 my-1"
                 >Breakfast</span
               > -->
               <img [src]="getImageUrl(recipe.breakfastRecipe.pictureUrl)" onError="this.src='../../../assets/no-content/no-image.png'" class="rounded-lg" />
-              <button
+              <!-- <button
                 type="button"
                 class="favorite-button fav-button"
                 (click)="favoriteAnimation($event)"
               >
               <app-badge [color]="'red'" [text]="recipe.breakfastRecipe.favourites + ' ❤️'" [showXButton]="false" class="position-absolute" style="z-index: 1000;"></app-badge>
 
-              </button>
+              </button> -->
             </div>
 
             <div class="title-container">
@@ -90,21 +90,21 @@
           </div>
         </a>
         <a class="recipe-item" routerLink="/recipe/{{recipe.lunchRecipe.id}}">
-          <div class="card recipe-card mb-3 w-full bg-white border border-gray-200 rounded-lg shadow sm:p-6 dark:bg-gray-800 dark:border-gray-700">
+          <div class="card recipe-card mb-3 w-full bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
             <div class="image-container">
               <app-badge [color]="'yellow'" [text]="'Lunch'" [showXButton]="false" class="position-absolute" style="z-index: 1000;"></app-badge>
               <!-- <span class="badge bg-warning text-dark mx-1 my-1"
                 >Breakfast</span
               > -->
               <img [src]="getImageUrl(recipe.lunchRecipe.pictureUrl)" class="rounded-lg" onError="this.src='../../../assets/no-content/no-image.png'"/>
-              <button
+              <!-- <button
                 type="button"
                 class="favorite-button fav-button"
                 (click)="favoriteAnimation($event)"
               >
               <app-badge [color]="'red'" [text]="recipe.lunchRecipe.favourites + ' ❤️'" [showXButton]="false" class="position-absolute" style="z-index: 1000;"></app-badge>
 
-              </button>
+              </button> -->
             </div>
 
             <div class="title-container">
@@ -131,21 +131,21 @@
           </div>
         </a>
         <a class="recipe-item" routerLink="/recipe/{{recipe.dinnerRecipe.id}}">
-          <div class="card recipe-card mb-3 w-full bg-white border border-gray-200 rounded-lg shadow sm:p-6 dark:bg-gray-800 dark:border-gray-700">
+          <div class="card recipe-card mb-3 w-full bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
             <div class="image-container">
               <app-badge [color]="'orange'" [text]="'Dinner'" [showXButton]="false" class="position-absolute" style="z-index: 1000;"></app-badge>
               <!-- <span class="badge bg-warning text-dark mx-1 my-1"
                 >Breakfast</span
               > -->
               <img [src]="getImageUrl(recipe.dinnerRecipe.pictureUrl)" onError="this.src='../../../assets/no-content/no-image.png'" class="rounded-lg" />
-              <button
+              <!-- <button
                 type="button"
                 class="favorite-button fav-button"
                 (click)="favoriteAnimation($event)"
               >
               <app-badge [color]="'red'" [text]="recipe.dinnerRecipe.favourites + ' ❤️'" [showXButton]="false" class="position-absolute" style="z-index: 1000;"></app-badge>
 
-              </button>
+              </button> -->
             </div>
 
             <div class="title-container">
