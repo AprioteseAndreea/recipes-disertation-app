@@ -6,6 +6,7 @@ import { map } from 'rxjs/operators';
 import { UserDto } from 'src/app/core/models/user.model';
 import { environment } from 'src/app/core/environments/environment';
 import { User } from '../models/user.model';
+import { FridgeService } from '../../fridge/modals/add-item-component/fridge.service';
 
 @Injectable({ providedIn: 'root' })
 export class AccountService {
@@ -15,7 +16,11 @@ export class AccountService {
   private loggedUser: BehaviorSubject<UserDto | null>;
   public loggedUser$: Observable<UserDto | null>;
 
-  constructor(private router: Router, private http: HttpClient) {
+  constructor(
+    private router: Router,
+    private http: HttpClient,
+    private fridgeService: FridgeService
+  ) {
     this.userSubject = new BehaviorSubject(
       JSON.parse(localStorage.getItem('user')!)
     );
@@ -51,11 +56,20 @@ export class AccountService {
   //       );
   //   }
 
+  updateUserIngredientCollection() {
+    this.fridgeService
+      .getAllIngredientsByUserId(this.loggedUserValue.id)
+      .subscribe((res) => (this.loggedUserValue.userIngredients = res));
+    //apeleza endpointul din fridgeService de a lua ingredientele by Userid
+    // si asigneaza-le aici: this.accountService.loggedUserValue.userIngredients
+  }
+
   updateUser(user: User) {
     console.log(user);
     this.loggedUser.next(user);
     console.log(this.loggedUser.value);
   }
+
   getUserByEmail(email: string) {
     //http://localhost:8080/users?email=andreea.apriotese11@gmail.com
     return this.http.get<User>(`${environment.apiUrl}/users?email=${email}`);
@@ -68,7 +82,7 @@ export class AccountService {
 
     this.userSubject.next(null);
     this.loggedUser.next(null);
-    
+
     this.router.navigate(['/account/login']);
   }
 

@@ -13,7 +13,7 @@ import { environment } from 'src/app/core/environments/environment';
   templateUrl: './fridge.component.html',
   styleUrls: ['./fridge.component.scss'],
 })
-export class FridgeComponent implements OnInit{
+export class FridgeComponent implements OnInit {
   ingredients = constants.Ingredients;
 
   @ViewChild(ToastContainerDirective, { static: true })
@@ -26,20 +26,23 @@ export class FridgeComponent implements OnInit{
     public accountService: AccountService
   ) {}
   ngOnInit(): void {
-    this.fridgeData = this.accountService.loggedUserValue.userIngredients.filter(
-      (ingredient) => !ingredient.isCartIngredient
-    );
+    this.getFridgeIngredients();
   }
 
+  getFridgeIngredients() {
+    this.fridgeData =
+      this.accountService.loggedUserValue.userIngredients.filter(
+        (ingredient) => !ingredient.isCartIngredient
+      );
+  }
   openDialog() {
     this.modalRef = this.modalService.open(AddItemComponentComponent, {
       modalClass: 'modal-dialog-centered',
     });
     this.modalRef.onClose.subscribe((message: any) => {
-      this.refreshData();
+      this.getFridgeIngredients();
     });
   }
-  refreshData() {}
 
   getIngredientUrl(id: string) {
     return `${environment.apiUrl}/images/${id}`;
