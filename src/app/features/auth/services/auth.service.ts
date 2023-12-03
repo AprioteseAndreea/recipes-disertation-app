@@ -22,6 +22,7 @@ export class AuthService {
     public accountService: AccountService,
     public ngZone: NgZone
   ) {
+    
     /* Saving user data in localstorage when 
     logged in and setting up null when logged out */
     this.afAuth.authState.subscribe((user) => {
@@ -45,6 +46,7 @@ export class AuthService {
       }
     });
   }
+
   // Sign in with email/password
   SignIn(email: string, password: string) {
     return this.afAuth

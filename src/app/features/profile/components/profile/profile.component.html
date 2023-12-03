@@ -27,13 +27,14 @@
         <p class="medium fw-bold mb-2 px-2 py-2">Personal informations</p>
         <button
           type="button"
+          routerLink="/profile/preferences-step-1"
           class="text-amber-700 font-medium rounded-lg text-sm p-2 text-center inline-flex items-center mr-2 dark:border-amber-500 dark:text-amber-500 dark:hover:text-white dark:focus:ring-amber-800 dark:hover:bg-amber-500"
         >
           <i class="fas fa-edit w-5 h-5 text-[#d1c4e9]"></i>
         </button>
       </div>
 
-      <div class="row align-items-start">
+      <div class="row align-items-start divide-x">
         <div class="col text-center">
           <p class="text-muted small">Age</p>
           <p class="fw-bold small" *ngIf="loggedUser.age else noData">{{ loggedUser.age }}</p>
@@ -50,28 +51,29 @@
           <p class="text-muted small">BMR</p>
           <p class="fw-bold small" *ngIf="loggedUser.bms else noData">{{ loggedUser.bms }}</p>
         </div>
+        <div class="row align-items-start mt-3 mb-3 divide-x">
+          <div class="col text-center">
+            <p class="text-muted small">Cooking level</p>
+            <p class="fw-bold small" *ngIf="loggedUser.cookingLevel else noData">{{ loggedUser.cookingLevel | titlecase }}</p>
+          </div>
+          <div class="col text-center">
+            <p class="text-muted small">Physical effort</p>
+            <p class="fw-bold small" *ngIf="loggedUser.physicalEffort else noData">
+              {{loggedUser.physicalEffort | physicalEffort | titlecase }}
+            </p>
+          </div>
+        </div>
       </div>
       <ng-template #noData>
         <p class="fw-bold small">-</p>
 
       </ng-template>
     </div>
-    <div
+    <!-- <div
       class="mx-2 mb-3 p-2 bg-white border border-gray-200 rounded-lg shadow sm:p-6 dark:bg-gray-800 dark:border-gray-700"
     >
-      <div class="row align-items-start">
-        <div class="col text-center">
-          <p class="text-muted small">Cooking level</p>
-          <p class="fw-bold small" *ngIf="loggedUser.cookingLevel else noData">{{ loggedUser.cookingLevel | titlecase }}</p>
-        </div>
-        <div class="col text-center">
-          <p class="text-muted small">Physical effort</p>
-          <p class="fw-bold small" *ngIf="loggedUser.physicalEffort else noData">
-            {{loggedUser.physicalEffort | physicalEffort | titlecase }}
-          </p>
-        </div>
-      </div>
-    </div>
+      
+    </div> -->
     
     <div
       class=" mx-2 mb-3 p-2 bg-white border border-gray-200 rounded-lg shadow sm:p-6 dark:bg-gray-800 dark:border-gray-700"

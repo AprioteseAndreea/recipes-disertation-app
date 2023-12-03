@@ -1,17 +1,27 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
+import { NotificationService } from 'src/app/core/services/notification.service';
 
 @Component({
   selector: 'app-prefs-step4',
   templateUrl: './prefs-step4.component.html',
-  styleUrls: ['./prefs-step4.component.scss', "../prefs-step7/prefs-step7.component.scss", "../prefs-step3/prefs-step3.component.scss"]
+  styleUrls: ['./prefs-step4.component.scss', "../../profile-common-styles.scss", "../prefs-step3/prefs-step3.component.scss"]
 })
 export class PrefsStep4Component {
-  constructor(private router: Router) {}
-  goNext() {
-    this.router.navigate(['/profile/preferences-step-5']);
+  constructor(
+    private router: Router,
+    private notificationService: NotificationService
+  ) {}
+  goHome() {
+    this.router.navigate(['/profile']);
   }
-  goBack() {
-    this.router.navigate(['/profile/preferences-step-3']);
+
+  save() {
+    //salveaza informatii
+    this.notificationService.showSuccess(
+      'Success!',
+      'Your informations was saved!'
+    );
+    this.goHome();
   }
 }
