@@ -12,6 +12,9 @@ export const environment = {
       storageBucket: "disertation-recipes-app.appspot.com",
       messagingSenderId: "767009823356",
       appId: "1:767009823356:web:efc82aeada7a4c3fe007f9"
+    },
+    openaiConfig: {
+      apiKey: "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"
     }
   };
   

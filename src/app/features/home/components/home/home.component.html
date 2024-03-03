@@ -14,7 +14,7 @@
         <i class="fas fa-sign-out" style="color: white"></i>
       </button>
       </div>
-      <div class="bg-[#d1c4e9] px-2 py-2 mx-2 border border-gray-200 rounded-lg shadow row mb-2 text-black-700">
+      <div class="bg-[#d1c4e9] px-2 py-2 mx-2 border border-gray-200 rounded-lg row mb-2 text-black-700">
         <div class="col-3 d-flex flex-column justify-content-center">
           <img src="../../../assets/icons/icons8-grocery-100.png" />
         </div>
@@ -45,133 +45,160 @@
         </div>
       </div>
     </div>
-    <div><p class="fs-5 fw-bold mb-3">{{ recipesLabel }}</p></div>
-    <div class="recipes-container scrolling-wrapper">
-      <ng-container *ngFor="let recipe of recommendedRecipes">
-        <a class="recipe-item" routerLink="/recipe/{{recipe.breakfastRecipe.id}}">
-          <div class="card recipe-card mb-3 w-full bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
-            <div class="image-container">
-              <app-badge [color]="'lime'" [text]="'Breakfast'" [showXButton]="false" class="mx-1 my-1 position-absolute" style="z-index: 1000;"></app-badge>
-              <!-- <span class="badge bg-warning text-dark mx-1 my-1"
-                >Breakfast</span
-              > -->
-              <img [src]="getImageUrl(recipe.breakfastRecipe.pictureUrl)" onError="this.src='../../../assets/no-content/no-image.png'" class="rounded-lg" />
-              <!-- <button
-                type="button"
-                class="favorite-button fav-button"
-                (click)="favoriteAnimation($event)"
-              >
-              <app-badge [color]="'red'" [text]="recipe.breakfastRecipe.favourites + ' ❤️'" [showXButton]="false" class="position-absolute" style="z-index: 1000;"></app-badge>
-
-              </button> -->
-            </div>
-
-            <div class="title-container">
-              <p class="px-1 pt-2 fw-bold">{{ recipe.breakfastRecipe.name }}</p>
-            </div>
-            <div class="detail-container row">
-              <div class="col">
-                <div class="row d-flex justify-content-center">🔥</div>
-                <div
-                  class="row d-flex justify-content-center recipe-details-text"
+    <div *ngIf="recommendedRecipes.length > 0; else noRecipesBanner">
+      <div><p class="fs-5 fw-bold mb-3">{{ recipesLabel }}</p></div>
+      <div class="recipes-container scrolling-wrapper">
+        <ng-container *ngFor="let recipe of recommendedRecipes">
+          <a class="recipe-item" routerLink="/recipe/{{recipe.breakfastRecipe.id}}">
+            <div class="card recipe-card mb-3 w-full bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
+              <div class="image-container">
+                <app-badge [color]="'lime'" [text]="'Breakfast'" [showXButton]="false" class="mx-1 my-1 position-absolute" style="z-index: 1000;"></app-badge>
+                <!-- <span class="badge bg-warning text-dark mx-1 my-1"
+                  >Breakfast</span
+                > -->
+                <img [src]="getImageUrl(recipe.breakfastRecipe.pictureUrl)" onError="this.src='../../../assets/no-content/no-image.png'" class="rounded-lg" />
+                <!-- <button
+                  type="button"
+                  class="favorite-button fav-button"
+                  (click)="favoriteAnimation($event)"
                 >
-                  {{ recipe.breakfastRecipe.kcals }} kcals
+                <app-badge [color]="'red'" [text]="recipe.breakfastRecipe.favourites + ' ❤️'" [showXButton]="false" class="position-absolute" style="z-index: 1000;"></app-badge>
+  
+                </button> -->
+              </div>
+  
+              <div class="title-container">
+                <p class="px-1 pt-2 fw-bold">{{ recipe.breakfastRecipe.name }}</p>
+              </div>
+              <div class="detail-container row">
+                <div class="col">
+                  <div class="row d-flex justify-content-center">🔥</div>
+                  <div
+                    class="row d-flex justify-content-center recipe-details-text"
+                  >
+                    {{ recipe.breakfastRecipe.kcals }} kcals
+                  </div>
+                </div>
+                <div class="col">
+                  <div class="row d-flex justify-content-center">⌚</div>
+                  <div
+                    class="row d-flex justify-content-center recipe-details-text"
+                  >
+                    {{ recipe.breakfastRecipe.prepTime }} min
+                  </div>
                 </div>
               </div>
-              <div class="col">
-                <div class="row d-flex justify-content-center">⌚</div>
-                <div
-                  class="row d-flex justify-content-center recipe-details-text"
+            </div>
+          </a>
+          <a class="recipe-item" routerLink="/recipe/{{recipe.lunchRecipe.id}}">
+            <div class="card recipe-card mb-3 w-full bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
+              <div class="image-container">
+                <app-badge [color]="'yellow'" [text]="'Lunch'" [showXButton]="false" class="position-absolute" style="z-index: 1000;"></app-badge>
+                <!-- <span class="badge bg-warning text-dark mx-1 my-1"
+                  >Breakfast</span
+                > -->
+                <img [src]="getImageUrl(recipe.lunchRecipe.pictureUrl)" class="rounded-lg" onError="this.src='../../../assets/no-content/no-image.png'"/>
+                <!-- <button
+                  type="button"
+                  class="favorite-button fav-button"
+                  (click)="favoriteAnimation($event)"
                 >
-                  {{ recipe.breakfastRecipe.prepTime }} min
+                <app-badge [color]="'red'" [text]="recipe.lunchRecipe.favourites + ' ❤️'" [showXButton]="false" class="position-absolute" style="z-index: 1000;"></app-badge>
+  
+                </button> -->
+              </div>
+  
+              <div class="title-container">
+                <p class="px-1 pt-2 fw-bold">{{ recipe.lunchRecipe.name }}</p>
+              </div>
+              <div class="detail-container row">
+                <div class="col">
+                  <div class="row d-flex justify-content-center">🔥</div>
+                  <div
+                    class="row d-flex justify-content-center recipe-details-text"
+                  >
+                    {{ recipe.lunchRecipe.kcals }} kcals
+                  </div>
+                </div>
+                <div class="col">
+                  <div class="row d-flex justify-content-center">⌚</div>
+                  <div
+                    class="row d-flex justify-content-center recipe-details-text"
+                  >
+                    {{ recipe.lunchRecipe.prepTime }} min
+                  </div>
                 </div>
               </div>
+            </div>
+          </a>
+          <a class="recipe-item" routerLink="/recipe/{{recipe.dinnerRecipe.id}}">
+            <div class="card recipe-card mb-3 w-full bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
+              <div class="image-container">
+                <app-badge [color]="'orange'" [text]="'Dinner'" [showXButton]="false" class="position-absolute" style="z-index: 1000;"></app-badge>
+                <!-- <span class="badge bg-warning text-dark mx-1 my-1"
+                  >Breakfast</span
+                > -->
+                <img [src]="getImageUrl(recipe.dinnerRecipe.pictureUrl)" onError="this.src='../../../assets/no-content/no-image.png'" class="rounded-lg" />
+                <!-- <button
+                  type="button"
+                  class="favorite-button fav-button"
+                  (click)="favoriteAnimation($event)"
+                >
+                <app-badge [color]="'red'" [text]="recipe.dinnerRecipe.favourites + ' ❤️'" [showXButton]="false" class="position-absolute" style="z-index: 1000;"></app-badge>
+  
+                </button> -->
+              </div>
+  
+              <div class="title-container">
+                <p class="px-1 pt-2 fw-bold">{{ recipe.dinnerRecipe.name }}</p>
+              </div>
+              <div class="detail-container row">
+                <div class="col">
+                  <div class="row d-flex justify-content-center">🔥</div>
+                  <div
+                    class="row d-flex justify-content-center recipe-details-text"
+                  >
+                    {{ recipe.dinnerRecipe.kcals }} kcals
+                  </div>
+                </div>
+                <div class="col">
+                  <div class="row d-flex justify-content-center">⌚</div>
+                  <div
+                    class="row d-flex justify-content-center recipe-details-text"
+                  >
+                    {{ recipe.dinnerRecipe.prepTime }} min
+                  </div>
+                </div>
+              </div>
+            </div>
+          </a>
+        </ng-container>
+      </div>
+    </div>
+
+    <ng-template #noRecipesBanner>
+      <div class="alert alert-warning fade show px-2 mx-2 my-2" role="alert">
+        <strong>No recipes found!</strong> For this date we couldn't find any recipes.
+        
+      </div>
+    </ng-template>
+   
+    <div class="heading">
+      <div class="bg-[#fff3cd] px-2 py-2 mx-2 rounded-lg row mb-2 text-black-700 chatbot-banner">
+        <div class="col-3 d-flex flex-column justify-content-center">
+          <img src="../../../assets/icons/chatbot.png" />
+        </div>
+        <div class="col-9 my-auto">
+          <div>
+            <p class="fw-normal text-start small">
+              Don't like our recommendations? 
+            </p>
+            <div class="text-start">
+              <a class="fw-bold cart-link" routerLink="/chatbot">Talk with our assistant</a>
             </div>
           </div>
-        </a>
-        <a class="recipe-item" routerLink="/recipe/{{recipe.lunchRecipe.id}}">
-          <div class="card recipe-card mb-3 w-full bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
-            <div class="image-container">
-              <app-badge [color]="'yellow'" [text]="'Lunch'" [showXButton]="false" class="position-absolute" style="z-index: 1000;"></app-badge>
-              <!-- <span class="badge bg-warning text-dark mx-1 my-1"
-                >Breakfast</span
-              > -->
-              <img [src]="getImageUrl(recipe.lunchRecipe.pictureUrl)" class="rounded-lg" onError="this.src='../../../assets/no-content/no-image.png'"/>
-              <!-- <button
-                type="button"
-                class="favorite-button fav-button"
-                (click)="favoriteAnimation($event)"
-              >
-              <app-badge [color]="'red'" [text]="recipe.lunchRecipe.favourites + ' ❤️'" [showXButton]="false" class="position-absolute" style="z-index: 1000;"></app-badge>
-
-              </button> -->
-            </div>
-
-            <div class="title-container">
-              <p class="px-1 pt-2 fw-bold">{{ recipe.lunchRecipe.name }}</p>
-            </div>
-            <div class="detail-container row">
-              <div class="col">
-                <div class="row d-flex justify-content-center">🔥</div>
-                <div
-                  class="row d-flex justify-content-center recipe-details-text"
-                >
-                  {{ recipe.lunchRecipe.kcals }} kcals
-                </div>
-              </div>
-              <div class="col">
-                <div class="row d-flex justify-content-center">⌚</div>
-                <div
-                  class="row d-flex justify-content-center recipe-details-text"
-                >
-                  {{ recipe.lunchRecipe.prepTime }} min
-                </div>
-              </div>
-            </div>
-          </div>
-        </a>
-        <a class="recipe-item" routerLink="/recipe/{{recipe.dinnerRecipe.id}}">
-          <div class="card recipe-card mb-3 w-full bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
-            <div class="image-container">
-              <app-badge [color]="'orange'" [text]="'Dinner'" [showXButton]="false" class="position-absolute" style="z-index: 1000;"></app-badge>
-              <!-- <span class="badge bg-warning text-dark mx-1 my-1"
-                >Breakfast</span
-              > -->
-              <img [src]="getImageUrl(recipe.dinnerRecipe.pictureUrl)" onError="this.src='../../../assets/no-content/no-image.png'" class="rounded-lg" />
-              <!-- <button
-                type="button"
-                class="favorite-button fav-button"
-                (click)="favoriteAnimation($event)"
-              >
-              <app-badge [color]="'red'" [text]="recipe.dinnerRecipe.favourites + ' ❤️'" [showXButton]="false" class="position-absolute" style="z-index: 1000;"></app-badge>
-
-              </button> -->
-            </div>
-
-            <div class="title-container">
-              <p class="px-1 pt-2 fw-bold">{{ recipe.dinnerRecipe.name }}</p>
-            </div>
-            <div class="detail-container row">
-              <div class="col">
-                <div class="row d-flex justify-content-center">🔥</div>
-                <div
-                  class="row d-flex justify-content-center recipe-details-text"
-                >
-                  {{ recipe.dinnerRecipe.kcals }} kcals
-                </div>
-              </div>
-              <div class="col">
-                <div class="row d-flex justify-content-center">⌚</div>
-                <div
-                  class="row d-flex justify-content-center recipe-details-text"
-                >
-                  {{ recipe.dinnerRecipe.prepTime }} min
-                </div>
-              </div>
-            </div>
-          </div>
-        </a>
-      </ng-container>
+        </div>
+      </div>
     </div>
   </div>
   <app-navbar></app-navbar>

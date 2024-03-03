@@ -1,6 +1,6 @@
 <div class="modal-header">
   <h5 class="modal-title" id="exampleModalLabel">
-    🥑 Add a new item in your fridge
+    🥑{{ modalTitle }}
   </h5>
   <button
     type="button"
@@ -17,17 +17,19 @@
         id="ingredient-select"
         aria-label="Floating label select example"
         formControlName="ingredient"
+        [compareWith]="selectedVal"
       >
-        <option value="" selected>Select an ingredient</option>
+        <option [value]="{name: 'ceva'}" selected disabled>Select an ingredient</option>
         <ng-container *ngFor="let ingr of ingredients">
-          <option value="{{ ingr.id }}">
-            <div class="ingredient-option">
+          <option [ngValue]="ingr">
+            {{ ingr.name }}
+            <!-- <div class="ingredient-option">
               <img
                 [src]="getIngredientUrl(ingr.pictureUrl)"
                 class="w-100 mx-auto d-block recipe-img ingredient-image"
               />
               {{ ingr.name }}
-            </div>
+            </div> -->
           </option>
         </ng-container>
       </select>

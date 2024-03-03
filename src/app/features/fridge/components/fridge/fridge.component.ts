@@ -38,6 +38,10 @@ export class FridgeComponent implements OnInit {
   openDialog() {
     this.modalRef = this.modalService.open(AddItemComponentComponent, {
       modalClass: 'modal-dialog-centered',
+      data: {
+        isAddModal: true,
+        modalTitle: 'Add a new item in your fridge'
+      },
     });
     this.modalRef.onClose.subscribe((message: any) => {
       this.getFridgeIngredients();
@@ -46,5 +50,20 @@ export class FridgeComponent implements OnInit {
 
   getIngredientUrl(id: string) {
     return `${environment.apiUrl}/images/${id}`;
+  }
+
+  modifyFridgeIngredient(id: number) {
+    console.log(this.fridgeData[id]);
+    this.modalRef = this.modalService.open(AddItemComponentComponent, {
+      modalClass: 'modal-dialog-centered',
+      data: {
+        isAddModal: false,
+        selectedIngredient: this.fridgeData[id],
+        modalTitle: 'Modify an ingredient from your fridge'
+      },
+    });
+    this.modalRef.onClose.subscribe((message: any) => {
+      this.getFridgeIngredients();
+    });
   }
 }

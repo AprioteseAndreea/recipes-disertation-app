@@ -4,6 +4,7 @@ import { environment } from './core/environments/environment';
 import { LayoutComponent } from './core/components/layout/layout.component';
 import { LoginComponent } from './features/auth/components/login/login.component';
 import { AuthGuard } from './core/guards/auth.guard';
+import { ChatbotComponent } from './features/chatbot/chatbot.component';
 
 const routes: Routes = [
   {
@@ -15,7 +16,12 @@ const routes: Routes = [
         pathMatch: 'full',
         component: LoginComponent,
       },
-      
+      {
+        path: 'chatbot',
+        pathMatch: 'full',
+        component: ChatbotComponent,
+      },
+    
       {
         path: 'auth',
         loadChildren: () =>

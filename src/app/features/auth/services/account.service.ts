@@ -57,9 +57,8 @@ export class AccountService {
   //   }
 
   updateUserIngredientCollection() {
-    this.fridgeService
-      .getAllIngredientsByUserId(this.loggedUserValue.id)
-      .subscribe((res) => (this.loggedUserValue.userIngredients = res));
+    return this.fridgeService
+      .getAllIngredientsByUserId(this.loggedUserValue.id);
     //apeleza endpointul din fridgeService de a lua ingredientele by Userid
     // si asigneaza-le aici: this.accountService.loggedUserValue.userIngredients
   }

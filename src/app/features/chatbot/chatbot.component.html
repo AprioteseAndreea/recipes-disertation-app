@@ -1,0 +1,50 @@
+
+  <div class="chat-dialog-page">
+  <div class="container">
+    <div class="row m-auto py-0 py-sm-3">
+      <div class="col">
+        <!-- chat card section -->
+        <div class="card shadow">
+          <img src="/assets/icons/chatbot.png" alt="bot" class="bot">
+          <!-- messages section -->
+          <div class="card-body" #scrollBottom>
+            <div *ngFor="let message of messageList">
+              <!-- display as inner html -->
+              <div class="message" [ngClass]="{ 'from': !message.isOwner , 'to': message.isOwner }"
+                [innerHTML]="message.text">
+              </div>
+            </div>
+            <!-- Loader -->
+            <div *ngIf="isLoading">
+              <div class="message from">
+                <div class="spinner">
+                  <div class="bounce1"></div>
+                  <div class="bounce2"></div>
+                  <div class="bounce3"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- send message section -->
+          <div class="card-footer">
+            <div class="input-group">
+              <input type="text" class="form-control input-text-message" placeholder="Type a message..."
+                aria-label="Recipient's username with two button addons" aria-describedby="button-addon4"
+                [(ngModel)]="message" (keydown.enter)="sendMessage(message);$event.preventDefault()">
+              <div class="input-group-append" id="button-addon4">
+                <button class="btn btn-outline-secondary btn-send" (click)="sendMessage(message)" type="button">
+                  <svg class="bi bi-play-fill" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor"
+                    xmlns="http://www.w3.org/2000/svg">
+                    <path
+                      d="M11.596 8.697l-6.363 3.692c-.54.313-1.233-.066-1.233-.697V4.308c0-.63.692-1.01 1.233-.696l6.363 3.692a.802.802 0 0 1 0 1.393z" />
+                  </svg>
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+  

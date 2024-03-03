@@ -20,6 +20,8 @@ import { AngularFireStorageModule } from '@angular/fire/compat/storage';
 import { AngularFirestoreModule } from '@angular/fire/compat/firestore';
 import { AngularFireDatabaseModule } from '@angular/fire/compat/database';
 import { ServiceWorkerModule } from '@angular/service-worker';
+import { ChatbotComponent } from './features/chatbot/chatbot.component';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -27,6 +29,7 @@ import { ServiceWorkerModule } from '@angular/service-worker';
     HeaderComponent,
     LayoutComponent,
     PageNotFoundComponent,
+    ChatbotComponent,
   ],
   imports: [
     BrowserAnimationsModule,
@@ -35,6 +38,7 @@ import { ServiceWorkerModule } from '@angular/service-worker';
     MatProgressSpinnerModule,
     HttpClientModule,
     FontAwesomeModule,
+    FormsModule,
     MatIconModule,
     ToastrModule.forRoot({
       timeOut: 10000,
@@ -51,6 +55,7 @@ import { ServiceWorkerModule } from '@angular/service-worker';
       // or after 30 seconds (whichever comes first).
       registrationStrategy: 'registerWhenStable:30000'
     }),
+    
   ],
   providers: [LoadingService, NotificationService, ToastrService],
   bootstrap: [AppComponent],

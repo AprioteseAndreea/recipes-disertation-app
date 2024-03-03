@@ -32,8 +32,8 @@
       <div
         class="d-flex flex-row justify-content-evenly rounded second-fridge-container"
       >
-        <ng-container *ngFor="let ingr of fridgeData">
-          <div class="position-relative">
+        <ng-container *ngFor="let ingr of fridgeData; let i = index" >
+          <div class="position-relative ingredient-wrapper" (click)="modifyFridgeIngredient(i)">
             <span
               class="position-relative badge bg-info text-dark mx-1 my-1 position-absolute top-0 start-0"
               >{{ ingr.quantity }} {{ ingr.unitOfMeasure }}</span
