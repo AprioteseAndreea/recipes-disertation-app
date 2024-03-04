@@ -44,39 +44,26 @@ export class ChatbotComponent implements OnInit, AfterViewChecked {
     }
   }
 
-  // send text message
-  public sendMessage(message: string) {
+  async sendMessage(message: string) {
     if (message.length != 0) {
       this.messageList.push({
         text: message,
         isOwner: true,
       });
       this.message = '';
-      this.generateOpenaiChatCompletion(message);
-    }
-  }
+      this.messageList.push({
+        text: 'Typing ...',
+        isOwner: false,
+      });
 
-  // to generate openai chatGPT chat completion(response)
-  public generateOpenaiChatCompletion(text: string) {
-    setTimeout(() => {
-      this.isLoading = true;
-    }, 100);
-    this.openaiService.generateChatCompletion(text)
-    .subscribe(
-      (res: { result: { role: string; content: string } }) => {
-        if (res) {
-          this.messageList.push({
-            text: res.result.content,
-            isOwner: false,
-          });
-          this.isLoading = false;
-          this.scrollToBottom();
-        }
-      },
-      (err) => {
-        console.log(err);
-        this.isLoading = false;
+      const response = await this.openaiService.chat(message);
+      if (response) {
+        this.messageList.pop();
+        this.messageList.push({
+          text: response,
+          isOwner: false,
+        });
       }
-    );
+    }
   }
 }
