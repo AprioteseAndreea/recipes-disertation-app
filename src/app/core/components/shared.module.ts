@@ -15,6 +15,8 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { NavBarModule } from './navbar/navbar.module';
 import { BadgeComponent } from './badge/badge.component';
 import { CookingLevelPipe } from 'src/app/features/about-product/pipes/cooking-level.pipe';
+import { ModalComponent } from './modal/modal.component';
+import { MdbModalService } from 'mdb-angular-ui-kit/modal';
 
 @NgModule({
   declarations: [DownloadButtonsComponent, BadgeComponent, CookingLevelPipe],
@@ -36,6 +38,6 @@ import { CookingLevelPipe } from 'src/app/features/about-product/pipes/cooking-l
     BadgeComponent,
     CookingLevelPipe
   ],
-  
+ 
 })
 export class SharedModule {}

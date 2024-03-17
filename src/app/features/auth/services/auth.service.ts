@@ -23,8 +23,10 @@ export class AuthService {
     public ngZone: NgZone
   ) {
     
-    /* Saving user data in localstorage when 
-    logged in and setting up null when logged out */
+    this.fetchUserData(true);
+  }
+
+  fetchUserData(redirect: boolean){
     this.afAuth.authState.subscribe((user) => {
       if (user) {
         this.userData = user;
@@ -36,7 +38,7 @@ export class AuthService {
           .subscribe((returnedUser) => {
             this.accountService.updateUser(returnedUser);
             localStorage.setItem('loggedUser', JSON.stringify(returnedUser));
-            if (returnedUser) {
+            if (returnedUser && redirect) {
               this.router.navigate(['/home']);
             }
           });

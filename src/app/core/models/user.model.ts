@@ -43,6 +43,7 @@ export interface UserIngredient {
   quantity?: number;
   unitOfMeasure?: string;
   isCartIngredient?: boolean;
+  hasEditMode?: boolean;
 }
 
 // Interface for the Ingredient object

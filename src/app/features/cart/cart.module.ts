@@ -7,10 +7,13 @@ import { SharedModule } from 'src/app/core/components/shared.module';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { CartRoutingModule } from './cart-routing.module';
 import { CartComponent } from './components/cart/cart.component';
+import { ConfmodalComponent } from './components/cart/modals/confmodal/confmodal.component';
+import { MdbModalService } from 'mdb-angular-ui-kit/modal';
 
 @NgModule({
   declarations: [
-  CartComponent
+  CartComponent,
+  ConfmodalComponent
   ],
   imports: [
     CommonModule,
@@ -21,6 +24,9 @@ import { CartComponent } from './components/cart/cart.component';
     ReactiveFormsModule,
     FontAwesomeModule
   ],
+  providers:[
+    MdbModalService
+  ]
   
 })
 export class CartModule {}

@@ -1,9 +1,7 @@
 import { Component } from '@angular/core';
 import constants from 'src/app/core/constants/constants';
 import { UserDto } from 'src/app/core/models/user.model';
-import { User } from 'src/app/features/auth/models/user.model';
 import { AccountService } from 'src/app/features/auth/services/account.service';
-import { AuthService } from 'src/app/features/auth/services/auth.service';
 
 @Component({
   selector: 'app-profile',

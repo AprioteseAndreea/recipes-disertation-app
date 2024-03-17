@@ -1,9 +1,6 @@
 <div class="modal-header">
-  <h5 class="modal-title" id="exampleModalLabel">
-    🥑{{ modalTitle }}
-  </h5>
+  <h5 class="modal-title" id="exampleModalLabel">🥑{{ modalTitle }}</h5>
   <button
-    type="button"
     class="btn-close"
     aria-label="Close"
     (click)="modalRef.close()"
@@ -19,17 +16,12 @@
         formControlName="ingredient"
         [compareWith]="selectedVal"
       >
-        <option [value]="{name: 'ceva'}" selected disabled>Select an ingredient</option>
+        <option [value]="{ name: 'ceva' }" selected disabled>
+          Select an ingredient
+        </option>
         <ng-container *ngFor="let ingr of ingredients">
           <option [ngValue]="ingr">
             {{ ingr.name }}
-            <!-- <div class="ingredient-option">
-              <img
-                [src]="getIngredientUrl(ingr.pictureUrl)"
-                class="w-100 mx-auto d-block recipe-img ingredient-image"
-              />
-              {{ ingr.name }}
-            </div> -->
           </option>
         </ng-container>
       </select>
@@ -62,15 +54,18 @@
     </div>
   </form>
 </div>
-<div class="modal-footer">
-  <button type="button" class="btn close-btn" (click)="modalRef.close()">
-    Close
+<div class="modal-footer d-flex justify-content-between">
+  <button class="btn delete-btn" (click)="deleteItem()" [disabled]="isAddModal">
+    Delete item
   </button>
-  <button
-    class="btn btn-warning"
-    [disabled]="!newFridgeItemForm.valid"
-    (click)="onSubmit()"
-  >
-    Save changes
-  </button>
+  <div>
+    <button class="btn close-btn" (click)="modalRef.close()">Close</button>
+    <button
+      class="btn btn-warning ms-2"
+      [disabled]="!newFridgeItemForm.valid"
+      (click)="onSubmit()"
+    >
+      Save changes
+    </button>
+  </div>
 </div>

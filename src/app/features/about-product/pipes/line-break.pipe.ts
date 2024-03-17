@@ -5,9 +5,18 @@ import { SafeHtml } from '@angular/platform-browser';
   name: 'lineBreak'
 })
 export class LineBreakPipe implements PipeTransform {
-  transform(value: string): SafeHtml {
-    // Use a regular expression to find occurrences of "1.", "2.", etc.
-    const regex = /(\d+\.)\s/g;
-    return value.replace(regex, '\n$1');
+  transform(value: string): string {
+    if (!value) {
+      return '';
+    }
+
+    const lines = value.split('\n');
+    const formattedLines = lines.map(line => {
+      if (line.match(/^\d+(?:\.\s+)?(.*)$/)) {
+        return `${line}\n`;
+      }
+      return line;
+    });
+    return formattedLines.join('\n');
   }
 }

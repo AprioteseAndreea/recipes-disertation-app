@@ -20,7 +20,9 @@
       <ul class="mt-2 space-y-3">
         <li>
           <div
-            class="px-3 py-2 d-flex border border-gray-200 rounded-lg text-base font-bold text-gray-900 rounded-lg bg-gray-50 hover:bg-gray-100 group hover:shadow"
+          [ngClass]="{'border border-gray-950': ingredient.hasEditMode,
+                      'border border-gray-200': !ingredient.hasEditMode}"
+            class="px-3 py-2 d-flex flex-row justify-content-between text-base font-bold text-gray-900 rounded-lg bg-gray-50 hover:bg-gray-100 group hover:shadow"
           >
             <div class="d-flex flex-row align-items-center w-2/4">
               <div>
@@ -35,42 +37,64 @@
               </div>
               <div class="ms-3">
                 <p class="font-semibold text-gray-900 mb-0 text-break">
-                  {{ingredient.ingredient.name}}
+                  {{ ingredient.ingredient.name }}
                 </p>
-                <p class="small mb-0 text-gray-500 font-normal">{{ingredient.unitOfMeasure | titlecase}}</p>
+                <p class="small mb-0 text-gray-500 font-normal">
+                  {{ ingredient.unitOfMeasure | titlecase }}
+                </p>
               </div>
             </div>
-            <div class="d-flex flex-row align-items-center w-1/4">
+            <div class="d-flex flex-row align-items-center">
               <button
                 class="btn btn-link px-2"
-                onclick="this.parentNode.querySelector('input[type=number]').stepDown()"
+                *ngIf="ingredient.hasEditMode"
+                (click)="decrementQuantity(i)"
               >
-                <i class="fa-solid fa-minus text-[#9575cd]"></i>
+                <i class="fa-solid fa-minus text-gray-500"></i>
               </button>
 
               <input
                 id="form1"
                 min="0"
                 name="quantity"
-                value="{{ingredient.quantity}}"
+                value="{{ ingredient.quantity }}"
+                [(ngModel)]="ingredient.quantity"
                 type="number"
                 style="width: 60px"
-                class="form-control form-control-sm bg-[#9575cd] text-white"
+                [disabled]="!ingredient.hasEditMode"
+                class="form-control form-control-sm bg-white text-gray-500"
               />
 
               <button
                 class="btn btn-link px-2"
-                onclick="this.parentNode.querySelector('input[type=number]').stepUp()"
+                *ngIf="ingredient.hasEditMode"
+                (click)="incrementQuantity(i)"
               >
-                <i class="fa-solid fa-plus text-[#9575cd]"></i>
+                <i class="fa-solid fa-plus text-gray-500"></i>
               </button>
             </div>
             <div
-              class="d-flex column align-items-center w-1/4 justify-content-end"
+           
+            class="d-flex column align-items-center justify-content-end w-1/4"
             >
-              <a class="trash-icon"
+              <a class="trash-icon" (click)="deleteUserIngredient(i)"
                 ><i class="fas fa-trash-alt text-red-400"></i
               ></a>
+              <a
+                class="trash-icon ps-3"
+                (click)="toggleEditMode(i)"
+                *ngIf="!ingredient.hasEditMode; else saveMode"
+              >
+                <i class="fa-solid fa-pen-to-square text-[#ffa500]"> </i>
+              </a>
+              <ng-template #saveMode>
+                <a
+                  class="trash-icon ps-3"
+                  (click)="updateCartIngredient(i)"
+                >
+                  <i class="fa-solid fa-circle-check text-[#65a30d]"> </i>
+                </a>
+              </ng-template>
             </div>
           </div>
         </li>
@@ -79,79 +103,3 @@
   </div>
   <app-navbar></app-navbar>
 </div>
-
-<!-- <div class="main-container" *ngIf="cartData$">
-  <div class="mx-4 column pt-4" style="overflow-y: auto">
-    <div class="heading">
-      <div class="d-flex justify-content-between mx-2">
-        <div>
-          <p class="fs-3 fw-bold">🛒 Shopping cart</p>
-          <p class="fw-light">You have 4 items in your cart</p>
-        </div>
-        <button class="sign-out-btn">
-          <div class="sign">
-            <svg viewBox="0 0 512 512">
-              <path
-                d="M377.9 105.9L500.7 228.7c7.2 7.2 11.3 17.1 11.3 27.3s-4.1 20.1-11.3 27.3L377.9 406.1c-6.4 6.4-15 9.9-24 9.9c-18.7 0-33.9-15.2-33.9-33.9l0-62.1-128 0c-17.7 0-32-14.3-32-32l0-64c0-17.7 14.3-32 32-32l128 0 0-62.1c0-18.7 15.2-33.9 33.9-33.9c9 0 17.6 3.6 24 9.9zM160 96L96 96c-17.7 0-32 14.3-32 32l0 256c0 17.7 14.3 32 32 32l64 0c17.7 0 32 14.3 32 32s-14.3 32-32 32l-64 0c-53 0-96-43-96-96L0 128C0 75 43 32 96 32l64 0c17.7 0 32 14.3 32 32s-14.3 32-32 32z"
-              ></path>
-            </svg>
-          </div>
-          <div class="text">Logout</div>
-        </button>
-      </div>
-    </div>
-    <div class="d-flex flex-column" *ngFor="let cartItem of cartData$ | async">
-      <div class="card mb-3 shopping-cart">
-        <div class="card-body">
-          <div class="d-flex justify-content-between">
-            <div class="d-flex flex-row align-items-center">
-              <div>
-                <img
-                  src="../../../../../assets/icons/avocado-icon.png"
-                  class="img-fluid rounded-3"
-                  alt="Shopping item"
-                  style="width: 65px"
-                />
-              </div>
-              <div class="ms-3">
-                <p class="fw-bold fs-6 mb-0">{{ cartItem.Ingredient.Name }}</p>
-                <p class="small mb-0">
-                  Unit: <span>{{ cartItem.Unit }}</span>
-                </p>
-              </div>
-            </div>
-            <div class="d-flex flex-row align-items-center">
-              <button
-                class="btn btn-link px-2"
-                onclick="this.parentNode.querySelector('input[type=number]').stepDown()"
-              >
-                <i class="fa-solid fa-minus"></i>
-              </button>
-
-              <input
-                id="form1"
-                min="0"
-                name="quantity"
-                value="{{ cartItem.Quantity }}"
-                type="number"
-                style="width: 40px"
-                class="form-control form-control-sm"
-              />
-
-              <button
-                class="btn btn-link px-2"
-                onclick="this.parentNode.querySelector('input[type=number]').stepUp()"
-              >
-                <i class="fas fa-plus"></i>
-              </button>
-            </div>
-            <div class="d-flex column align-items-center">
-              <a class="trash-icon"><i class="fas fa-trash-alt"></i></a>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-  <app-navbar></app-navbar>
-</div> -->
