@@ -1,0 +1,15 @@
+.diet-wrapper{
+    block-size: calc(100vh - 78px);
+
+    .diets-full-list{
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 10px;
+    }
+
+    .diet-image{
+        inline-size: 5rem;
+    }
+}
+
+

@@ -36,7 +36,7 @@ export class AuthService {
         this.accountService
           .getUserByEmail(user.email)
           .subscribe((returnedUser) => {
-            this.accountService.updateUser(returnedUser);
+            this.accountService.updateLoggedUser(returnedUser);
             localStorage.setItem('loggedUser', JSON.stringify(returnedUser));
             if (returnedUser && redirect) {
               this.router.navigate(['/home']);
@@ -60,7 +60,7 @@ export class AuthService {
               .getUserByEmail(email)
               .subscribe((returnedUser) => {
                 console.log(returnedUser);
-                this.accountService.updateUser(returnedUser);
+                this.accountService.updateLoggedUser(returnedUser);
                 if (returnedUser) {
                   this.router.navigate(['/home']);
                 }

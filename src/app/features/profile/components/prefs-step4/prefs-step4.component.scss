@@ -1,3 +1,9 @@
-img{
-    max-width: 70px;
+.ingredients-full-list{
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 10px;
+
+    .ingredient-image{
+        inline-size: 3rem;
+    }
 }

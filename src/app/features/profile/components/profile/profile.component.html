@@ -1,11 +1,25 @@
 <div class="main-container bg-white" *ngIf="loggedUser">
   <div class="mx-2 column pt-2" style="overflow-y: auto">
     <div class="heading">
-      <div class="bg-[#d1c4e9] mx-2 border border-gray-200 rounded-lg shadow row mb-2">
+      <div
+        class="bg-[#d1c4e9] mx-2 border border-gray-200 rounded-lg shadow row mb-2"
+      >
         <div class="col-3">
-          <img *ngIf="loggedUser.gender === 'M'" src="../../../assets/icons/male-icon.png" alt="Male Image">
-          <img *ngIf="loggedUser.gender === 'F'" src="../../../assets/icons/female-icon.png" alt="Female Image">
-          <img *ngIf="!loggedUser.gender || loggedUser.gender === 'null'" src="../../../assets/no-content/no-image.png" alt="Default Image">
+          <img
+            *ngIf="loggedUser.gender === 'M'"
+            src="../../../assets/icons/male-icon.png"
+            alt="Male Image"
+          />
+          <img
+            *ngIf="loggedUser.gender === 'F'"
+            src="../../../assets/icons/female-icon.png"
+            alt="Female Image"
+          />
+          <img
+            *ngIf="!loggedUser.gender || loggedUser.gender === 'null'"
+            src="../../../assets/no-content/no-image.png"
+            alt="Default Image"
+          />
         </div>
         <div class="col-9 my-auto">
           <div>
@@ -37,46 +51,58 @@
       <div class="row align-items-start divide-x">
         <div class="col text-center">
           <p class="text-muted small">Age</p>
-          <p class="fw-bold small" *ngIf="loggedUser.age else noData">{{ loggedUser.age }}</p>
+          <p class="fw-bold small" *ngIf="loggedUser.age; else noData">
+            {{ loggedUser.age }}
+          </p>
         </div>
         <div class="col text-center">
           <p class="text-muted small">Height</p>
-          <p class="fw-bold small" *ngIf="loggedUser.height else noData">{{ loggedUser.height }}</p>
+          <p class="fw-bold small" *ngIf="loggedUser.height; else noData">
+            {{ loggedUser.height }}
+          </p>
         </div>
         <div class="col text-center">
           <p class="text-muted small">Weight</p>
-          <p class="fw-bold small" *ngIf="loggedUser.weight else noData">{{ loggedUser.weight }}</p>
+          <p class="fw-bold small" *ngIf="loggedUser.weight; else noData">
+            {{ loggedUser.weight }}
+          </p>
         </div>
         <div class="col text-center">
           <p class="text-muted small">BMR</p>
-          <p class="fw-bold small" *ngIf="loggedUser.bms else noData">{{ loggedUser.bms }}</p>
-        </div>
-        <div class="row align-items-start mt-3 mb-3 divide-x">
-          <div class="col text-center">
-            <p class="text-muted small">Cooking level</p>
-            <p class="fw-bold small" *ngIf="loggedUser.cookingLevel else noData">{{ loggedUser.cookingLevel | titlecase }}</p>
-          </div>
-          <div class="col text-center">
-            <p class="text-muted small">Physical effort</p>
-            <p class="fw-bold small" *ngIf="loggedUser.physicalEffort else noData">
-              {{loggedUser.physicalEffort | physicalEffort | titlecase }}
-            </p>
-          </div>
+          <p class="fw-bold small" *ngIf="loggedUser.bms; else noData">
+            {{ loggedUser.bms }}
+          </p>
         </div>
       </div>
       <ng-template #noData>
         <p class="fw-bold small">-</p>
-
       </ng-template>
     </div>
-    <!-- <div
+
+    <div
       class="mx-2 mb-3 p-2 bg-white border border-gray-200 rounded-lg shadow sm:p-6 dark:bg-gray-800 dark:border-gray-700"
     >
-      
-    </div> -->
-    
+      <div class="col text-center">
+        <p class="text-muted small">Cooking level</p>
+        <p class="fw-bold small" *ngIf="loggedUser.cookingLevel; else noData">
+          {{ loggedUser.cookingLevel | titlecase }}
+        </p>
+      </div>
+    </div>
+
     <div
-      class=" mx-2 mb-3 p-2 bg-white border border-gray-200 rounded-lg shadow sm:p-6 dark:bg-gray-800 dark:border-gray-700"
+      class="mx-2 mb-3 p-2 bg-white border border-gray-200 rounded-lg shadow sm:p-6 dark:bg-gray-800 dark:border-gray-700"
+    >
+      <div class="col text-center">
+        <p class="text-muted small">Physical effort</p>
+        <p class="fw-bold small" *ngIf="loggedUser.physicalEffort; else noData">
+          {{ loggedUser.physicalEffort | physicalEffort | titlecase }}
+        </p>
+      </div>
+    </div>
+
+    <div
+      class="mx-2 mb-3 p-2 bg-white border border-gray-200 rounded-lg shadow sm:p-6 dark:bg-gray-800 dark:border-gray-700"
     >
       <div class="d-flex justify-content-between">
         <p class="medium fw-bold mb-2 px-2 py-2">Favourite cuisines</p>
@@ -100,7 +126,7 @@
       </ng-container>
     </div>
     <div
-      class=" mx-2 mb-3 p-2 bg-white border border-gray-200 rounded-lg shadow sm:p-6 dark:bg-gray-800 dark:border-gray-700"
+      class="mx-2 mb-3 p-2 bg-white border border-gray-200 rounded-lg shadow sm:p-6 dark:bg-gray-800 dark:border-gray-700"
     >
       <div class="d-flex justify-content-between">
         <p class="medium fw-bold mb-2 px-2 py-2">Followed diets</p>
@@ -124,7 +150,7 @@
       </ng-container>
     </div>
     <div
-      class=" mx-2 mb-3 p-2 bg-white border border-gray-200 rounded-lg shadow sm:p-6 dark:bg-gray-800 dark:border-gray-700"
+      class="mx-2 mb-3 p-2 bg-white border border-gray-200 rounded-lg shadow sm:p-6 dark:bg-gray-800 dark:border-gray-700"
     >
       <div class="d-flex justify-content-between">
         <p class="medium fw-bold mb-2 px-2 py-2">Avoided ingredients</p>
@@ -137,7 +163,10 @@
         </button>
       </div>
       <ng-container
-        *ngFor="let cuisine of loggedUser.userDislikedIngredients; let i = index"
+        *ngFor="
+          let cuisine of loggedUser.userDislikedIngredients;
+          let i = index
+        "
         class="mb-2"
       >
         <app-badge
@@ -160,26 +189,41 @@
           <i class="fas fa-edit w-5 h-5 text-[#d1c4e9]"></i>
         </button>
       </div>
-      <ng-container *ngIf="loggedUser.wantToLearnNewSkills"> <app-badge
-        [color]="'lime'"
-        [text]="'⭐Learn new skills'"
-        [showXButton]="true"
-      ></app-badge></ng-container>
-      <ng-container *ngIf="loggedUser.wantToTryNewCuisines"> <app-badge
-        [color]="'lime'"
-        [text]="'⭐Try new cuisines'"
-        [showXButton]="true"
-      ></app-badge></ng-container>
-      <ng-container *ngIf="loggedUser.wantToSaveMoney"> <app-badge
-        [color]="'lime'"
-        [text]="'⭐Save money'"
-        [showXButton]="true"
-      ></app-badge></ng-container>
-      <ng-container *ngIf="loggedUser.wantToSaveTime"> <app-badge
-        [color]="'lime'"
-        [text]="'⭐Save time'"
-        [showXButton]="true"
-      ></app-badge></ng-container>
+      <ng-container *ngIf="loggedUser.wantToLearnNewSkills">
+        <app-badge
+          [color]="'lime'"
+          [text]="'⭐Learn new skills'"
+          [showXButton]="true"
+        ></app-badge
+      ></ng-container>
+      <ng-container *ngIf="loggedUser.wantToTryNewCuisines">
+        <app-badge
+          [color]="'lime'"
+          [text]="'⭐Try new cuisines'"
+          [showXButton]="true"
+        ></app-badge
+      ></ng-container>
+      <ng-container *ngIf="loggedUser.wantToSaveMoney">
+        <app-badge
+          [color]="'lime'"
+          [text]="'⭐Save money'"
+          [showXButton]="true"
+        ></app-badge
+      ></ng-container>
+      <ng-container *ngIf="loggedUser.wantToSaveTime">
+        <app-badge
+          [color]="'lime'"
+          [text]="'⭐Save time'"
+          [showXButton]="true"
+        ></app-badge
+      ></ng-container>
+      <ng-container *ngIf="loggedUser.wantToEatHealthy">
+        <app-badge
+          [color]="'lime'"
+          [text]="'⭐Eat healthy'"
+          [showXButton]="true"
+        ></app-badge
+      ></ng-container>
       <!-- <ng-container
         *ngFor="let cuisine of user.Goals; let i = index"
         class="mb-2"

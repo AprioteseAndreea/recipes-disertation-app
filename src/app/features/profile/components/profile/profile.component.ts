@@ -15,6 +15,7 @@ export class ProfileComponent {
 
   constructor(public accountService: AccountService){
     this.loggedUser = this.accountService.loggedUserValue;
+    console.log(this.loggedUser);
   }
   
 }

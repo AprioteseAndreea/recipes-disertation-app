@@ -1,9 +1,14 @@
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
-import { UserDto } from 'src/app/core/models/user.model';
+import {
+  UserCuisine,
+  UserDiet,
+  UserDto,
+  UserIngredient,
+} from 'src/app/core/models/user.model';
 import { environment } from 'src/app/core/environments/environment';
 import { User } from '../models/user.model';
 import { FridgeService } from '../../fridge/modals/add-item-component/fridge.service';
@@ -12,6 +17,9 @@ import { FridgeService } from '../../fridge/modals/add-item-component/fridge.ser
 export class AccountService {
   private userSubject: BehaviorSubject<User | null>;
   public user: Observable<User | null>;
+
+  headers_object: any;
+  httpOptions: any;
 
   private loggedUser: BehaviorSubject<UserDto | null>;
   public loggedUser$: Observable<UserDto | null>;
@@ -32,6 +40,17 @@ export class AccountService {
     this.loggedUser$ = this.loggedUser.asObservable();
   }
 
+  getHttpHeader() {
+    this.headers_object = new HttpHeaders({
+      'Content-Type': 'application/json; charset=utf-8;',
+      Accept: 'application/json',
+    });
+    this.httpOptions = {
+      headers: this.headers_object,
+    };
+    return this.httpOptions;
+  }
+
   public get userValue() {
     return this.userSubject.value;
   }
@@ -40,42 +59,97 @@ export class AccountService {
     return this.loggedUser.value;
   }
 
-  //   login(username: string, password: string) {
-  //     return this.http
-  //       .post<User>(`${environment.apiUrl}/users/authenticate`, {
-  //         username,
-  //         password,
-  //       })
-  //       .pipe(
-  //         map((user) => {
-  //           // store user details and jwt token in local storage to keep user logged in between page refreshes
-  //           localStorage.setItem('user', JSON.stringify(user));
-  //           this.userSubject.next(user);
-  //           return user;
-  //         })
-  //       );
-  //   }
-
   updateUserIngredientCollection() {
-    return this.fridgeService
-      .getAllIngredientsByUserId(this.loggedUserValue.id);
+    return this.fridgeService.getAllIngredientsByUserId(
+      this.loggedUserValue.id
+    );
     //apeleza endpointul din fridgeService de a lua ingredientele by Userid
     // si asigneaza-le aici: this.accountService.loggedUserValue.userIngredients
   }
 
-  updateUser(user: User) {
-    console.log(user);
-    this.loggedUser.next(user);
-    console.log(this.loggedUser.value);
+  updateLoggedUser(updatedUser: UserDto): void {
+    this.loggedUser.next(updatedUser);
+    localStorage.setItem('loggedUser', JSON.stringify(updatedUser));
   }
 
   getUserByEmail(email: string) {
-    //http://localhost:8080/users?email=andreea.apriotese11@gmail.com
     return this.http.get<User>(`${environment.apiUrl}/users?email=${email}`);
   }
 
+  updateCuisines(userCuisines: UserCuisine[]): Observable<any> {
+    console.log(userCuisines);
+    const updatedUser = { ...this.loggedUser.value, userCuisines };
+    return this.http.patch(
+      `${environment.apiUrl}/users/${this.loggedUserValue.id}`,
+      JSON.stringify(updatedUser),
+      this.getHttpHeader()
+    );
+  }
+
+  updateDiets(userDiets: UserDiet[]): Observable<any> {
+    console.log(userDiets);
+    const updatedUser = { ...this.loggedUser.value, userDiets };
+    return this.http.patch(
+      `${environment.apiUrl}/users/${this.loggedUserValue.id}`,
+      JSON.stringify(updatedUser),
+      this.getHttpHeader()
+    );
+  }
+
+  updateUserDislikedIngredients(
+    userDislikedIngredients: UserIngredient[]
+  ): Observable<any> {
+    console.log(userDislikedIngredients);
+    const updatedUser = { ...this.loggedUser.value, userDislikedIngredients };
+    return this.http.patch(
+      `${environment.apiUrl}/users/${this.loggedUserValue.id}`,
+      JSON.stringify(updatedUser),
+      this.getHttpHeader()
+    );
+  }
+
+  updateUserGoals(userGoals: boolean[]): Observable<any> {
+    const updatedUser = { ...this.loggedUser.value };
+
+    updatedUser.wantToLearnNewSkills = userGoals[0];
+    updatedUser.wantToTryNewCuisines = userGoals[1];
+    updatedUser.wantToSaveTime = userGoals[2];
+    updatedUser.wantToSaveMoney = userGoals[3];
+    updatedUser.wantToEatHealthy = userGoals[4];
+
+    return this.http.patch(
+      `${environment.apiUrl}/users/${this.loggedUserValue.id}`,
+      JSON.stringify(updatedUser),
+      this.getHttpHeader()
+    );
+  }
+
+  updateLoggedUserCuisines(userCuisines: UserCuisine[]) {
+    this.loggedUserValue.userCuisines = userCuisines;
+    this.loggedUser.next(this.loggedUserValue);
+  }
+
+  updateLoggedUserDiets(userDiets: UserDiet[]) {
+    this.loggedUserValue.userDiets = userDiets;
+    this.loggedUser.next(this.loggedUserValue);
+  }
+
+  updateLoggedUserDislikedIngedients(userIngredients: UserIngredient[]) {
+    this.loggedUserValue.userDislikedIngredients = userIngredients;
+    this.loggedUser.next(this.loggedUserValue);
+  }
+
+  updateLoggedUserGoals(userGoals: boolean[]) {
+    this.loggedUserValue.wantToLearnNewSkills = userGoals[0];
+    this.loggedUserValue.wantToTryNewCuisines = userGoals[1];
+    this.loggedUserValue.wantToSaveTime = userGoals[2];
+    this.loggedUserValue.wantToSaveMoney = userGoals[3];
+    this.loggedUserValue.wantToEatHealthy = userGoals[4];
+
+    this.loggedUser.next(this.loggedUserValue);
+  }
+
   logout() {
-    // remove user from local storage and set current user to null
     localStorage.removeItem('user');
     localStorage.removeItem('loggedUser');
 
@@ -97,27 +171,9 @@ export class AccountService {
     return this.http.get<User>(`${environment.apiUrl}/users/${id}`);
   }
 
-  //   update(id: number, params: any) {
-  //     return this.http.put(`${environment.apiUrl}/users/${id}`, params).pipe(
-  //       map((x) => {
-  //         // update stored user if the logged in user updated their own record
-  //         if (id == this.userValue?.id) {
-  //           // update local storage
-  //           const user = { ...this.userValue, ...params };
-  //           localStorage.setItem('user', JSON.stringify(user));
-
-  //           // publish updated user to subscribers
-  //           this.userSubject.next(user);
-  //         }
-  //         return x;
-  //       })
-  //     );
-  //   }
-
   delete(id: number) {
     return this.http.delete(`${environment.apiUrl}/users/${id}`).pipe(
       map((x) => {
-        // auto logout if the logged in user deleted their own record
         if (id == this.loggedUserValue?.id) {
           this.logout();
         }

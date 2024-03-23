@@ -17,6 +17,7 @@ export interface UserDto {
   wantToTryNewCuisines?: boolean;
   wantToSaveMoney?: boolean;
   wantToSaveTime?: boolean;
+  wantToEatHealthy?:boolean;
   userDiets?: UserDiet[];
   userCuisines?: UserCuisine[];
   userIngredients?: UserIngredient[];

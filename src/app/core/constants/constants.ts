@@ -179,14 +179,8 @@ export default {
       '🥕Kid-friendly',
       '🥐French',
       '🥗Greek',
-      
     ],
-    FollowedDiets: [
-      '🥦Vegetarian',
-      '🍗Paleo',
-      "🐟Pescetarian"
-
-    ],
+    FollowedDiets: ['🥦Vegetarian', '🍗Paleo', '🐟Pescetarian'],
     DislikedIngredients: [
       'Eggs',
       'Fish',
@@ -194,11 +188,7 @@ export default {
       'Mushrooms',
       'Spinach',
     ],
-    Goals: [
-      '⭐Try new cuisines',
-      '⭐Learn new cuisines',
-      '⭐Save money',
-    ]
+    Goals: ['⭐Try new cuisines', '⭐Learn new cuisines', '⭐Save money'],
   } as User,
   Colors: [
     'zinc',
@@ -211,5 +201,108 @@ export default {
     'purple',
     'green',
     'fuchsia',
+  ],
+
+  Cuisines: [
+    {
+      id: 1,
+      name: 'Italian',
+      description: 'pasta, pizza, lasagna, risotto, focaccia',
+      iconUrl: '../../../assets/icons/pizza-icon.png',
+    },
+    {
+      id: 2,
+      name: 'American',
+      description: 'burgers, hot dogs, apple pie, barbecue ribs',
+      iconUrl: '../../../assets/icons/hamburger-icon.png',
+    },
+    {
+      id: 3,
+      name: 'Kid-friendly',
+      description: 'chicken parmesan, broccoli, chicken nuggets, noodle soup',
+      iconUrl: '../../../assets/icons/kid-icon.png',
+    },
+    {
+      id: 4,
+      name: 'Mexican',
+      description: 'tacos, burritos, nachos, guacamole, quesadillas',
+      iconUrl: '../../../assets/icons/taco-icon.png',
+    },
+    {
+      id: 5,
+      name: 'French',
+      description: 'foie gras, ratatouille, souffle, escargots, andouillette',
+      iconUrl: '../../../assets/icons/croissant-icon.png',
+    },
+    {
+      id: 6,
+      name: 'Greek',
+      description: 'moussaka, souvlaki, gyros, greek salad, papoutsakia',
+      iconUrl: '../../../assets/icons/greek-icon.png',
+    },
+    {
+      id: 7,
+      name: 'Indian',
+      description: 'samosa, dal, tandoori chicken, panipuri, kofta',
+      iconUrl: '../../../assets/icons/india-icon.png',
+    },
+    {
+      id: 8,
+      name: 'Maroccan',
+      description: 'couscous, zalouk, tagine, harira, saalouk',
+      iconUrl: '../../../assets/icons/maroccan-icon.png',
+    },
+    {
+      id: 9,
+      name: 'Barbecue',
+      description: 'BBQ pulled pork, kebabs, ribs, chicken skewers',
+      iconUrl: '../../../assets/icons/barbecue-icon.png',
+    },
+    {
+      id: 10,
+      name: 'Chinese',
+      description: 'kung pao chicken, mapo tofu, spring rolls, chow mein',
+      iconUrl: '../../../assets/icons/chineese-icon.png',
+    },
+  ],
+  Diets: [
+    {
+      id: 1,
+      name: 'Vegan',
+      description: '',
+      iconUrl: '../../../assets/icons/vegan-icon.png',
+    },
+  
+    {
+      id: 2,
+      name: 'Vegetarian',
+      description: '',
+      iconUrl: '../../../assets/icons/broccoli-icon.png',
+    },
+    {
+      id: 3,
+      name: 'Low fodmap',
+      description: '',
+      iconUrl: '../../../assets/icons/banana-icon.png',
+    },
+    
+    {
+      id: 4,
+      name: 'Paleu',
+      description: '',
+      iconUrl: '../../../assets/icons/cashew-icon.png',
+    },
+    {
+      id: 5,
+      name: 'Pescetarian',
+      description: '',
+      iconUrl: '../../../assets/icons/fish-icon.png',
+    },
+    {
+      id: 6,
+      name: 'Ketogenic',
+      description: '',
+      iconUrl: '../../../assets/icons/steak-icon.png',
+    },
   ],
 };
