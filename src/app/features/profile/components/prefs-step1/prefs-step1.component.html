@@ -1,26 +1,20 @@
-
 <div class="main-container">
-    <div class="overflow-auto">
-      <!-- <div class="progress">
-        <div 
-          class="progress-bar progress-bar-striped bg-warning"
-          role="progressbar"
-          style="width: 0%"
-          aria-valuenow="0"
-          aria-valuemin="0"
-          aria-valuemax="100"
-        ></div>
-      </div> -->
-      <div class="container col px-4 pt-4">
-        <p class="fs-5">
-          Let's fill in some data about you to be able to create your nutritional
-          profile
-        </p>
-        <form class="row g-3 needs-validation pt-4" novalidate>
-          <div class="row mb-4">
+  <div class="overflow-auto">
+    <div class="container col px-4 pt-4">
+      <div class="card mb-4 p-2 shadow">
+        <div class="d-flex border-b-2 items-baseline">
+          <span class="flex w-3 h-3 me-3 bg-yellow-300 rounded-full"></span>
+          <p class="text-lg">Personal information</p>
+        </div>
+  
+        <form
+          class="row g-3 needs-validation pt-4"
+          novalidate
+          [formGroup]="formGroup"
+        >
+          <div class="row">
             <div class="col">
-              
-              <label for="validationCustom01 fw-bold" class="form-label fw-bold"
+              <label for="validationCustom01" class="form-label text-secondary"
                 >First name</label
               >
               <input
@@ -28,12 +22,15 @@
                 class="form-control"
                 id="validationCustom01"
                 placeholder="First name"
+                formControlName="firstName"
                 required
               />
               <div class="valid-feedback">Looks good!</div>
             </div>
             <div class="col">
-              <label for="validationCustom02 fw-bold" class="form-label fw-bold"
+              <label
+                for="validationCustom02 fw-bold"
+                class="form-label text-secondary"
                 >Last name</label
               >
               <input
@@ -41,131 +38,149 @@
                 class="form-control"
                 id="validationCustom02"
                 placeholder="Last name"
+                formControlName="lastName"
                 required
               />
               <div class="valid-feedback">Looks good!</div>
             </div>
           </div>
   
-          <!-- Email input -->
-          <div class="form-outline mb-4">
-            <label for="validationCustomUsername fw-bold" class="form-label fw-bold">Email address</label>
+          <div class="form-outline">
+            <label
+              for="validationCustomUsername fw-bold"
+              class="form-label text-secondary"
+              >Email address</label
+            >
             <div class="input-group has-validation">
               <span class="input-group-text px-2" id="inputGroupPrepend">@</span>
-              <input type="email" class="form-control" id="validationCustomUsername" aria-describedby="inputGroupPrepend" required>
-              <div class="invalid-feedback">
-                Please choose a username.
-              </div>
-            </div>
-          </div>
-          <p class="fs-6 fw-bold">Gender</p>
-          <div class="container">
-            <div class="row">
-              <div class="col col-gender">
-                <label for="radio-card-1" class="radio-card">
-                  <input type="radio" name="radio-card" id="radio-card-1" />
-                  <div class="card-content-wrapper">
-                    <span class="check-icon"></span>
-                    <div class="card-content-custom card-content">
-                      <img src="../../../assets/icons/female-icon.png" />
-                      <p class="fs-6">
-                        Female
-                      </p>
-                    </div>
-                  </div>
-                </label>
-              </div>
-              <div class="col col-gender">
-                <label for="radio-card-2" class="radio-card">
-                  <input type="radio" name="radio-card" id="radio-card-2" />
-                  <div class="card-content-wrapper">
-                    <span class="check-icon"></span>
-                    <div class="card-content-custom card-content">
-                      <img src="../../../assets/icons/male-icon.png" />
-                      <p class="fs-6">
-                        Male
-                      </p>
-                    </div>
-                  </div>
-                </label>
-              </div>
-            </div>
-          </div>
-        </form>
-        <div class="row"></div>
-        <form>
-          <!-- 2 column grid layout with text inputs for the first and last names -->
-          <div class="row mb-4">
-            <div class="col">
-              <label class="form-label fw-bold" for="form3Example2"
-                  >Height (cm)</label
-                >
               <input
-                type="number"
+                type="email"
                 class="form-control"
-                id="validationCustom01"
-                placeholder="Height"
+                formControlName="emailAddress"
+                id="validationCustomUsername"
+                aria-describedby="inputGroupPrepend"
                 required
               />
-              <div class="valid-feedback">Looks good!</div>
-            </div>
-            <div class="col">
-              <div class="form-outline">
-                <label class="form-label fw-bold" for="form3Example2"
-                  >Weight (kg)</label
-                >
-                <input
-                type="number"
-                class="form-control"
-                id="validationCustom01"
-                placeholder="Weight"
-                required
-              />
-              <div class="valid-feedback">Looks good!</div>
-              </div>
+              <div class="invalid-feedback">Please choose a username.</div>
             </div>
           </div>
-  
-          <div class="row mb-4">
-            <div class="col">
-              <div class="form-outline">
-                <label class="form-label fw-bold" for="form3Example2"
-                  >Age</label
-                >
-                <input
-                type="number"
-                class="form-control"
-                id="validationCustom01"
-                placeholder="Age"
-                required
-              />
-              <div class="valid-feedback">Looks good!</div>
-              </div>
-            </div>
-            <div class="col">
-              <div class="form-outline">
-                <label class="form-label fw-bold" for="form3Example2"
-                >BMR</label
-              >
-              <input
-              type="number"
-              class="form-control"
-              id="validationCustom01"
-              placeholder="Basal Metabolic Rate"
-              disabled="true"
-              required
-            />
-            <div class="valid-feedback">Looks good!</div>
+          <div>
+            <p class="fs-6 text-secondary py-2">Gender</p>
+            <div class="container">
+              <div class="px-2 d-flex">
+                <div class="form-check col-6">
+                  <input
+                    class="form-check-input"
+                    type="radio"
+                    id="gridRadios1"
+                    value="F"
+                    formControlName="gender"
+                  />
+                  <label class="form-check-label" for="gridRadios1">
+                    Female
+                  </label>
+                </div>
+                <div class="form-check col-6">
+                  <input
+                    class="form-check-input"
+                    type="radio"
+                    id="gridRadios2"
+                    value="M"
+                    formControlName="gender"
+                  />
+                  <label class="form-check-label" for="gridRadios2"> Male </label>
+                </div>
               </div>
             </div>
           </div>
         </form>
       </div>
-    </div>
+      
+
+      <div class="card p-2 shadow mb-4">
+        <div class="d-flex border-b-2 mb-4 items-baseline">
+          <span class="flex w-3 h-3 me-3 bg-yellow-300 rounded-full"></span>
+          <p class="text-lg">Physical Details</p>
+        </div>
+        <form [formGroup]="formGroup">
+          <div class="row mb-4">
+            <div class="col">
+              <label class="form-label text-secondary" for="form3Example2"
+                >Height (cm)</label
+              >
+              <input
+                type="number"
+                class="form-control"
+                id="validationCustom01"
+                placeholder="Height"
+                formControlName="height"
+                required
+              />
+              <div class="valid-feedback">Looks good!</div>
+            </div>
+            <div class="col">
+              <div class="form-outline">
+                <label class="form-label text-secondary" for="form3Example2"
+                  >Weight (kg)</label
+                >
+                <input
+                  type="number"
+                  class="form-control"
+                  id="validationCustom01"
+                  placeholder="Weight"
+                  formControlName="weight"
+                  required
+                />
+                <div class="valid-feedback">Looks good!</div>
+              </div>
+            </div>
+          </div>
   
-    <div class="footer py-3">
-      <button class="btn btn-secondary" (click)="goHome()">Cancel</button>
-      <button class="btn btn-warning" (click)="goNext()">  Next <i class="fa-solid fa-arrow-right"></i></button>
+          <div class="row mb-4">
+            <div class="col">
+              <div class="form-outline">
+                <label class="form-label text-secondary" for="form3Example2"
+                  >Age</label
+                >
+                <input
+                  type="number"
+                  class="form-control"
+                  id="validationCustom01"
+                  formControlName="age"
+                  placeholder="Age"
+                  required
+                />
+                <div class="valid-feedback">Looks good!</div>
+              </div>
+            </div>
+            <div class="col">
+              <div class="form-outline">
+                <label class="form-label text-secondary" for="form3Example2"
+                  >BMR <span class="text-red-600">*</span></label
+                >
+                <input
+                  type="number"
+                  class="form-control"
+                  id="validationCustom01"
+                  placeholder="Basal Metabolic Rate"
+                  formControlName="bms"
+                  required
+                />
+                <div class="valid-feedback">Looks good!</div>
+              </div>
+            </div>
+          </div>
+        </form>
+      </div>
+     <div>
+      <span class="text-red-600">* </span>
+      <span class="text-sm">The Basal Metabolic Rate (BMR) Calculator estimates your basal metabolic rate—the amount of energy expended while at rest in a neutrally temperate environment, and in a post-absorptive state (meaning that the digestive system is inactive, which requires about 12 hours of fasting).</span>
+     </div>
     </div>
   </div>
-  
+
+  <div class="footer py-3">
+    <button class="btn btn-secondary" (click)="goHome()">Cancel</button>
+    <button class="btn btn-warning" (click)="updateUserProfile()">Save</button>
+  </div>
+</div>

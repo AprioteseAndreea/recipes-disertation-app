@@ -46,7 +46,7 @@
       </div>
     </div>
     <div *ngIf="recommendedRecipes.length > 0; else noRecipesBanner">
-      <div><p class="fs-5 fw-bold mb-3">{{ recipesLabel }}</p></div>
+      <div><p class="fs-5 fw-bold mb-3 mx-2">{{ recipesLabel }}</p></div>
       <div class="recipes-container scrolling-wrapper">
         <ng-container *ngFor="let recipe of recommendedRecipes">
           <a class="recipe-item" routerLink="/recipe/{{recipe.breakfastRecipe.id}}">

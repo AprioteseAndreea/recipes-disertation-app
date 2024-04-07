@@ -39,13 +39,7 @@
     >
       <div class="d-flex justify-content-between">
         <p class="medium fw-bold mb-2 px-2 py-2">Personal informations</p>
-        <button
-          type="button"
-          routerLink="/profile/preferences-step-1"
-          class="text-amber-700 font-medium rounded-lg text-sm p-2 text-center inline-flex items-center mr-2 dark:border-amber-500 dark:text-amber-500 dark:hover:text-white dark:focus:ring-amber-800 dark:hover:bg-amber-500"
-        >
-          <i class="fas fa-edit w-5 h-5 text-[#d1c4e9]"></i>
-        </button>
+        <a routerLink="/profile/preferences-step-1" class="no-underline hover:underline text-gray-400 text-sm fw-bold mb-2 px-2 py-2">Edit</a>
       </div>
 
       <div class="row align-items-start divide-x">
@@ -106,13 +100,7 @@
     >
       <div class="d-flex justify-content-between">
         <p class="medium fw-bold mb-2 px-2 py-2">Favourite cuisines</p>
-        <a
-          type="button"
-          routerLink="/profile/preferences-step-2"
-          class="text-amber-700 font-medium rounded-lg text-sm p-2 text-center inline-flex items-center mr-2 dark:border-amber-500 dark:text-amber-500 dark:hover:text-white dark:focus:ring-amber-800 dark:hover:bg-amber-500"
-        >
-          <i class="fas fa-edit w-5 h-5 text-[#d1c4e9]"></i>
-        </a>
+        <a routerLink="/profile/preferences-step-2" class="no-underline hover:underline text-gray-400 text-sm fw-bold mb-2 px-2 py-2">Edit</a>
       </div>
       <ng-container
         *ngFor="let cuisine of loggedUser.userCuisines; let i = index"
@@ -130,13 +118,7 @@
     >
       <div class="d-flex justify-content-between">
         <p class="medium fw-bold mb-2 px-2 py-2">Followed diets</p>
-        <button
-          type="button"
-          routerLink="/profile/preferences-step-3"
-          class="text-amber-700 font-medium rounded-lg text-sm p-2 text-center inline-flex items-center mr-2 dark:border-amber-500 dark:text-amber-500 dark:hover:text-white dark:focus:ring-amber-800 dark:hover:bg-amber-500"
-        >
-          <i class="fas fa-edit w-5 h-5 text-[#d1c4e9]"></i>
-        </button>
+        <a routerLink="/profile/preferences-step-3" class="no-underline hover:underline text-gray-400 text-sm fw-bold mb-2 px-2 py-2">Edit</a>
       </div>
       <ng-container
         *ngFor="let cuisine of loggedUser.userDiets; let i = index"
@@ -154,13 +136,7 @@
     >
       <div class="d-flex justify-content-between">
         <p class="medium fw-bold mb-2 px-2 py-2">Avoided ingredients</p>
-        <button
-          type="button"
-          routerLink="/profile/preferences-step-4"
-          class="text-amber-700 font-medium rounded-lg text-sm p-2 text-center inline-flex items-center mr-2 dark:border-amber-500 dark:text-amber-500 dark:hover:text-white dark:focus:ring-amber-800 dark:hover:bg-amber-500"
-        >
-          <i class="fas fa-edit w-5 h-5 text-[#d1c4e9]"></i>
-        </button>
+        <a routerLink="/profile/preferences-step-4" class="no-underline hover:underline text-gray-400 text-sm fw-bold mb-2 px-2 py-2">Edit</a>
       </div>
       <ng-container
         *ngFor="
@@ -181,13 +157,7 @@
     >
       <div class="d-flex justify-content-between">
         <p class="medium fw-bold mb-2 px-2 py-2">Goals</p>
-        <button
-          type="button"
-          routerLink="/profile/preferences-step-6"
-          class="text-amber-700 font-medium rounded-lg text-sm p-2 text-center inline-flex items-center mr-2 dark:border-amber-500 dark:text-amber-500 dark:hover:text-white dark:focus:ring-amber-800 dark:hover:bg-amber-500"
-        >
-          <i class="fas fa-edit w-5 h-5 text-[#d1c4e9]"></i>
-        </button>
+        <a routerLink="/profile/preferences-step-6" class="no-underline hover:underline text-gray-400 text-sm fw-bold mb-2 px-2 py-2">Edit</a>
       </div>
       <ng-container *ngIf="loggedUser.wantToLearnNewSkills">
         <app-badge
