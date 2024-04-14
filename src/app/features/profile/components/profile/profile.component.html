@@ -39,7 +39,11 @@
     >
       <div class="d-flex justify-content-between">
         <p class="medium fw-bold mb-2 px-2 py-2">Personal informations</p>
-        <a routerLink="/profile/preferences-step-1" class="no-underline hover:underline text-gray-400 text-sm fw-bold mb-2 px-2 py-2">Edit</a>
+        <a
+          routerLink="/profile/preferences-step-1"
+          class="no-underline hover:underline text-gray-400 text-sm mb-2 px-2 py-2"
+          >Edit</a
+        >
       </div>
 
       <div class="row align-items-start divide-x">
@@ -76,23 +80,33 @@
     <div
       class="mx-2 mb-3 p-2 bg-white border border-gray-200 rounded-lg shadow sm:p-6 dark:bg-gray-800 dark:border-gray-700"
     >
-      <div class="col text-center">
-        <p class="text-muted small">Cooking level</p>
-        <p class="fw-bold small" *ngIf="loggedUser.cookingLevel; else noData">
-          {{ loggedUser.cookingLevel | titlecase }}
-        </p>
+      <div class="d-flex justify-content-between">
+        <p class="medium fw-bold mb-2 px-2 py-2">Cooking level</p>
+        <a
+          routerLink="/profile/preferences-step-7"
+          class="no-underline hover:underline text-gray-400 text-sm px-2 py-2"
+          >Edit</a
+        >
       </div>
+      <p class="small px-2 py-2 shadow card w-max bg-gray-200 mx-2" *ngIf="loggedUser.cookingLevel; else noData">
+        {{ loggedUser.cookingLevel | titlecase }}
+      </p>
     </div>
 
     <div
       class="mx-2 mb-3 p-2 bg-white border border-gray-200 rounded-lg shadow sm:p-6 dark:bg-gray-800 dark:border-gray-700"
     >
-      <div class="col text-center">
-        <p class="text-muted small">Physical effort</p>
-        <p class="fw-bold small" *ngIf="loggedUser.physicalEffort; else noData">
-          {{ loggedUser.physicalEffort | physicalEffort | titlecase }}
-        </p>
+      <div class="d-flex justify-content-between">
+        <p class="medium fw-bold mb-2 px-2 py-2">Physical effort</p>
+        <a
+          routerLink="/profile/preferences-step-5"
+          class="no-underline hover:underline text-gray-400 text-sm px-2 py-2"
+          >Edit</a
+        >
       </div>
+      <p class="small px-2 py-2 shadow card w-max bg-gray-200 mx-2" *ngIf="loggedUser.physicalEffort; else noData">
+        {{ loggedUser.physicalEffort | physicalEffort | titlecase }}
+      </p>
     </div>
 
     <div
@@ -100,7 +114,11 @@
     >
       <div class="d-flex justify-content-between">
         <p class="medium fw-bold mb-2 px-2 py-2">Favourite cuisines</p>
-        <a routerLink="/profile/preferences-step-2" class="no-underline hover:underline text-gray-400 text-sm fw-bold mb-2 px-2 py-2">Edit</a>
+        <a
+          routerLink="/profile/preferences-step-2"
+          class="no-underline hover:underline text-gray-400 text-sm mb-2 px-2 py-2"
+          >Edit</a
+        >
       </div>
       <ng-container
         *ngFor="let cuisine of loggedUser.userCuisines; let i = index"
@@ -118,7 +136,11 @@
     >
       <div class="d-flex justify-content-between">
         <p class="medium fw-bold mb-2 px-2 py-2">Followed diets</p>
-        <a routerLink="/profile/preferences-step-3" class="no-underline hover:underline text-gray-400 text-sm fw-bold mb-2 px-2 py-2">Edit</a>
+        <a
+          routerLink="/profile/preferences-step-3"
+          class="no-underline hover:underline text-gray-400 text-sm mb-2 px-2 py-2"
+          >Edit</a
+        >
       </div>
       <ng-container
         *ngFor="let cuisine of loggedUser.userDiets; let i = index"
@@ -136,7 +158,11 @@
     >
       <div class="d-flex justify-content-between">
         <p class="medium fw-bold mb-2 px-2 py-2">Avoided ingredients</p>
-        <a routerLink="/profile/preferences-step-4" class="no-underline hover:underline text-gray-400 text-sm fw-bold mb-2 px-2 py-2">Edit</a>
+        <a
+          routerLink="/profile/preferences-step-4"
+          class="no-underline hover:underline text-gray-400 text-sm mb-2 px-2 py-2"
+          >Edit</a
+        >
       </div>
       <ng-container
         *ngFor="
@@ -157,7 +183,11 @@
     >
       <div class="d-flex justify-content-between">
         <p class="medium fw-bold mb-2 px-2 py-2">Goals</p>
-        <a routerLink="/profile/preferences-step-6" class="no-underline hover:underline text-gray-400 text-sm fw-bold mb-2 px-2 py-2">Edit</a>
+        <a
+          routerLink="/profile/preferences-step-6"
+          class="no-underline hover:underline text-gray-400 text-sm mb-2 px-2 py-2"
+          >Edit</a
+        >
       </div>
       <ng-container *ngIf="loggedUser.wantToLearnNewSkills">
         <app-badge

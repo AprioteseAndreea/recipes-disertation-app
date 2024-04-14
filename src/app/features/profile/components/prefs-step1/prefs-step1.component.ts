@@ -15,25 +15,38 @@ import { AccountService } from 'src/app/features/auth/services/account.service';
 })
 export class PrefsStep1Component implements OnInit {
   formGroup: FormGroup;
-  
+
   constructor(
     private router: Router,
     private notificationService: NotificationService,
     public accountService: AccountService,
     private formBuilder: FormBuilder
   ) {}
+  
   ngOnInit(): void {
     this.formGroup = this.formBuilder.group({
-      firstName: [this.accountService.loggedUserValue.firstName, Validators.required],
-      lastName: [this.accountService.loggedUserValue.lastName, Validators.required],
-      emailAddress: [{ value: this.accountService.loggedUserValue.email, disabled: true }, [Validators.required, Validators.email]],
+      firstName: [
+        this.accountService.loggedUserValue.firstName,
+        Validators.required,
+      ],
+      lastName: [
+        this.accountService.loggedUserValue.lastName,
+        Validators.required,
+      ],
+      emailAddress: [
+        { value: this.accountService.loggedUserValue.email, disabled: true },
+        [Validators.required, Validators.email],
+      ],
       gender: [this.accountService.loggedUserValue.gender, Validators.required],
       age: [this.accountService.loggedUserValue.age, Validators.required],
       height: [this.accountService.loggedUserValue.height, Validators.required],
       weight: [this.accountService.loggedUserValue.weight, Validators.required],
-      bms: [{ value: this.accountService.loggedUserValue.bms, disabled: true }, Validators.required]
+      bms: [
+        { value: this.accountService.loggedUserValue.bms, disabled: true },
+        Validators.required,
+      ],
     });
-    }
+  }
 
   goHome() {
     this.router.navigate(['/profile']);
@@ -43,5 +56,95 @@ export class PrefsStep1Component implements OnInit {
     this.router.navigate(['/profile/preferences-step-7']);
   }
 
-  updateUserProfile() {}
+  calculatePhysicalEffortFactor(): number {
+    const physicalEffort = this.accountService.loggedUserValue.physicalEffort;
+    let physicalEffortFactor: number;
+
+    switch (physicalEffort) {
+      case 'SEDENTARY':
+        physicalEffortFactor = 1.2;
+        break;
+      case 'SLIGHTLY_ACTIVE':
+        physicalEffortFactor = 1.375;
+        break;
+      case 'MODERATELY_ACTIVE':
+        physicalEffortFactor = 1.55;
+        break;
+      case 'VERY_ACTIVE':
+        physicalEffortFactor = 1.725;
+        break;
+      case 'SUPER_ACTIVE':
+        physicalEffortFactor = 1.9;
+        break;
+      default:
+        physicalEffortFactor = 1.0;
+        break;
+    }
+
+    return physicalEffortFactor;
+  }
+
+  onFocusOut(event: any) {
+    this.formGroup.get('bms').setValue(this.calculateBms());
+  }
+
+  onRadioChange(event: any) {
+    this.formGroup.get('bms').setValue(this.calculateBms());
+  }
+
+  calculateBms(){
+    var bms;
+
+    const weight = this.formGroup.get('height').value;
+    const height = this.formGroup.get('height').value;
+    const age = this.formGroup.get('age').value;
+    const physicalEffortFactor = this.calculatePhysicalEffortFactor();
+
+    if (this.formGroup.get('gender').value == 'F') {
+      bms = 10 * weight + 6.25 * height - 5 * age + 5;
+      bms *= physicalEffortFactor;
+    } else {
+      bms = 10 * weight + 6.25 * height - 5 * age - 161;
+      bms *= physicalEffortFactor;
+    }
+
+    bms = Math.floor(bms);
+
+    return bms;
+  }
+
+  updateUserProfile() {
+    const bms = this.calculateBms();
+
+    const updatedUserObj: UserDto = {
+      firstName: this.formGroup.get('firstName').value,
+      lastName: this.formGroup.get('lastName').value,
+      age: this.formGroup.get('age').value,
+      height: this.formGroup.get('height').value,
+      weight: this.formGroup.get('weight').value,
+      bms: bms,
+      gender: this.formGroup.get('gender').value,
+    };
+
+    this.accountService
+    .updateUser(updatedUserObj)
+    .subscribe({
+      next: () => {
+        this.accountService.updateUser(updatedUserObj);
+
+        this.notificationService.showSuccess(
+          'Success!',
+          'Your informations was saved!'
+        );
+        this.goHome();
+      },
+      error: (e) => {
+        console.log(e);
+        this.notificationService.showError(
+          'Error!',
+          'The item cannot be updated!'
+        );
+      },
+    });
+  }
 }

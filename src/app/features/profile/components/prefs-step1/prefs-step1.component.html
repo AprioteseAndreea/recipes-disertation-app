@@ -75,6 +75,7 @@
                     id="gridRadios1"
                     value="F"
                     formControlName="gender"
+                    (change)="onRadioChange($event)"
                   />
                   <label class="form-check-label" for="gridRadios1">
                     Female
@@ -87,6 +88,7 @@
                     id="gridRadios2"
                     value="M"
                     formControlName="gender"
+                    (change)="onRadioChange($event)"
                   />
                   <label class="form-check-label" for="gridRadios2"> Male </label>
                 </div>
@@ -115,6 +117,7 @@
                 placeholder="Height"
                 formControlName="height"
                 required
+                (focusout)="onFocusOut($event)"
               />
               <div class="valid-feedback">Looks good!</div>
             </div>
@@ -130,6 +133,7 @@
                   placeholder="Weight"
                   formControlName="weight"
                   required
+                  (focusout)="onFocusOut($event)"
                 />
                 <div class="valid-feedback">Looks good!</div>
               </div>
@@ -149,6 +153,7 @@
                   formControlName="age"
                   placeholder="Age"
                   required
+                  (focusout)="onFocusOut($event)"
                 />
                 <div class="valid-feedback">Looks good!</div>
               </div>

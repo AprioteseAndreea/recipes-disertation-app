@@ -63,8 +63,6 @@ export class AccountService {
     return this.fridgeService.getAllIngredientsByUserId(
       this.loggedUserValue.id
     );
-    //apeleza endpointul din fridgeService de a lua ingredientele by Userid
-    // si asigneaza-le aici: this.accountService.loggedUserValue.userIngredients
   }
 
   updateLoggedUser(updatedUser: UserDto): void {
@@ -101,9 +99,23 @@ export class AccountService {
   ): Observable<any> {
     console.log(userDislikedIngredients);
     const updatedUser = { ...this.loggedUser.value, userDislikedIngredients };
+
+    console.log(this.loggedUser.value);
+
     return this.http.patch(
       `${environment.apiUrl}/users/${this.loggedUserValue.id}`,
       JSON.stringify(updatedUser),
+      this.getHttpHeader()
+    );
+  }
+
+  updateUser(updatedUser: UserDto){
+    Object.assign(this.loggedUser.value, updatedUser);
+
+    console.log(this.loggedUser.value);
+    return this.http.patch(
+      `${environment.apiUrl}/users/${this.loggedUserValue.id}`,
+      JSON.stringify(this.loggedUser.value),
       this.getHttpHeader()
     );
   }

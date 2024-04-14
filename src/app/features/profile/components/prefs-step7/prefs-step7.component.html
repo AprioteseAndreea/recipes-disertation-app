@@ -1,22 +1,17 @@
 <div class="main-container">
-  <!-- <div class="progress">
-      <div
-        class="progress-bar progress-bar-striped bg-warning"
-        role="progressbar"
-        style="width: 100%"
-        aria-valuenow="100"
-        aria-valuemin="0"
-        aria-valuemax="100"
-      ></div>
-    </div> -->
   <div class="container col px-4 pt-4">
     <p class="text-lg fw-bold">What is your cooking level?</p>
     <p class="text-base text-muted">
       Please select your cooking level for a better recommendations.
     </p>
-    <div class="col align-content-center">
+    <form class="col align-content-center" [formGroup]="formGroup">
       <label for="radio-card-1" class="radio-card">
-        <input type="radio" name="radio-card" id="radio-card-1" checked />
+        <input
+          type="radio"
+          id="radio-card-1"
+          value="BEGINNER"
+          formControlName="coockingLevel"
+        />
         <div class="card-content-wrapper">
           <span class="check-icon"></span>
           <div class="card-content">
@@ -29,7 +24,12 @@
         </div>
       </label>
       <label for="radio-card-2" class="radio-card">
-        <input type="radio" name="radio-card" id="radio-card-2" />
+        <input
+          type="radio"
+          id="radio-card-2"
+          value="INTERMEDIATE"
+          formControlName="coockingLevel"
+        />
         <div class="card-content-wrapper">
           <span class="check-icon"></span>
           <div class="card-content">
@@ -42,7 +42,12 @@
         </div>
       </label>
       <label for="radio-card-3" class="radio-card">
-        <input type="radio" name="radio-card" id="radio-card-3" />
+        <input
+          type="radio"
+          id="radio-card-3"
+          value="ADVANCED"
+          formControlName="coockingLevel"
+        />
         <div class="card-content-wrapper">
           <span class="check-icon"></span>
           <div class="card-content">
@@ -54,14 +59,10 @@
           </div>
         </div>
       </label>
-    </div>
+    </form>
   </div>
   <div class="footer py-3">
-    <button class="btn btn-outline-secondary" (click)="goBack()">
-      <i class="fa-solid fa-arrow-left"></i> Back
-    </button>
-    <button class="btn btn-warning" (click)="goNext()">
-      Next <i class="fa-solid fa-arrow-right"></i>
-    </button>
+    <button class="btn btn-secondary" (click)="goHome()">Cancel</button>
+    <button class="btn btn-warning" (click)="updateCookingLevel()">Save</button>
   </div>
 </div>

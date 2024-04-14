@@ -1,15 +1,5 @@
 <div class="main-container">
   <div style="overflow: auto">
-    <!-- <div class="progress">
-      <div
-        class="progress-bar progress-bar-striped bg-warning"
-        role="progressbar"
-        style="width: 66.66%"
-        aria-valuenow="66.66"
-        aria-valuemin="0"
-        aria-valuemax="100"
-      ></div>
-    </div> -->
     <div class="container col px-4 pt-4">
       <p class="text-lg fw-bold">
         How would you rate your level of physical effort?
@@ -18,9 +8,14 @@
         Please select your level of physical exertion for a more accurate
         recommendation.
       </p>
-      <div class="col align-content-center">
+      <form class="col align-content-center" [formGroup]="formGroup">
         <label for="radio-card-1" class="radio-card">
-          <input type="radio" name="radio-card" id="radio-card-1" />
+          <input
+            type="radio"
+            id="radio-card-1"
+            value="SEDENTARY"
+            formControlName="physicalEffort"
+          />
           <div class="card-content-wrapper">
             <div class="check-container"><span class="check-icon"></span></div>
             <div class="card-content" style="display: flex">
@@ -36,7 +31,12 @@
           </div>
         </label>
         <label for="radio-card-2" class="radio-card">
-          <input type="radio" name="radio-card" id="radio-card-2" />
+          <input
+            type="radio"
+            value="SLIGHTLY_ACTIVE"
+            id="radio-card-2"
+            formControlName="physicalEffort"
+          />
           <div class="card-content-wrapper">
             <div class="check-container"><span class="check-icon"></span></div>
             <div class="card-content">
@@ -53,7 +53,12 @@
           </div>
         </label>
         <label for="radio-card-3" class="radio-card">
-          <input type="radio" name="radio-card" id="radio-card-3" />
+          <input
+            type="radio"
+            value="MODERATELY_ACTIVE"
+            id="radio-card-3"
+            formControlName="physicalEffort"
+          />
           <div class="card-content-wrapper">
             <div class="check-container"><span class="check-icon"></span></div>
             <div class="card-content">
@@ -70,7 +75,12 @@
           </div>
         </label>
         <label for="radio-card-4" class="radio-card">
-          <input type="radio" name="radio-card" id="radio-card-4" />
+          <input
+            type="radio"
+            value="VERY_ACTIVE"
+            id="radio-card-4"
+            formControlName="physicalEffort"
+          />
           <div class="card-content-wrapper">
             <div class="check-container"><span class="check-icon"></span></div>
             <div class="card-content">
@@ -87,7 +97,12 @@
           </div>
         </label>
         <label for="radio-card-5" class="radio-card">
-          <input type="radio" name="radio-card" id="radio-card-5" />
+          <input
+            type="radio"
+            value="SUPER_ACTIVE"
+            id="radio-card-5"
+            formControlName="physicalEffort"
+          />
           <div class="card-content-wrapper">
             <div class="check-container"><span class="check-icon"></span></div>
             <div class="card-content">
@@ -101,14 +116,14 @@
             </div>
           </div>
         </label>
-      </div>
+      </form>
     </div>
   </div>
 
   <div class="footer py-3">
-    <button class="btn btn-outline-secondary" (click)="goBack()">
-      <i class="fa-solid fa-arrow-left"></i> Back
+    <button class="btn btn-secondary" (click)="goHome()">Cancel</button>
+    <button class="btn btn-warning" (click)="updatePhysicalEffort()">
+      Save
     </button>
-    <button class="btn btn-warning" (click)="save()">Save</button>
   </div>
 </div>
