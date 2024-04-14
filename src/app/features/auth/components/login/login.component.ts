@@ -30,7 +30,6 @@ export class LoginComponent implements OnInit {
   }
 
   onSubmit() {
-    const val = this.form.value;
     if (this.form.invalid) {
       return;
     } else {
