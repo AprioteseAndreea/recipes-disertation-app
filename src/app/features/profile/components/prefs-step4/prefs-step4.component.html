@@ -1,6 +1,6 @@
 <div class="main-container">
   <div style="overflow: auto">
-    <div class="container col px-4 pt-4">
+    <div class="container col px-4 pt-4 mb-2">
       <p class="text-lg fw-bold">
         Any ingredients you don't want to see in your recommended recipes?
       </p>
@@ -23,8 +23,8 @@
                   <span class="check-icon"></span>
                 </div>
                 <div class="card-content-custom card-content">
-                  <img class="ingredient-image" [src]="getIngredientUrl(ingr.pictureUrl)" />
-                  <p class="text-base fw-bold">{{ingr.name}}</p>
+                  <img class="ingredient-image" [src]="getIngredientUrl(ingr.pictureUrl)" title="{{ingr.id}}"/>
+                  <p class="text-sm fw-bold text-center">{{ingr.name}}</p>
                 </div>
               </div>
             </label>

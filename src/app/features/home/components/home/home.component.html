@@ -3,28 +3,29 @@
     <div class="heading">
       <div class="d-flex justify-content-between mx-2">
         <div>
-          <p class="fs-4 fw-bold mb-0">Hi, {{user.firstName}} ! 👋</p>
+          <p class="fs-4 fw-bold mb-0">Hi, {{ user.firstName }} ! 👋</p>
           <p class="fs-6 fw-light">Let's see what I've got for you today!</p>
         </div>
         <button
-        (click)="logOut()"
-        class="btn position-relative rounded-circle position-relative my-3"
-     
-      >
-        <i class="fas fa-sign-out" style="color: white"></i>
-      </button>
+          (click)="logOut()"
+          class="btn position-relative rounded-circle position-relative my-3"
+        >
+          <i class="fas fa-sign-out" style="color: white"></i>
+        </button>
       </div>
-      <div class="bg-[#d1c4e9] px-2 py-2 mx-2 border border-gray-200 rounded-lg row mb-2 text-black-700">
+      <div
+        class="bg-[#fff3cd] px-2 py-2 mx-2 border border-gray-200 rounded-lg row mb-2 text-black-700"
+      >
         <div class="col-3 d-flex flex-column justify-content-center">
-          <img src="../../../assets/icons/icons8-grocery-100.png" />
+          <img src="../../../assets/icons/taco-icon.png" />
         </div>
         <div class="col-9 my-auto">
           <div>
-            <p class="fw-normal text-start small">
-              Check your shopping cart to see what you need for this week.
-            </p>
+            <p class="fw-normal text-start small">A new week already start?</p>
             <div class="text-start">
-              <a class="fw-bold cart-link" routerLink="/cart">See cart</a>
+              <a class="fw-bold cart-link text-sm" (click)="generateNewMenu()"
+                >Generate menu for this week</a
+              >
             </div>
           </div>
         </div>
@@ -37,7 +38,11 @@
         <p class="small justify-content-center d-flex">
           {{ date | date : "EEE" }}
         </p>
-        <div class="card py-2 px-2 shadow" (click)="getRecommendationByDay(date)" [class.selected-day]="selectedDay === date">
+        <div
+          class="card py-2 px-2 shadow"
+          (click)="getRecommendationByDay(date)"
+          [class.selected-day]="selectedDay === date"
+        >
           <p class="justify-content-center d-flex fw-bold small">
             {{ date | date : "d" }}
           </p>
@@ -46,17 +51,34 @@
       </div>
     </div>
     <div *ngIf="recommendedRecipes.length > 0; else noRecipesBanner">
-      <div><p class="fs-5 fw-bold mb-3 mx-2">{{ recipesLabel }}</p></div>
+      <div>
+        <p class="fs-5 fw-bold mb-3 mx-2">{{ recipesLabel }}</p>
+      </div>
       <div class="recipes-container scrolling-wrapper">
         <ng-container *ngFor="let recipe of recommendedRecipes">
-          <a class="recipe-item" routerLink="/recipe/{{recipe.breakfastRecipe.id}}">
-            <div class="card recipe-card mb-3 w-full bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
+          <a
+            class="recipe-item"
+            routerLink="/recipe/{{ recipe.breakfastRecipe.id }}"
+          >
+            <div
+              class="card recipe-card mb-3 w-full bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700"
+            >
               <div class="image-container">
-                <app-badge [color]="'lime'" [text]="'Breakfast'" [showXButton]="false" class="mx-1 my-1 position-absolute" style="z-index: 1000;"></app-badge>
+                <app-badge
+                  [color]="'lime'"
+                  [text]="'Breakfast'"
+                  [showXButton]="false"
+                  class="mx-1 my-1 position-absolute"
+                  style="z-index: 1000"
+                ></app-badge>
                 <!-- <span class="badge bg-warning text-dark mx-1 my-1"
                   >Breakfast</span
                 > -->
-                <img [src]="getImageUrl(recipe.breakfastRecipe.pictureUrl)" onError="this.src='../../../assets/no-content/no-image.png'" class="rounded-lg" />
+                <img
+                  [src]="getImageUrl(recipe.breakfastRecipe.pictureUrl)"
+                  onError="this.src='../../../assets/no-content/no-image.png'"
+                  class="rounded-lg"
+                />
                 <!-- <button
                   type="button"
                   class="favorite-button fav-button"
@@ -66,9 +88,11 @@
   
                 </button> -->
               </div>
-  
+
               <div class="title-container">
-                <p class="px-1 pt-2 fw-bold">{{ recipe.breakfastRecipe.name }}</p>
+                <p class="px-1 pt-2 fw-bold">
+                  {{ recipe.breakfastRecipe.name }}
+                </p>
               </div>
               <div class="detail-container row">
                 <div class="col">
@@ -90,14 +114,29 @@
               </div>
             </div>
           </a>
-          <a class="recipe-item" routerLink="/recipe/{{recipe.lunchRecipe.id}}">
-            <div class="card recipe-card mb-3 w-full bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
+          <a
+            class="recipe-item"
+            routerLink="/recipe/{{ recipe.lunchRecipe.id }}"
+          >
+            <div
+              class="card recipe-card mb-3 w-full bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700"
+            >
               <div class="image-container">
-                <app-badge [color]="'yellow'" [text]="'Lunch'" [showXButton]="false" class="position-absolute" style="z-index: 1000;"></app-badge>
+                <app-badge
+                  [color]="'yellow'"
+                  [text]="'Lunch'"
+                  [showXButton]="false"
+                  class="position-absolute"
+                  style="z-index: 1000"
+                ></app-badge>
                 <!-- <span class="badge bg-warning text-dark mx-1 my-1"
                   >Breakfast</span
                 > -->
-                <img [src]="getImageUrl(recipe.lunchRecipe.pictureUrl)" class="rounded-lg" onError="this.src='../../../assets/no-content/no-image.png'"/>
+                <img
+                  [src]="getImageUrl(recipe.lunchRecipe.pictureUrl)"
+                  class="rounded-lg"
+                  onError="this.src='../../../assets/no-content/no-image.png'"
+                />
                 <!-- <button
                   type="button"
                   class="favorite-button fav-button"
@@ -107,7 +146,7 @@
   
                 </button> -->
               </div>
-  
+
               <div class="title-container">
                 <p class="px-1 pt-2 fw-bold">{{ recipe.lunchRecipe.name }}</p>
               </div>
@@ -131,14 +170,29 @@
               </div>
             </div>
           </a>
-          <a class="recipe-item" routerLink="/recipe/{{recipe.dinnerRecipe.id}}">
-            <div class="card recipe-card mb-3 w-full bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
+          <a
+            class="recipe-item"
+            routerLink="/recipe/{{ recipe.dinnerRecipe.id }}"
+          >
+            <div
+              class="card recipe-card mb-3 w-full bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700"
+            >
               <div class="image-container">
-                <app-badge [color]="'orange'" [text]="'Dinner'" [showXButton]="false" class="position-absolute" style="z-index: 1000;"></app-badge>
+                <app-badge
+                  [color]="'orange'"
+                  [text]="'Dinner'"
+                  [showXButton]="false"
+                  class="position-absolute"
+                  style="z-index: 1000"
+                ></app-badge>
                 <!-- <span class="badge bg-warning text-dark mx-1 my-1"
                   >Breakfast</span
                 > -->
-                <img [src]="getImageUrl(recipe.dinnerRecipe.pictureUrl)" onError="this.src='../../../assets/no-content/no-image.png'" class="rounded-lg" />
+                <img
+                  [src]="getImageUrl(recipe.dinnerRecipe.pictureUrl)"
+                  onError="this.src='../../../assets/no-content/no-image.png'"
+                  class="rounded-lg"
+                />
                 <!-- <button
                   type="button"
                   class="favorite-button fav-button"
@@ -148,7 +202,7 @@
   
                 </button> -->
               </div>
-  
+
               <div class="title-container">
                 <p class="px-1 pt-2 fw-bold">{{ recipe.dinnerRecipe.name }}</p>
               </div>
@@ -177,24 +231,41 @@
     </div>
 
     <ng-template #noRecipesBanner>
-      <div class="alert alert-warning fade show px-2 mx-2 my-2" role="alert">
-        <strong>No recipes found!</strong> For this date we couldn't find any recipes.
-        
+      <div
+        class="bg-amber-100 border-t border-b border-amber-500 text-amber-700 px-4 py-3 mx-2"
+        role="alert"
+      >
+        <p class="font-bold">No recipes found!</p>
+        <p class="text-sm">For this date we couldn't find any recipes.</p>
+      </div>
+
+      <div
+        class="bg-blue-100 border-t border-b border-blue-500 text-blue-700 px-4 py-3 mx-2 my-2"
+        role="alert"
+      >
+        <p class="font-bold">Info about generation</p>
+        <p class="text-sm">
+          If you generate a new menu please refresh the page!
+        </p>
       </div>
     </ng-template>
-   
-    <div class="heading">
-      <div class="bg-[#fff3cd] px-2 py-2 mx-2 rounded-lg row mb-2 text-black-700 chatbot-banner">
+
+    <div class="heading" *ngIf="recommendedRecipes.length > 0">
+      <div
+        class="bg-[#fff3cd] px-2 py-2 mx-2 rounded-lg row mb-2 text-black-700 chatbot-banner"
+      >
         <div class="col-3 d-flex flex-column justify-content-center">
           <img src="../../../assets/icons/chatbot.png" />
         </div>
         <div class="col-9 my-auto">
           <div>
             <p class="fw-normal text-start small">
-              Don't like our recommendations? 
+              Don't like our recommendations?
             </p>
             <div class="text-start">
-              <a class="fw-bold cart-link" routerLink="/chatbot">Talk with our assistant</a>
+              <a class="fw-bold cart-link text-sm" routerLink="/chatbot"
+                >Talk with our assistant</a
+              >
             </div>
           </div>
         </div>

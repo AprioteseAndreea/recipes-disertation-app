@@ -86,6 +86,7 @@ export interface Recipe {
   cuisineName?: string;
   ingredientDtoList?: RecipeIngredient[];
   recipeDiets?: UserDiet[];
+  recipeInstructions?: RecipeInstruction[]
 }
 
 // Interface for the RecipeIngredient object
@@ -93,4 +94,9 @@ export interface RecipeIngredient {
   ingredient?: Ingredient;
   quantity?: number;
   unitOfMeasure?: string;
+}
+
+export interface RecipeInstruction {
+  details?: string;
+  step: number;
 }

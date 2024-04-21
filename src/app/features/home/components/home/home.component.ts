@@ -5,6 +5,7 @@ import { UserDto, UserRecommendation } from 'src/app/core/models/user.model';
 import { AccountService } from 'src/app/features/auth/services/account.service';
 import { AuthService } from 'src/app/features/auth/services/auth.service';
 import { UserService } from '../../services/user.service';
+import { NotificationService } from 'src/app/core/services/notification.service';
 
 declare function favoriteAnimation($event: any): void;
 
@@ -26,7 +27,8 @@ export class HomeComponent {
   constructor(
     private accountService: AccountService,
     public authService: AuthService,
-    public userService: UserService
+    public userService: UserService,
+    private notificationService: NotificationService,
   ) {
     this.user = this.accountService.loggedUserValue;
     this.weekDays = this.getNext7Days();
@@ -74,7 +76,7 @@ export class HomeComponent {
     if (currentDate.getDate() !== anotherDate.getDate()) {
       this.recipesLabel = anotherDate.toLocaleDateString('en-GB', {
         weekday: 'long',
-        day: 'numeric'
+        day: 'numeric',
       });
     } else {
       this.recipesLabel = 'Today meels';
@@ -85,7 +87,24 @@ export class HomeComponent {
         new Date(rec.dateTime).toLocaleDateString('en-GB') ===
         date.toLocaleDateString('en-GB')
     );
+  }
 
+  generateNewMenu() {
+    this.accountService.generateNewMenu().subscribe({
+      next: () => {
+        this.notificationService.showSuccess(
+          'Success!',
+          'Your menu was successfully generated!'
+        );
+      },
+      error: (e) => {
+        console.log(e);
+        this.notificationService.showError(
+          'Error!',
+          'Your menu wasn\'t successfully generated'
+        );
+      },
+    });
   }
 
   logOut() {

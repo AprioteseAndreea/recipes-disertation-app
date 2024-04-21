@@ -109,7 +109,7 @@ export class AccountService {
     );
   }
 
-  updateUser(updatedUser: UserDto){
+  updateUser(updatedUser: UserDto) {
     Object.assign(this.loggedUser.value, updatedUser);
 
     console.log(this.loggedUser.value);
@@ -192,5 +192,24 @@ export class AccountService {
         return x;
       })
     );
+  }
+
+  generateNewMenu() {
+    // Construiește data de astăzi și data peste o săptămână
+    const today = new Date();
+    const oneWeekFromNow = new Date();
+    oneWeekFromNow.setDate(today.getDate() + 7);
+
+    // Formatează datele în formatul dorit
+    const startDateTimeFormatted = today.toISOString().slice(0, 19); // Elimină Z-ul de la sfârșit
+    const endDateTimeFormatted = oneWeekFromNow.toISOString().slice(0, 19);
+
+    // Construiește URL-ul cu parametrii de query formatați
+    const url =
+      `${environment.apiUrl}/users/${this.loggedUserValue.id}/generate-recommendation` +
+      `?startDateTime=${startDateTimeFormatted}` +
+      `&endDateTime=${endDateTimeFormatted}`;
+
+    return this.http.post(url, this.getHttpHeader());
   }
 }

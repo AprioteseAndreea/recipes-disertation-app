@@ -32,11 +32,14 @@ export class AboutProductComponent implements OnInit {
   getProduct() {
     this.recipeService.getRecipeById(this.recipeID).subscribe((recipe) => {
       this.recipe = recipe;
+      if (
+        this.recipe.recipeInstructions &&
+        this.recipe.recipeInstructions.length > 0
+      ) {
+        this.recipe.recipeInstructions.sort((a, b) => a.step - b.step);
+      }
     });
-    // this.recipe = constants.Recipes.find(
-    //   (recipe) => recipe.RecipeID === this.recipeID
-    // );
-    // console.log(this.recipe);
+  
   }
 
   favoriteAnimation($event: any) {
