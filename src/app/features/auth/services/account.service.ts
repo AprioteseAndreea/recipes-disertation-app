@@ -195,14 +195,21 @@ export class AccountService {
   }
 
   generateNewMenu() {
-    // Construiește data de astăzi și data peste o săptămână
+    // Obțineți data de astăzi
     const today = new Date();
-    const oneWeekFromNow = new Date();
-    oneWeekFromNow.setDate(today.getDate() + 7);
+
+    // Determinați prima zi a săptămânii curente (Luni)
+    const firstDayOfWeek = new Date(today);
+    firstDayOfWeek.setDate(today.getDate() - today.getDay() + (today.getDay() === 0 ? -6 : 1));
+
+    // Determinați ultima zi a săptămânii curente (Duminica)
+    const lastDayOfWeek = new Date(firstDayOfWeek);
+    lastDayOfWeek.setDate(firstDayOfWeek.getDate() + 6);
+
 
     // Formatează datele în formatul dorit
-    const startDateTimeFormatted = today.toISOString().slice(0, 19); // Elimină Z-ul de la sfârșit
-    const endDateTimeFormatted = oneWeekFromNow.toISOString().slice(0, 19);
+    const startDateTimeFormatted = firstDayOfWeek.toISOString().slice(0, 19); // Eliminați "Z" de la sfârșit
+    const endDateTimeFormatted = lastDayOfWeek.toISOString().slice(0, 19);
 
     // Construiește URL-ul cu parametrii de query formatați
     const url =

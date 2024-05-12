@@ -5,6 +5,7 @@ import { LayoutComponent } from './core/components/layout/layout.component';
 import { LoginComponent } from './features/auth/components/login/login.component';
 import { AuthGuard } from './core/guards/auth.guard';
 import { ChatbotComponent } from './features/chatbot/chatbot.component';
+import { PageNotFoundComponent } from './core/components/page-not-found/page-not-found.component';
 
 const routes: Routes = [
   {
@@ -20,6 +21,11 @@ const routes: Routes = [
         path: 'chatbot',
         pathMatch: 'full',
         component: ChatbotComponent,
+      },
+      {
+        path: 'notfound',
+        pathMatch: 'full',
+        component: PageNotFoundComponent,
       },
     
       {
@@ -74,6 +80,7 @@ const routes: Routes = [
           import('../app/features/about-product/about-product.module').then(
             (m) => m.ProductModule
           ),
+          
         // canActivate: [AuthGuard, RoleGuard],
         // data: { feature: Features.Employees },
       },

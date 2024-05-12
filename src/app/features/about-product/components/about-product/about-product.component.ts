@@ -30,16 +30,24 @@ export class AboutProductComponent implements OnInit {
   }
 
   getProduct() {
-    this.recipeService.getRecipeById(this.recipeID).subscribe((recipe) => {
-      this.recipe = recipe;
-      if (
-        this.recipe.recipeInstructions &&
-        this.recipe.recipeInstructions.length > 0
-      ) {
-        this.recipe.recipeInstructions.sort((a, b) => a.step - b.step);
+    this.recipeService.getRecipeById(this.recipeID).subscribe(
+      (recipe) => {
+        this.recipe = recipe;
+        if (
+          this.recipe.recipeInstructions &&
+          this.recipe.recipeInstructions.length > 0
+        ) {
+          this.recipe.recipeInstructions.sort((a, b) => a.step - b.step);
+        }
+      },
+      (error) => {
+        if (error.status === 404) {
+          this.router.navigate(['/notfound']);
+        } else {
+          console.error('A apărut o eroare la obținerea retetei:', error);
+        }
       }
-    });
-  
+    );
   }
 
   favoriteAnimation($event: any) {

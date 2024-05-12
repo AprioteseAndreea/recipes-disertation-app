@@ -58,7 +58,7 @@
         <ng-container *ngFor="let recipe of recommendedRecipes">
           <a
             class="recipe-item"
-            routerLink="/recipe/{{ recipe.breakfastRecipe.id }}"
+            [routerLink]="['/recipe', recipe.breakfastRecipe.id]"
           >
             <div
               class="card recipe-card mb-3 w-full bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700"
@@ -116,7 +116,7 @@
           </a>
           <a
             class="recipe-item"
-            routerLink="/recipe/{{ recipe.lunchRecipe.id }}"
+            [routerLink]="['/recipe', recipe.lunchRecipe.id]"
           >
             <div
               class="card recipe-card mb-3 w-full bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700"
@@ -172,8 +172,7 @@
           </a>
           <a
             class="recipe-item"
-            routerLink="/recipe/{{ recipe.dinnerRecipe.id }}"
-          >
+            [routerLink]="['/recipe', recipe.dinnerRecipe.id]"          >
             <div
               class="card recipe-card mb-3 w-full bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700"
             >

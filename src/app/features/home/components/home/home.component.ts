@@ -30,6 +30,8 @@ export class HomeComponent {
     public userService: UserService,
     private notificationService: NotificationService,
   ) {
+    this.authService.fetchUserData(false);
+
     this.user = this.accountService.loggedUserValue;
     this.weekDays = this.getNext7Days();
 

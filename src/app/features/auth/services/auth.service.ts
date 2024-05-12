@@ -72,6 +72,7 @@ export class AuthService {
         this.notificationAlert.showError(error.message);
       });
   }
+
   // Sign up with email/password
   SignUp(email: string, password: string) {
     return this.afAuth

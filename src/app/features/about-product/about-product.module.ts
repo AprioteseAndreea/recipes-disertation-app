@@ -8,6 +8,11 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { AboutProductComponent } from './components/about-product/about-product.component';
 import { AboutRecipeRoutingModule } from './about-product-routing.module';
 import { LineBreakPipe } from './pipes/line-break.pipe';
+import { RouterModule, Routes } from '@angular/router';
+
+const routes: Routes = [
+  { path: ':id', component: AboutProductComponent }
+];
 
 @NgModule({
   declarations: [
@@ -15,6 +20,7 @@ import { LineBreakPipe } from './pipes/line-break.pipe';
   LineBreakPipe,
   ],
   imports: [
+    RouterModule.forChild(routes),
     CommonModule,
     AboutRecipeRoutingModule,
     SharedModule,
@@ -23,5 +29,6 @@ import { LineBreakPipe } from './pipes/line-break.pipe';
     ReactiveFormsModule,
     FontAwesomeModule
   ],
+  exports: [RouterModule]
 })
 export class ProductModule {}

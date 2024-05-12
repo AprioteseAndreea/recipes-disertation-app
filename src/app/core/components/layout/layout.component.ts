@@ -8,6 +8,7 @@ import { Router } from '@angular/router';
 })
 export class LayoutComponent {
   constructor(private router: Router) {
-    this.router.navigateByUrl('/recipe/1');
-  }
+    if (this.router.url === '/') {
+      this.router.navigateByUrl('/home');
+    }  }
 }
