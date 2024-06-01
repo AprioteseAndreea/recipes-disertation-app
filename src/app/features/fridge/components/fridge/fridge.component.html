@@ -28,12 +28,18 @@
         </button> -->
       </div>
     </div>
-    <div class="d-flex flex-row main-fridge-container rounded">
+    <div class="d-flex flex-row main-fridge-container rounded my-2" *ngFor="let category of groupedCartData | keyvalue" >
+      <span class="badge bg-light text-dark text-bold text-sm mx-2 my-2">
+        {{category.key | titlecase}}
+      </span>
+    
       <div
         class="d-flex flex-row justify-content-evenly rounded second-fridge-container"
       >
-        <ng-container *ngFor="let ingr of fridgeData; let i = index" >
-          <div class="position-relative ingredient-wrapper" (click)="modifyFridgeIngredient(i)">
+    
+       
+        <ng-container *ngFor="let ingr of category.value; let i = index" >
+          <div class="position-relative ingredient-wrapper" (click)="modifyFridgeIngredient(category.key, ingr.ingredient.id)">
             <span
               class="position-relative badge bg-info text-dark mx-1 my-1 position-absolute top-0 start-0"
               >{{ ingr.quantity }} {{ ingr.unitOfMeasure }}</span
@@ -48,6 +54,8 @@
             >
           </div>
         </ng-container>
+      
+       
       </div>
     </div>
   </div>

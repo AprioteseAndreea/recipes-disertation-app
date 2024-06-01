@@ -13,9 +13,14 @@
         </div>
       </div>
     </div>
-    <div
+    <div *ngFor="let category of groupedCartData | keyvalue">
+      <p class="py-2 text-gray-700 font-normal">
+        {{category.key | titlecase}}
+      </p> <hr>
+      
+      <div
       class="d-flex flex-column"
-      *ngFor="let ingredient of cartData; let i = index"
+      *ngFor="let ingredient of category.value; let i = index"
     >
       <ul class="mt-2 space-y-3">
         <li>
@@ -100,6 +105,8 @@
         </li>
       </ul>
     </div>
+    </div>
+   
   </div>
   <app-navbar></app-navbar>
 </div>

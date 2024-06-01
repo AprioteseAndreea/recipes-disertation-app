@@ -15,6 +15,7 @@ import { environment } from 'src/app/core/environments/environment';
 })
 export class FridgeComponent implements OnInit {
   ingredients = constants.Ingredients;
+  groupedCartData: Map<string, UserIngredient[]>;
 
   @ViewChild(ToastContainerDirective, { static: true })
   modalRef: MdbModalRef<AddItemComponentComponent> | null = null;
@@ -34,6 +35,17 @@ export class FridgeComponent implements OnInit {
       this.accountService.loggedUserValue.userIngredients.filter(
         (ingredient) => !ingredient.isCartIngredient
       );
+
+      this.groupedCartData = new Map<string, UserIngredient[]>();
+      this.fridgeData.forEach((ingredient) => {
+        const category = ingredient.ingredient.ingredientCategory;
+        if (!this.groupedCartData.has(category)) {
+          this.groupedCartData.set(category, []);
+        }
+        const ingredientsInCategory = this.groupedCartData.get(category)!;
+        ingredientsInCategory.push(ingredient);
+      });
+  
   }
   openDialog() {
     this.modalRef = this.modalService.open(AddItemComponentComponent, {
@@ -52,13 +64,14 @@ export class FridgeComponent implements OnInit {
     return `${environment.apiUrl}/images/${id}`;
   }
 
-  modifyFridgeIngredient(id: number) {
-    console.log(this.fridgeData[id]);
+  modifyFridgeIngredient(category: string, id: number) {
+    const ingredient = this.groupedCartData.get(category)?.find(ing => ing.ingredient.id === id);
+    
     this.modalRef = this.modalService.open(AddItemComponentComponent, {
       modalClass: 'modal-dialog-centered',
       data: {
         isAddModal: false,
-        selectedIngredient: this.fridgeData[id],
+        selectedIngredient: ingredient,
         modalTitle: 'Modify an ingredient from your fridge'
       },
     });

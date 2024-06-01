@@ -40,7 +40,6 @@ export class AddItemComponentComponent implements OnInit {
 
   ngOnInit(): void {
     this.fridgeService.getAllIngredients().subscribe((res) => {
-      console.log(res);
       this.ingredients = res;
     });
 

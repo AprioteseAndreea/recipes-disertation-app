@@ -53,6 +53,7 @@ export interface Ingredient {
   name?: string;
   pictureUrl?: string | null;
   expensiveIndex?: number;
+  ingredientCategory?: string;
 }
 
 // Interface for the UserDislikedIngredient object
