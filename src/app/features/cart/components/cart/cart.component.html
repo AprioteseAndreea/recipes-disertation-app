@@ -53,7 +53,7 @@
               <button
                 class="btn btn-link px-2"
                 *ngIf="ingredient.hasEditMode"
-                (click)="decrementQuantity(i)"
+                (click)="decrementQuantity(category.key, ingredient.ingredient.id)"
               >
                 <i class="fa-solid fa-minus text-gray-500"></i>
               </button>
@@ -73,7 +73,7 @@
               <button
                 class="btn btn-link px-2"
                 *ngIf="ingredient.hasEditMode"
-                (click)="incrementQuantity(i)"
+                (click)="incrementQuantity(category.key, ingredient.ingredient.id)"
               >
                 <i class="fa-solid fa-plus text-gray-500"></i>
               </button>
@@ -82,12 +82,12 @@
            
             class="d-flex column align-items-center justify-content-end w-1/4"
             >
-              <a class="trash-icon" (click)="deleteUserIngredient(i)"
+              <a class="trash-icon" (click)="deleteUserIngredient(category.key, ingredient.ingredient.id)"
                 ><i class="fas fa-trash-alt text-red-400"></i
               ></a>
               <a
                 class="trash-icon ps-3"
-                (click)="toggleEditMode(i)"
+                (click)="toggleEditMode(category.key, ingredient.ingredient.id)"
                 *ngIf="!ingredient.hasEditMode; else saveMode"
               >
                 <i class="fa-solid fa-pen-to-square text-[#ffa500]"> </i>
@@ -95,7 +95,7 @@
               <ng-template #saveMode>
                 <a
                   class="trash-icon ps-3"
-                  (click)="updateCartIngredient(i)"
+                  (click)="updateCartIngredient(category.key, ingredient.ingredient.id)"
                 >
                   <i class="fa-solid fa-circle-check text-[#65a30d]"> </i>
                 </a>

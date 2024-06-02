@@ -52,45 +52,74 @@ export class CartComponent implements OnInit {
     return `${environment.apiUrl}/images/${id}`;
   }
 
-  toggleEditMode(index: number) {
-    this.cartData[index].hasEditMode = !this.cartData[index].hasEditMode;
+  toggleEditMode(category: string, id: number) {
+    const ingredient = this.getIngredientByCategoryAndId(category, id);
+    ingredient.hasEditMode = !ingredient.hasEditMode;
   }
 
-  decrementQuantity(index: number) {
-    if (this.cartData[index].quantity > 0) {
-      this.cartData[index].quantity--;
+  decrementQuantity(category: string, index: number) {
+    const ingredient = this.getIngredientByCategoryAndId(category, index);
+
+    if (ingredient.quantity > 0) {
+      ingredient.quantity--;
     }
   }
 
-  incrementQuantity(index: number) {
-    this.cartData[index].quantity++;
+  incrementQuantity(category: string, index: number) {
+    const ingredient = this.getIngredientByCategoryAndId(category, index);
+
+    ingredient.quantity++;
   }
 
-  deleteUserIngredient(index: number) {
+  deleteUserIngredient(category: string, index: number) {
+    const ingredient = this.getIngredientByCategoryAndId(category, index);
+
     this.modalRef = this.modalService.open(ConfmodalComponent, {
       modalClass: 'modal-dialog-centered',
       data: {
-        modalBlock: this.cartData[index].ingredient.name,
-        ingredientId: this.cartData[index].id,
+        modalBlock: ingredient.ingredient.name,
+        ingredientId: ingredient.id,
       },
     });
 
     this.modalRef.onClose.subscribe((message: any) => {
       if (message) {
+
         this.cartData.splice(index, 1);
+        
+        const categoryData = this.groupedCartData.get(category);
+
+        if (categoryData) {
+          // Găsește indexul ingredientului după ID și șterge-l din lista de categorie
+          const ingredientIndex = categoryData.findIndex(ing => ing.ingredient.id === index);
+  
+          if (ingredientIndex !== -1) {
+            categoryData.splice(ingredientIndex, 1);
+  
+            // Dacă lista de ingrediente pentru categoria specificată este goală, șterge categoria din map
+            if (categoryData.length === 0) {
+              this.groupedCartData.delete(category);
+            } else {
+              // Altfel, actualizează lista de ingrediente pentru categoria respectivă în map
+              this.groupedCartData.set(category, categoryData);
+            }
+          }
+        }    
         this.authService.fetchUserData(false);
       }
     });
   }
 
-  updateCartIngredient(index: number) {
-    this.cartService.updateUserIngredient(this.cartData[index]).subscribe({
+  updateCartIngredient(category: string, index: number) {
+    const ingredient = this.getIngredientByCategoryAndId(category, index);
+
+    this.cartService.updateUserIngredient(ingredient).subscribe({
       next: () => {
         this.notificationService.showSuccess(
           'Success!',
           'The item was successfully updated!'
         );
-        this.toggleEditMode(index);
+        this.toggleEditMode(category, index);
       },
       error: (e) => {
         console.log(e);
@@ -100,5 +129,10 @@ export class CartComponent implements OnInit {
         );
       },
     });
+  }
+
+  getIngredientByCategoryAndId(category: string, id: number){
+    return this.groupedCartData.get(category)?.find(ing => ing.ingredient.id === id);
+
   }
 }

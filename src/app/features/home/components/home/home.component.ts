@@ -18,6 +18,7 @@ export class HomeComponent {
   user: UserDto | null;
   weekDays: Date[];
   selectedDay: Date;
+  dailyTotalCalories: number;
 
   recipesLabel: string;
   recommendedRecipes: UserRecommendation[];
@@ -43,6 +44,9 @@ export class HomeComponent {
         new Date(rec.dateTime).toLocaleDateString('en-GB') ===
         today.toLocaleDateString('en-GB')
     );
+    this.dailyTotalCalories = this.recommendedRecipes.reduce((sum, rec) => {
+      return sum + (rec.breakfastRecipe.kcals + rec.lunchRecipe.kcals + rec.dinnerRecipe.kcals);
+    }, 0);
   }
 
   getNext7Days(): Date[] {
@@ -89,6 +93,10 @@ export class HomeComponent {
         new Date(rec.dateTime).toLocaleDateString('en-GB') ===
         date.toLocaleDateString('en-GB')
     );
+
+    this.dailyTotalCalories = this.recommendedRecipes.reduce((sum, rec) => {
+      return sum + (rec.breakfastRecipe.kcals + rec.lunchRecipe.kcals + rec.dinnerRecipe.kcals); // Adaugă caloriile rețetei la suma totală
+    }, 0);
   }
 
   generateNewMenu() {

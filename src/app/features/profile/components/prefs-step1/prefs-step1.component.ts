@@ -95,13 +95,14 @@ export class PrefsStep1Component implements OnInit {
   calculateBms(){
     var bms;
 
-    const weight = this.formGroup.get('height').value;
+    const weight = this.formGroup.get('weight').value;
     const height = this.formGroup.get('height').value;
     const age = this.formGroup.get('age').value;
     const physicalEffortFactor = this.calculatePhysicalEffortFactor();
 
     if (this.formGroup.get('gender').value == 'F') {
-      bms = 10 * weight + 6.25 * height - 5 * age + 5;
+
+      bms = (10 * weight) + (6.25 * height) - (5 * age + 5);
       bms *= physicalEffortFactor;
     } else {
       bms = 10 * weight + 6.25 * height - 5 * age - 161;

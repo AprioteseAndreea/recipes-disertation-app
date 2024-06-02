@@ -17,7 +17,7 @@ import { CartService } from 'src/app/features/cart/services/cart.service';
 })
 export class AddItemComponentComponent implements OnInit {
   ingredients: Ingredient[];
-  units = ['g', 'kg', 'l', 'ml', 'piece'];
+  units = ['g', 'ml', 'piece'];
   isAddModal: boolean;
   selectedIngredient: UserIngredient;
   modalTitle: string;
