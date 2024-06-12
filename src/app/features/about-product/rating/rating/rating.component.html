@@ -1,0 +1,94 @@
+<div
+  class="main-container h-100 flex flex-column"
+  *ngIf="recipe"
+>
+  <div class="d-flex flex-column justify-content-between bg-white h-100 position-relative">
+    <div class="">
+      <div class="image-container d-flex justify-content-between">
+        <button
+          class="btn position-relative rounded-circle position-relative my-3"
+          (click)="goBack()"
+        >
+          <i class="fa-solid fa-arrow-left" style="color: white"></i>
+        </button>
+        <span class="d-flex justify-content-end">
+          <app-badge
+            [color]="'yellow'"
+            [text]="recipe.cuisineName"
+            [showXButton]="false"
+            class="position-absolute"
+            style="z-index: 1000"
+          ></app-badge>
+        </span>
+        <img
+          [src]="getImageUrl(recipe.pictureUrl)"
+          class="w-100 mx-auto d-block recipe-img"
+        />
+      </div>
+    </div>
+
+    <div class="d-flex flex-column h-100 mx-3 overflow-auto flex-1">
+      <h2 class="text-xl my-2 font-extrabold text-[#746c74]">
+        {{ recipe.name }}
+      </h2>
+      <p class="text-md my-2 text-[#cbcbcb]">Ratings</p>
+      <div class="mt-2 bg-white max-w-6xl max-md:max-w-md mx-auto">
+        <div class="grid mb-4" *ngFor="let feedback of recipeFeedbacks">
+          <div class="p-6 rounded-lg bg-gray-100 relative">
+            <div class="flex justify-between">
+              <div class="flex flex-wrap items-center gap-2">
+                <img
+                *ngIf="feedback.userGender === 'M'"
+                src="../../../assets/icons/male-icon.png"
+                alt="Male Image"
+                class="w-12"
+              />
+              <img
+                *ngIf="feedback.userGender === 'F'"
+                src="../../../assets/icons/female-icon.png"
+                class="w-12"
+                alt="Female Image"
+              />
+              <div>
+                <h4 class="text-gray-800 text-sm whitespace-nowrap font-bold">
+                  {{ feedback.userFirstName }} {{ feedback.userLastName }}
+                </h4>
+                <p class="mt-0.5 text-xs text-gray-600">
+                  {{ feedback.dateTime | date }}
+                </p>
+              </div>
+              </div>
+              
+              <div class="flex space-x-1 mt-4">
+                <svg
+                  *ngFor="let star of stars; let i = index"
+                  [ngClass]="{'fill-[#facc15]': i < feedback.rating, 'fill-[#CED5D8]': i >= feedback.rating}"
+                  class="w-4"
+                  viewBox="0 0 14 13"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    d="M7 0L9.4687 3.60213L13.6574 4.83688L10.9944 8.29787L11.1145 12.6631L7 11.2L2.8855 12.6631L3.00556 8.29787L0.342604 4.83688L4.5313 3.60213L7 0Z"
+                  />
+                </svg>
+                <p class="text-sm my-2 text-gray-500">{{feedback.rating}} out of 5</p>
+
+              </div>
+              
+            </div>
+
+            
+
+            <div class="mt-6">
+              <p class="text-gray-800 text-sm leading-relaxed">
+                {{ feedback.feedback }}
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <app-navbar></app-navbar>
+  </div>
+</div>

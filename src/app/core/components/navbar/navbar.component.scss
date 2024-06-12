@@ -27,10 +27,15 @@ footer {
   background-color: white;
   position: relative;
   border-top: 1px solid var(--bs-gray-300);
+  border-start-end-radius: 20px;
+  border-start-start-radius: 20px;
 
 }
 p {
   font-size: 0.9rem !important;
+}
+.nav-btn {
+  color: #959499;
 }
 .active {
   border: none;

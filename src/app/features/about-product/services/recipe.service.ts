@@ -2,7 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { environment } from 'src/app/core/environments/environment';
-import { Recipe } from 'src/app/core/models/user.model';
+import { Recipe, RecipeFeedbacks } from 'src/app/core/models/user.model';
 
 @Injectable({ providedIn: 'root' })
 export class RecipeService {
@@ -14,4 +14,11 @@ export class RecipeService {
         `${environment.apiUrl}/recipes/${id}`
       );
   }
+
+  getRecipeFeedbacksByRecipeId(id: Number): Observable<any>{
+    return this.http.get(
+      `${environment.apiUrl}/recipes/${id}/feedback`
+    );
+  }
+
 }

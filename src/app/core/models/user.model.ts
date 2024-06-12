@@ -82,12 +82,25 @@ export interface Recipe {
   instructions?: string;
   description?: string;
   pictureUrl?: string;
+  rating?: number;
   kcals?: number;
   favourites?: number;
   cuisineName?: string;
   ingredientDtoList?: RecipeIngredient[];
   recipeDiets?: UserDiet[];
   recipeInstructions?: RecipeInstruction[]
+}
+
+export interface RecipeFeedbacks {
+  id: number;
+  feedback: string;
+  rating: number;
+  userId: number;
+  userFirstName: number;
+  userLastName: number;
+  userGender: string;
+  recipeId: number;
+  dateTime:string;
 }
 
 // Interface for the RecipeIngredient object

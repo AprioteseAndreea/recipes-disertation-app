@@ -9,15 +9,19 @@ import { AboutProductComponent } from './components/about-product/about-product.
 import { AboutRecipeRoutingModule } from './about-product-routing.module';
 import { LineBreakPipe } from './pipes/line-break.pipe';
 import { RouterModule, Routes } from '@angular/router';
+import { RatingComponent } from './rating/rating/rating.component';
 
 const routes: Routes = [
-  { path: ':id', component: AboutProductComponent }
+  { path: ':id', component: AboutProductComponent },
+  { path: ':id/rating', component: RatingComponent }
+
 ];
 
 @NgModule({
   declarations: [
   AboutProductComponent,
   LineBreakPipe,
+  RatingComponent,
   ],
   imports: [
     RouterModule.forChild(routes),

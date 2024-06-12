@@ -1,0 +1,29 @@
+.main-container {
+    background-color: #f3f3f3;
+  }
+  
+  .recipe-img {
+    object-fit: cover; /* Maintain aspect ratio and cover the entire div */
+    object-position: center center; /* Center the image within the div */
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 150px;
+  }
+  
+  .image-container {
+    height: 150px;
+    span {
+      z-index: 1000;
+      height: fit-content;
+    }
+  }
+  
+  .btn {
+    z-index: 1000;
+    height: fit-content;
+    margin-left: 10px;
+    background-color: #000000a8;
+  }
+  
+ 

@@ -1,21 +1,20 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { RecipeService } from '../../services/recipe.service';
-import { Recipe } from 'src/app/core/models/user.model';
-import { environment } from 'src/app/core/environments/environment';
 import { AccountService } from 'src/app/features/auth/services/account.service';
-declare function favoriteAnimation($event: any): void;
+import { Recipe, RecipeFeedbacks } from 'src/app/core/models/user.model';
+import { environment } from 'src/app/core/environments/environment';
 
 @Component({
-  selector: 'app-about-product',
-  templateUrl: './about-product.component.html',
-  styleUrls: ['./about-product.component.scss'],
+  selector: 'app-rating',
+  templateUrl: './rating.component.html',
+  styleUrls: ['./rating.component.scss']
 })
-export class AboutProductComponent implements OnInit {
+export class RatingComponent implements OnInit{
   private recipeID: number;
   public recipe: Recipe;
+  public recipeFeedbacks: RecipeFeedbacks[];
   stars: number[] = [1, 2, 3, 4, 5];
-
   constructor(
     private activatedRoute: ActivatedRoute,
     private router: Router,
@@ -25,8 +24,9 @@ export class AboutProductComponent implements OnInit {
 
   ngOnInit(): void {
     this.activatedRoute.paramMap.subscribe((params) => {
-      this.recipeID = +params.get('recipeID');
+      this.recipeID = +params.get('id');
       this.getProduct();
+      this.getFeedbacks();
     });
   }
 
@@ -34,12 +34,7 @@ export class AboutProductComponent implements OnInit {
     this.recipeService.getRecipeById(this.recipeID).subscribe(
       (recipe) => {
         this.recipe = recipe;
-        if (
-          this.recipe.recipeInstructions &&
-          this.recipe.recipeInstructions.length > 0
-        ) {
-          this.recipe.recipeInstructions.sort((a, b) => a.step - b.step);
-        }
+      
       },
       (error) => {
         if (error.status === 404) {
@@ -51,8 +46,20 @@ export class AboutProductComponent implements OnInit {
     );
   }
 
-  favoriteAnimation($event: any) {
-    favoriteAnimation($event);
+  getFeedbacks(){
+    this.recipeService.getRecipeFeedbacksByRecipeId(this.recipeID).subscribe(
+      (feedbacks) => {
+        this.recipeFeedbacks = feedbacks;
+      
+      },
+      (error) => {
+        if (error.status === 404) {
+          this.router.navigate(['/notfound']);
+        } else {
+          console.error('A apărut o eroare la obținerea retetei:', error);
+        }
+      }
+    );
   }
 
   getImageUrl(id: string) {
@@ -61,15 +68,5 @@ export class AboutProductComponent implements OnInit {
 
   goBack() {
     window.history.back();
-  }
-
-  goToRatingView(){
-    this.router.navigate([`/recipe/${this.recipeID}/rating`]);
-  }
-
-  checkIngredientIfIsInTheFridge(ingrId: number) {
-    return this.accountService.loggedUserValue.userIngredients.find(
-      (ingre) => !ingre.isCartIngredient && ingre.ingredient.id == ingrId
-    );
   }
 }
