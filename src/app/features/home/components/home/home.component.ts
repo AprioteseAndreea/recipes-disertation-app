@@ -38,7 +38,7 @@ export class HomeComponent {
 
     const today = new Date();
 
-    this.recipesLabel = 'Today meels';
+    this.recipesLabel = 'Today meals';
     this.recommendedRecipes = this.user.userRecommendations.filter(
       (rec) =>
         new Date(rec.dateTime).toLocaleDateString('en-GB') ===
@@ -85,7 +85,7 @@ export class HomeComponent {
         day: 'numeric',
       });
     } else {
-      this.recipesLabel = 'Today meels';
+      this.recipesLabel = 'Today meals';
     }
 
     this.recommendedRecipes = this.user.userRecommendations.filter(

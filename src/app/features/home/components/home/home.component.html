@@ -1,27 +1,27 @@
-<div class="main-container">
+<div class="main-container bg-white">
   <div class="mx-2 column pt-2" style="overflow-y: auto">
-    <div class="heading">
+    <div class="heading bg-[#fff3cd] rounded-3xl">
       <div class="d-flex justify-content-between mx-2">
-        <div>
-          <p class="fs-4 fw-bold mb-0">Hi, {{ user.firstName }} ! 👋</p>
-          <p class="fs-6 fw-light">Let's see what I've got for you today!</p>
+        <div class="mx-3 my-2">
+          <p class="text-lg fw-bold mb-0">Hi, {{ user.firstName }} ! 👋</p>
+          <p class="text-base fw-light">Let's see what I've got for you today!</p>
         </div>
         <button
           (click)="logOut()"
-          class="btn position-relative rounded-circle position-relative my-3"
+          class="bg-white w-10 position-relative rounded-circle position-relative my-3"
         >
-          <i class="fas fa-sign-out" style="color: white"></i>
+          <i class="fas fa-sign-out" style="color: #ffc107"></i>
         </button>
       </div>
       <div
-        class="bg-[#fff3cd] px-2 py-2 mx-2 border border-gray-200 rounded-lg row mb-2 text-black-700"
+        class="py-2 mx-2 row mb-2 text-black-700"
       >
         <div class="col-3 d-flex flex-column justify-content-center">
           <img src="../../../assets/icons/taco-icon.png" />
         </div>
         <div class="col-9 my-auto">
           <div>
-            <p class="fw-normal text-start small">A new week already start?</p>
+            <p class="text-base text-sm small">A new week already start?</p>
             <div class="text-start">
               <a class="fw-bold cart-link text-sm" (click)="generateNewMenu()"
                 >Generate menu for this week</a
@@ -61,9 +61,9 @@
         <ng-container *ngFor="let recipe of recommendedRecipes">
           <a [routerLink]="['/recipe', recipe.breakfastRecipe.id]">
             <div
-              class="card mb-3 d-flex flex-row bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700"
+              class="card mb-3 flex-row bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700"
             >
-              <div class="w-1/4">
+             
                 <app-badge
                   [color]="'lime'"
                   [text]="'Breakfast'"
@@ -71,155 +71,110 @@
                   class="mx-1 my-1 position-absolute"
                   style="z-index: 1000"
                 ></app-badge>
+               
                 <img
                   [src]="getImageUrl(recipe.breakfastRecipe.pictureUrl)"
                   onError="this.src='../../../assets/no-content/no-image.png'"
-                  class="rounded-lg h-28 w-28 object-cover"
+                  class="rounded-lg object-cover h-40 w-full"
                 />
-              </div>
+             
               <div
-                class="d-flex flex-column w-3/4 gap-3 justify-content-center px-3"
+                class="d-flex flex-column  bottom-0 rounded-t-3xl justify-content-center position-absolute bg-white w-full"
               >
-                <div class="title-container">
-                  <p class="px-1 pt-2 fw-bold">
+                <div class="flex justify-between">
+                  <p class="px-3 pt-2 fw-semibold text-sm">
                     {{ recipe.breakfastRecipe.name }}
                   </p>
+                  <span class="text-gray-400 text-sm pr-4 py-2">⭐ 4</span>
                 </div>
-                <div class="detail-container row">
+                 
+                
+                <div class="row pb-2">
                   <div class="col">
-                    <div class="row d-flex justify-content-center">🔥</div>
-                    <div
-                      class="row d-flex justify-content-center recipe-details-text"
-                    >
-                      {{ recipe.breakfastRecipe.kcals }} kcals
-                    </div>
+                    <div class="row d-flex text-gray-400 text-sm">⌚  {{ recipe.breakfastRecipe.prepTime }} min • {{recipe.breakfastRecipe.cookingLevel | titlecase}} • {{recipe.breakfastRecipe.kcals}} kcals</div>
+                   
                   </div>
-                  <div class="col">
-                    <div class="row d-flex justify-content-center">⌚</div>
-                    <div
-                      class="row d-flex justify-content-center recipe-details-text"
-                    >
-                      {{ recipe.breakfastRecipe.prepTime }} min
-                    </div>
-                  </div>
-                  <!-- <div class="col">
-                    <div class="row d-flex justify-content-center">⭐</div>
-                    <div
-                      class="row d-flex justify-content-center recipe-details-text"
-                    >
-                      {{ recipe.dinnerRecipe.rating }}
-                    </div>
-                  </div> -->
+      
                 </div>
               </div>
             </div>
           </a>
           <a [routerLink]="['/recipe', recipe.lunchRecipe.id]">
             <div
-              class="card mb-3 d-flex flex-row bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700"
+            class="card mb-3 flex-row bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700"
+          >
+           
+              <app-badge
+                [color]="'orange'"
+                [text]="'Lunch'"
+                [showXButton]="false"
+                class="mx-1 my-1 position-absolute"
+                style="z-index: 1000"
+              ></app-badge>
+           
+              <img
+                [src]="getImageUrl(recipe.lunchRecipe.pictureUrl)"
+                onError="this.src='../../../assets/no-content/no-image.png'"
+                class="rounded-lg object-cover h-40 w-full"
+              />
+           
+            <div
+              class="d-flex flex-column  bottom-0 rounded-t-3xl justify-content-center position-absolute bg-white w-full"
             >
-              <div class="w-1/4">
-                <app-badge
-                  [color]="'yellow'"
-                  [text]="'Lunch'"
-                  [showXButton]="false"
-                  class="position-absolute"
-                  style="z-index: 1000"
-                ></app-badge>
-
-                <img
-                  [src]="getImageUrl(recipe.lunchRecipe.pictureUrl)"
-                  class="rounded-lg h-28 w-28 object-cover"
-                  onError="this.src='../../../assets/no-content/no-image.png'"
-                />
+              <div class="flex justify-between">
+                <p class="px-3 pt-2 fw-semibold text-sm">
+                  {{ recipe.lunchRecipe.name }}
+                </p>
+                <span class="text-gray-400 text-sm pr-4 py-2">⭐ 4</span>
               </div>
-              <div
-                class="d-flex flex-column w-3/4 gap-3 justify-content-center px-3"
-              >
-                <div class="title-container">
-                  <p class="px-1 pt-2 fw-bold">{{ recipe.lunchRecipe.name }}</p>
+               
+              
+              <div class="row pb-2">
+                <div class="col">
+                  <div class="row d-flex text-gray-400 text-sm">⌚  {{ recipe.lunchRecipe.prepTime }} min • {{recipe.lunchRecipe.cookingLevel | titlecase}} • {{recipe.lunchRecipe.kcals}} kcals</div>
+                 
                 </div>
-                <div class="detail-container row">
-                  <div class="col">
-                    <div class="row d-flex justify-content-center">🔥</div>
-                    <div
-                      class="row d-flex justify-content-center recipe-details-text"
-                    >
-                      {{ recipe.lunchRecipe.kcals }} kcals
-                    </div>
-                  </div>
-                  <div class="col">
-                    <div class="row d-flex justify-content-center">⌚</div>
-                    <div
-                      class="row d-flex justify-content-center recipe-details-text"
-                    >
-                      {{ recipe.lunchRecipe.prepTime }} min
-                    </div>
-                  </div>
-                  <!-- <div class="col">
-                    <div class="row d-flex justify-content-center">⭐</div>
-                    <div
-                      class="row d-flex justify-content-center recipe-details-text"
-                    >
-                      {{ recipe.dinnerRecipe.rating }}
-                    </div>
-                  </div> -->
-                </div>
+    
               </div>
             </div>
+          </div>
           </a>
           <a [routerLink]="['/recipe', recipe.dinnerRecipe.id]">
             <div
-              class="card mb-3 d-flex flex-row bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700"
+              class="card mb-3 flex-row bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700"
             >
-              <div class="w-1/4">
+             
                 <app-badge
-                  [color]="'orange'"
+                  [color]="'yellow'"
                   [text]="'Dinner'"
                   [showXButton]="false"
-                  class="position-absolute"
+                  class="mx-1 my-1 position-absolute"
                   style="z-index: 1000"
                 ></app-badge>
-
+               
                 <img
                   [src]="getImageUrl(recipe.dinnerRecipe.pictureUrl)"
                   onError="this.src='../../../assets/no-content/no-image.png'"
-                  class="rounded-lg h-28 w-28 object-cover"
+                  class="rounded-lg object-cover h-40 w-full"
                 />
-              </div>
+             
               <div
-                class="d-flex flex-column w-3/4 gap-3 justify-content-center px-3"
+                class="d-flex flex-column  bottom-0 rounded-t-3xl justify-content-center position-absolute bg-white w-full"
               >
-                <div class="title-container">
-                  <p class="px-1 pt-2 fw-bold">
+                <div class="flex justify-between">
+                  <p class="px-3 pt-2 fw-semibold text-sm">
                     {{ recipe.dinnerRecipe.name }}
                   </p>
+                  <span class="text-gray-400 text-sm pr-4 py-2">⭐ 4</span>
                 </div>
-                <div class="detail-container row">
+                 
+                
+                <div class="row pb-2">
                   <div class="col">
-                    <div class="row d-flex justify-content-center">🔥</div>
-                    <div
-                      class="row d-flex justify-content-center recipe-details-text"
-                    >
-                      {{ recipe.dinnerRecipe.kcals }} kcals
-                    </div>
+                    <div class="row d-flex text-gray-400 text-sm">⌚  {{ recipe.dinnerRecipe.prepTime }} min • {{recipe.dinnerRecipe.cookingLevel | titlecase}} • {{recipe.dinnerRecipe.kcals}} kcals</div>
+                   
                   </div>
-                  <div class="col">
-                    <div class="row d-flex justify-content-center">⌚</div>
-                    <div
-                      class="row d-flex justify-content-center recipe-details-text"
-                    >
-                      {{ recipe.dinnerRecipe.prepTime }} min
-                    </div>
-                  </div>
-                  <!-- <div class="col">
-                    <div class="row d-flex justify-content-center">⭐</div>
-                    <div
-                      class="row d-flex justify-content-center recipe-details-text"
-                    >
-                      {{ recipe.dinnerRecipe.rating }}
-                    </div>
-                  </div> -->
+      
                 </div>
               </div>
             </div>
