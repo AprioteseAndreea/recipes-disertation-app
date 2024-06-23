@@ -9,7 +9,7 @@ export interface UserDto {
   age?: number;
   height?: number;
   weight?: number;
-  bms?: number;
+  bmr?: number;
   gender?: string;
   cookingLevel?: string;
   physicalEffort?: string;

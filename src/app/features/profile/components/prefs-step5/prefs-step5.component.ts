@@ -36,6 +36,56 @@ export class PrefsStep5Component implements OnInit {
     this.router.navigate(['/profile']);
   }
 
+  calculatePhysicalEffortFactor(): number {
+    const physicalEffort = this.formGroup.get('physicalEffort').value;
+    let physicalEffortFactor: number;
+
+    switch (physicalEffort) {
+      case 'SEDENTARY':
+        physicalEffortFactor = 1.2;
+        break;
+      case 'SLIGHTLY_ACTIVE':
+        physicalEffortFactor = 1.375;
+        break;
+      case 'MODERATELY_ACTIVE':
+        physicalEffortFactor = 1.55;
+        break;
+      case 'VERY_ACTIVE':
+        physicalEffortFactor = 1.725;
+        break;
+      case 'SUPER_ACTIVE':
+        physicalEffortFactor = 1.9;
+        break;
+      default:
+        physicalEffortFactor = 1.0;
+        break;
+    }
+
+    return physicalEffortFactor;
+  }
+
+  calculateBmr(){
+    var bmr;
+
+    const weight = this.accountService.loggedUserValue.weight;
+    const height = this.accountService.loggedUserValue.height;
+    const age = this.accountService.loggedUserValue.age;
+    const physicalEffortFactor = this.calculatePhysicalEffortFactor();
+
+    if (this.accountService.loggedUserValue.gender == 'F') {
+
+      bmr = (10 * weight) + (6.25 * height) - (5 * age + 5);
+      bmr *= physicalEffortFactor;
+    } else {
+      bmr = 10 * weight + 6.25 * height - 5 * age - 161;
+      bmr *= physicalEffortFactor;
+    }
+
+    bmr = Math.floor(bmr);
+
+    return bmr;
+  }
+  
   updatePhysicalEffort() {
     const updatedUserObj: UserDto = {
       physicalEffort: this.formGroup.get('physicalEffort').value,
@@ -51,6 +101,8 @@ export class PrefsStep5Component implements OnInit {
           'Success!',
           'Your informations was saved!'
         );
+
+        this.accountService.loggedUserValue.bmr = this.calculateBmr();
         this.goHome();
       },
       error: (e) => {

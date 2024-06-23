@@ -10,17 +10,18 @@
     >
       <i class="fa-solid fa-arrow-left" style="color: white"></i>
     </button>
+    <span class="d-flex justify-content-end">
+      <app-badge
+        [color]="'yellow'"
+        [text]="recipe.cuisineName"
+        [showXButton]="false"
+        class="position-absolute mt-2"
+        style="z-index: 1000"
+      ></app-badge>
+    </span>
       <div class="image-container d-flex justify-content-between">
        
-        <span class="d-flex justify-content-end">
-          <app-badge
-            [color]="'yellow'"
-            [text]="recipe.cuisineName"
-            [showXButton]="false"
-            class="position-absolute"
-            style="z-index: 1000"
-          ></app-badge>
-        </span>
+       
         <img
           [src]="getImageUrl(recipe.pictureUrl)"
           class="w-100 mx-auto d-block recipe-img"

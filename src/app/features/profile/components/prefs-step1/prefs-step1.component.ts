@@ -41,8 +41,8 @@ export class PrefsStep1Component implements OnInit {
       age: [this.accountService.loggedUserValue.age, Validators.required],
       height: [this.accountService.loggedUserValue.height, Validators.required],
       weight: [this.accountService.loggedUserValue.weight, Validators.required],
-      bms: [
-        { value: this.accountService.loggedUserValue.bms, disabled: true },
+      bmr: [
+        { value: this.accountService.loggedUserValue.bmr, disabled: true },
         Validators.required,
       ],
     });
@@ -85,15 +85,15 @@ export class PrefsStep1Component implements OnInit {
   }
 
   onFocusOut(event: any) {
-    this.formGroup.get('bms').setValue(this.calculateBms());
+    this.formGroup.get('bmr').setValue(this.calculateBmr());
   }
 
   onRadioChange(event: any) {
-    this.formGroup.get('bms').setValue(this.calculateBms());
+    this.formGroup.get('bmr').setValue(this.calculateBmr());
   }
 
-  calculateBms(){
-    var bms;
+  calculateBmr(){
+    var bmr;
 
     const weight = this.formGroup.get('weight').value;
     const height = this.formGroup.get('height').value;
@@ -102,20 +102,20 @@ export class PrefsStep1Component implements OnInit {
 
     if (this.formGroup.get('gender').value == 'F') {
 
-      bms = (10 * weight) + (6.25 * height) - (5 * age + 5);
-      bms *= physicalEffortFactor;
+      bmr = (10 * weight) + (6.25 * height) - (5 * age + 5);
+      bmr *= physicalEffortFactor;
     } else {
-      bms = 10 * weight + 6.25 * height - 5 * age - 161;
-      bms *= physicalEffortFactor;
+      bmr = 10 * weight + 6.25 * height - 5 * age - 161;
+      bmr *= physicalEffortFactor;
     }
 
-    bms = Math.floor(bms);
+    bmr = Math.floor(bmr);
 
-    return bms;
+    return bmr;
   }
 
   updateUserProfile() {
-    const bms = this.calculateBms();
+    const bmr = this.calculateBmr();
 
     const updatedUserObj: UserDto = {
       firstName: this.formGroup.get('firstName').value,
@@ -123,7 +123,7 @@ export class PrefsStep1Component implements OnInit {
       age: this.formGroup.get('age').value,
       height: this.formGroup.get('height').value,
       weight: this.formGroup.get('weight').value,
-      bms: bms,
+      bmr: bmr,
       gender: this.formGroup.get('gender').value,
     };
 

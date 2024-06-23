@@ -23,15 +23,21 @@ export class ChatbotComponent implements OnInit, AfterViewChecked {
   messageList!: Message[];
   public message!: string;
   isLoading!: boolean;
+  threadId: string;
 
   constructor(private openaiService: OpenaiService) {}
 
-  ngOnInit(): void {
+  async ngOnInit(): Promise<void> {
     this.messageList = [];
+    this.threadId = await this.openaiService.createThread();
   }
 
   ngAfterViewChecked(): void {
     this.scrollToBottom();
+  }
+
+  goBack() {
+    window.history.back();
   }
 
   // scroll to bottom
@@ -55,15 +61,36 @@ export class ChatbotComponent implements OnInit, AfterViewChecked {
         text: 'Typing ...',
         isOwner: false,
       });
+    }
 
-      const response = await this.openaiService.chat(message);
-      if (response) {
-        this.messageList.pop();
-        this.messageList.push({
-          text: response,
-          isOwner: false,
-        });
+    try {
+      // Adaugă mesajul în thread
+      if (this.threadId) {
+        await this.openaiService.addMessagesToThread(message, this.threadId);
+
+        // Rulează thread-ul și așteaptă finalizarea rulării
+        const runId = await this.openaiService.runThread(this.threadId);
+
+        await this.openaiService.waitForRunToFinish(this.threadId, runId);
+
+        // Listează mesajele actualizate după rularea asistentului
+        const messages = await this.openaiService.listMessages(this.threadId);
+
+        this.messageList = [];
+        for (const message of messages.reverse()) {
+          if (message.content[0]) {
+            this.messageList.push({
+              text: message.content[0].text.value,
+              isOwner: message.role == 'user' ? true : false,
+            });
+          }
+        }
+        this.message = '';
+      } else {
+        console.error('ThreadId lipsă.');
       }
+    } catch (error) {
+      console.error('Eroare:', error);
     }
   }
 }

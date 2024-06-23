@@ -14,7 +14,8 @@ export const environment = {
       appId: "1:767009823356:web:efc82aeada7a4c3fe007f9"
     },
     openaiConfig: {
-      apiKey: "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"
+      apiKey: "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",
+      assistentKey: 'asst_Fz3BvfwByp5MiN2fP0fvHYwl'
     }
   };
   

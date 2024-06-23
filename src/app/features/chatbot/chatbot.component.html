@@ -5,8 +5,21 @@
       <div class="col">
         <!-- chat card section -->
         <div class="card shadow">
+          <div class="w-full bg-cyan-500 rounded-xl position-relative h-11 flex">
+            <button
+            class="btn position-absolute rounded-circle"
+            (click)="goBack()"
+          >
+            <i class="fa-solid fa-arrow-left" style="color: white"></i>
+          </button>
+
+          <span class="mx-5 content-center text-white">
+            HealthBaddy
+          </span>
+
+          </div>
           <img src="/assets/icons/chatbot.png" alt="bot" class="bot">
-          <!-- messages section -->
+        <!-- messages section -->
           <div class="card-body" #scrollBottom>
             <div *ngFor="let message of messageList">
               <!-- display as inner html -->
